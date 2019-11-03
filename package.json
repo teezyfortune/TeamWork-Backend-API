@@ -1,0 +1,43 @@
+{
+  "name": "teamwork-backend-api",
+  "version": "1.0.0",
+  "description": "TeamWork social application",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemom",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teezyfortune/TeamWork-Backend-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teezyfortune/TeamWork-Backend-API/issues"
+  },
+  "homepage": "https://github.com/teezyfortune/TeamWork-Backend-API#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cloudinary": "^1.16.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4",
+    "pg": "^7.12.1",
+    "swagger-jsdoc": "^3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.18.2"
+  }
+}
