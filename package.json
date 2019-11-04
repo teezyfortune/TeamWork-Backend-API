@@ -4,7 +4,7 @@
   "description": "TeamWork social application",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemom",
+    "dev": "nodemon --exec babel-node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,18 +18,23 @@
   },
   "homepage": "https://github.com/teezyfortune/TeamWork-Backend-API#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
     "cloudinary": "^1.16.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "logger": "0.0.1",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
     "swagger-jsdoc": "^3.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",

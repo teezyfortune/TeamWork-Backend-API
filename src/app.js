@@ -1,6 +1,9 @@
-const express = require('express');
-const swaggerJSDoc = require('swagger-jsdoc');
-const path = require('path');
+import express from 'express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import path from 'path';
+import dotenv from 'dotenv/config';
+
+const logger = require('./utils/utils');
 
 const app = express();
 
@@ -32,3 +35,6 @@ app.get('/doc', (req, res) => {
 app.get('/docs', (req, res) => {
   res.sendFile(path.join(__dirname, '../swagger-documentation/index.html'));
 });
+
+const port = process.env.PORT;
+app.listen(port, () => logger(`sever listening on: http://localhost:${port}`));
