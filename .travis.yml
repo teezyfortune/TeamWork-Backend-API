@@ -1,17 +1,7 @@
-language: node_js,
-node_js:  
-  - v10.16.3,
-cache: npm
-local_directory: build
-install:
-  - npm_ci
-script: 
-  - npm test
-  - npm run build
-
-  deploy:
-    provider: pages
-    skip-cleanup: true,
-    github-token: $GITHUB_TOKEN,
-    on:
-      branch: gh_pages
+os: windows
+language: node_js
+node_js: 
+  - "stable"
+cache:
+  directories:
+    - "node_modules"

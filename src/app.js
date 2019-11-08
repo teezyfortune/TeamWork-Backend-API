@@ -1,40 +1,23 @@
 import express from 'express';
-import swaggerJSDoc from 'swagger-jsdoc';
-import path from 'path';
+import swaggerJsDoc from 'swagger-jsdoc';
 import dotenv from 'dotenv/config';
-
-const logger = require('./utils/utils');
+import bodyParser from 'body-parser';
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Define Static folder for public assets
-app.use(express.static(path.join(__dirname, '../swagger-documentation')));
-
-// swagger definition
-const swaggerDefinition = {
-  info: {
-    title: '',
-    version: '1.0.0',
-    description: '',
+const swaggerOption = {
+  iInfo: {
+    Title: 'TeamWork API',
+    Description: 'TeamWork API information',
   },
-  host: '',
-  basePath: '/api/v1',
+  contact: {
+    name: 'DevFortune',
+  },
+  server: ['http://localhost:5000'],
+  apis: ['app.js'],
 };
 
-// initialize swagger-jsdoc
-const swaggerSpec = swaggerJSDoc({
-  swaggerDefinition,
-  apis: ['**/**.route.js'], // pass all in array
-});
-
-// serve swagger
-app.get('/doc', (req, res) => {
-  res.send(swaggerSpec);
-});
-
-app.get('/docs', (req, res) => {
-  res.sendFile(path.join(__dirname, '../swagger-documentation/index.html'));
-});
-
-const port = process.env.PORT;
-app.listen(port, () => logger(`sever listening on: http://localhost:${port}`));
+const swaggerDocs = swaggerJsDoc(swaggerOption)
+app.use('/api/v1', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

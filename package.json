@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./build && babel -d ./build ./api -s"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   },
   "homepage": "https://github.com/teezyfortune/TeamWork-Backend-API#readme",
   "dependencies": {
+    "@hapi/joi": "^16.1.7",
     "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "cloudinary": "^1.16.0",
     "dotenv": "^8.2.0",
@@ -29,7 +32,8 @@
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
-    "swagger-jsdoc": "^3.4.0"
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui": "^3.24.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
