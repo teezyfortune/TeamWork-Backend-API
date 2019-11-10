@@ -1,11 +1,7 @@
-import { Client } from 'pg';
-import 'dotenv/config';
+import { Pool } from 'pg';
 
-const connectionString = process.env.DATABASE_URL;
-const config = new Client(connectionString, (err, client) => {
-  if (err) {
-    return err;
-  }
-  return client;
+const conn = new Pool({
+  connectionString: process.env.DATABASE_URL,
 });
-export default config;
+
+export default conn;
