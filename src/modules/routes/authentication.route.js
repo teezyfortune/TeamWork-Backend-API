@@ -1,8 +1,8 @@
 import express from 'express';
 import validateUserInput from '../../middleware/validation';
-import { createUser } from '../authentication/signup_account';
+import { saveUser } from '../authentication/signup_account';
 
 const authRoute = express.Router();
-authRoute.post('/signup', validateUserInput, createUser);
+authRoute.post('/signup', validateUserInput, saveUser);
 
 export default authRoute;
