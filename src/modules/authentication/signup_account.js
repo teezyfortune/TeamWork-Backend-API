@@ -1,39 +1,7 @@
 import { encryptPassWord, newToken } from '../../helpers/security';
 import conn from '../../database/index';
-import { Response } from '../../utils/utils';
 import { SUCESS_MESSAGE, EMAIL_CONFLICT, SERVER_ERROR_MESSAGE } from '../../utils/constant';
-
-export const getOneUsersByEmail = async (email) => {
-  try {
-    const sql = 'SELECT * FROM employees WHERE email = $1 LIMIT 1';
-    const values = [email];
-
-    const checkUser = await conn.query(sql, values);
-    if (checkUser.rowCount !== 0) {
-      return true;
-    }
-  } catch (error) {
-    return error;
-  }
-  return false;
-};
-
-export const getOneUsersById = async (id) => {
-  try {
-    const searCh = {
-      name: 'find',
-      sql: 'SELECT * FROM employees WHERE email = $1 LIMIT 1',
-      values: [id],
-    };
-    const checkUser = await conn.query(searCh);
-    if (checkUser.rowCount !== 0) {
-      return true;
-    }
-  } catch (error) {
-    return error;
-  }
-  return false;
-};
+import { getOneUserByEmail } from '../../services/users/users.services';
 
 export const saveUser = async (request, response) => {
   try {
@@ -48,12 +16,12 @@ export const saveUser = async (request, response) => {
       address,
     } = await request.body;
     const hash = encryptPassWord(password);
-    const findUser = await getOneUsersByEmail(email);
+    const findUser = await getOneUserByEmail(email);
     if (findUser) {
       return response.status(409).json({ status: 'error', message: EMAIL_CONFLICT });
     }
     const sql =
-      'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id';
+      'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, email';
     const values = [firstName, lastName, email, hash, gender, jobRole, department, address];
     const user = await conn.query(sql, values);
     if (user) {

@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { getOneUserById } from '../services/users/users.services';
 
 export const SIGN_OPTION = {
   issuer: 'Authorization/Resource/TeamWork',
@@ -12,8 +13,17 @@ export const encryptPassWord = (password) => {
   return hash;
 };
 
-export const comparePassWord = (password, id) => {
-  return bcrypt.compareSync(password, id);
+export const comparePassWord = async (password, id) => {
+  try {
+    const savedpassword = await getOneUserById(id);
+    const compare = bcrypt.compareSync(password, savedpassword.rows[0].password);
+    if (compare) {
+      return compare;
+    }
+  } catch (err) {
+    return err;
+  }
+  return false;
 };
 
 export const newToken = (payload) => {

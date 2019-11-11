@@ -10,7 +10,7 @@ import {
 } from './validation_message';
 import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
-const validateUserInput = (request, response, next) => {
+export const validateUserInput = (request, response, next) => {
   try {
     const {
       firstName,
@@ -78,4 +78,23 @@ const validateUserInput = (request, response, next) => {
   return next();
 };
 
-export default validateUserInput;
+export const validateLogin = (request, response, next) => {
+  const { email, password } = request.body;
+
+  if (email && !validator.isEmail(email)) {
+    return response.status(422).json({ status: 400, message: EMAIL_MESSAGE });
+  }
+
+  if (validator.isEmpty(password) === true) {
+    return response.status(422).json({ status: 'error', message: PASSWORD });
+  }
+
+  if (password && password.includes(' ')) {
+    return response.status(400).json({ status: 'error', message: `${NO_SPACE}$ for ${password}` });
+  }
+
+  if (password.length < 8) {
+    return response.status(422).json({ status: 'error', message: PASSWORD_LENGTH });
+  }
+  return next();
+};

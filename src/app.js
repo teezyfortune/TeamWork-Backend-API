@@ -1,5 +1,6 @@
 import express from 'express';
 import swaggerJsDoc from 'swagger-jsdoc';
+import polyfill from '@babel/polyfill';
 import bodyParser from 'body-parser';
 import { getEnv, logger } from './utils/utils';
 import router from './modules/routes/index';
@@ -29,3 +30,5 @@ app.use('/api/v1', router);
 app.listen(getEnv('PORT', 6000), () =>
   logger(`server listening on: http://localhost:${getEnv('PORT', 6000)}`)
 );
+
+export default app;
