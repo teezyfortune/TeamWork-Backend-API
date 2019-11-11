@@ -1,15 +1,11 @@
 import faker from 'faker';
 
-faker.address();
-faker.name();
-faker.provider();
-
 export const User = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
   password: faker.internet.password(),
-  gender: faker.name.gender(),
+  gender: 'male',
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
@@ -31,7 +27,7 @@ export const unDefined = {
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
   password: '',
-  gender: faker.name.gender(),
+  gender: 'female',
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
@@ -42,10 +38,20 @@ export const invalidEmail = {
   lastName: faker.name.lastName(),
   email: 'gaba123#.com',
   password: faker.internet.password(),
-  gender: faker.name.gender(),
+  gender: 'male',
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
 };
 
+export const signIn = {
+  email: 'gabteezy14@gmail.co.uk',
+  password: 'teezy123@',
+};
+
+export const invalidSignIn = {
+  email: 'gabteezy14@gmail.co.uk',
+  password: 'eezy123@',
+};
+export const baseLogin = '/api/v1/login';
 export const baseUrl = '/api/v1/signup';
