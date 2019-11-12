@@ -33,7 +33,7 @@ export const newToken = (payload) => {
 
 export const verifyToken = async (token) => {
   try {
-    const verified = await jwt.verify({ token }, process.env.JWT_SECRET, SIGN_OPTION);
+    const verified = await jwt.verify(token, process.env.JWT_SECRET, SIGN_OPTION);
     if (verified) {
       return verified;
     }
@@ -48,6 +48,8 @@ export const verifyMiddleWare = (req, res, next) => {
   const verify = verifyToken(token);
   if (!verify) {
     res.status(401).json({ status: 200, error: 'invalid or missing authorization' });
+  } else {
+    req.token = token;
   }
-  return next();
+  next();
 };
