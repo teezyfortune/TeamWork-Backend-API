@@ -8,7 +8,7 @@ import * as mock from '../../services/articles/__mocks__';
 const { expect } = chai;
 chai.use(chaHttp);
 let userToken;
-describe('Test Suite for User Adim/employess logIn', () => {
+describe('Test Suite that create articles', () => {
   describe('Authentication: Signin User', () => {
     it('ARTICLE', (done) => {
       chai
@@ -31,8 +31,8 @@ describe('Test Suite for User Adim/employess logIn', () => {
         .send(mock.article)
         .end((err, response) => {
           if (err) done(err);
-          expect(response.statusCode).to.equal(200);
-          expect(response.body).to.contains({ status: 'error' });
+          expect(response.statusCode).to.equal(201);
+          expect(response.body).to.contains({ status: 'success' });
           done();
         });
     });
@@ -49,5 +49,34 @@ describe('Test Suite for User Adim/employess logIn', () => {
           done();
         });
     });
+  });
+});
+
+describe('Authentication: Update Article', () => {
+  it('It should update article with target id', (done) => {
+    chai
+      .request(app)
+      .put(mock.baseuPdate)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.article)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(200);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+  it('It should respond with field can not be empty', (done) => {
+    chai
+      .request(app)
+      .put(mock.baseuPdate)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.emptySpace)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(422);
+        expect(response.body).to.contains({ status: 'error' });
+        done();
+      });
   });
 });

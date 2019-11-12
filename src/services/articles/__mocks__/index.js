@@ -21,3 +21,5 @@ export const invalidSignIn = {
 };
 export const baseLogin = '/api/v1/login';
 export const baseUrl = '/api/v1/article';
+
+export const baseuPdate = '/api/v1/article/63';

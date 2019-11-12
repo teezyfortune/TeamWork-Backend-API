@@ -1,5 +1,10 @@
-import { saveArticle, getOneArticle } from '../../services/articles/article.services';
-import { ARTICLE_CONFLICTS, ARTICLE_SUCCESS, SERVER_ERROR_MESSAGE } from '../../utils/constant';
+import { saveArticle, getOneArticle, editArticle, getOneArticleById } from '../../services/articles/article.services';
+import {
+  ARTICLE_CONFLICTS,
+  ARTICLE_SUCCESS,
+  SERVER_ERROR_MESSAGE,
+  ARTICLE_NOT_FOUND,
+} from '../../utils/constant';
 
 export const createArticle = async (req, res) => {
   try {
@@ -27,4 +32,30 @@ export const createArticle = async (req, res) => {
   return false;
 };
 
-export const updateArticle = async () => {};
+export const updateArticle = async (req, res) => {
+  try {
+    const articleId = await req.params.id;
+    const id = await req.token.payload.userId;
+    const { title, article } = await req.body;
+
+    const findArticle = await getOneArticleById(articleId, id);
+    if (findArticle === false) {
+      return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
+    }
+    const edited = await editArticle(title, article, articleId, id);
+    if (edited) {
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          articleId: edited.rows[0].id,
+          message: ARTICLE_SUCCESS,
+          title: edited.rows[0].title,
+          article: edited.rows[0].article,
+        },
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};

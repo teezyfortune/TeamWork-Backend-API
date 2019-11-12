@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { getOneUserById } from '../services/users/users.services';
-import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
 export const SIGN_OPTION = {
   issuer: 'Authorization/Resource/TeamWork',
@@ -41,11 +40,9 @@ export const verifyMiddleWare = async (req, res, next) => {
   const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
   if (!decoded) {
     res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
-  }
-  if (decoded === undefined) {
-    res.status(500).json({ code: 500, messg: SERVER_ERROR_MESSAGE });
   } else {
     req.token = await decoded;
+    console.log('>>>', decoded);
     return next();
   }
   return false;
