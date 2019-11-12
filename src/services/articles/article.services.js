@@ -14,6 +14,20 @@ export const getOneArticle = async (id, article) => {
   return false;
 };
 
+export const getOneArticleById = async (id, empid) => {
+  try {
+    const sql = 'SELECT * FROM articles WHERE id = $1 AND empid =$2  LIMIT 1';
+    const values = [id, empid];
+    const articleArticle = await conn.query(sql, values);
+    if (articleArticle.rowCount !== 0) {
+      return true;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
 export const saveArticle = async (userId, title, article) => {
   try {
     const sql =
@@ -23,6 +37,21 @@ export const saveArticle = async (userId, title, article) => {
     const postArticle = await conn.query(sql, values);
     if (postArticle) {
       return postArticle;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+export const editArticle = async (title, article, articleId, empid) => {
+  try {
+    const sql =
+      'UPDATE articles SET title = $1, article = $2 WHERE id = $3 AND empid = $4 RETURNING *';
+    const values = [title, article, articleId, empid];
+    const updated = await conn.query(sql, values);
+    if (updated) {
+      return updated;
     }
   } catch (error) {
     return error;
