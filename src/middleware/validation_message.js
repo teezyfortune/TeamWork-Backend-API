@@ -12,3 +12,6 @@ export const PASSWORD_LENGTH = 'Password lenght too short';
 export const NO_SPACE = 'No space is allowed';
 export const USE_STRING_MESSAGE = 'All name must be a string';
 export const UNDEFINED_MESSAGE = 'This field can not be empty, pkease enter a value';
+export const EMPTY_TITLE_MESSAGE = 'Title can not be emport';
+export const EMPTY_ARTICLE_MESSAGE = 'Article cannot be empty';
+export const GENDER_ERROR = 'Gender cannot contain number';

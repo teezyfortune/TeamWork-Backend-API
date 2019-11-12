@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { getOneUserById } from '../services/users/users.services';
+import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
 export const SIGN_OPTION = {
   issuer: 'Authorization/Resource/TeamWork',
@@ -31,23 +32,21 @@ export const newToken = (payload) => {
   return token;
 };
 
-export const verifyToken = async (token) => {
-  try {
-    const verified = await jwt.verify({ token }, process.env.JWT_SECRET, SIGN_OPTION);
-    if (verified) {
-      return verified;
-    }
-  } catch (error) {
-    return error;
+export const verifyMiddleWare = async (req, res, next) => {
+  const bearerHeader = req.headers.authorization;
+  // Bearer is not undefined
+  const Bearer = await bearerHeader.split(' ');
+  const bearerToken = await Bearer[1];
+  req.token = await bearerToken;
+  const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
+  if (!decoded) {
+    res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
+  }
+  if (decoded === undefined) {
+    res.status(500).json({ code: 500, messg: SERVER_ERROR_MESSAGE });
+  } else {
+    req.token = await decoded;
+    return next();
   }
   return false;
-};
-
-export const verifyMiddleWare = (req, res, next) => {
-  const token = req.headers.authorization;
-  const verify = verifyToken(token);
-  if (!verify) {
-    res.status(401).json({ status: 200, error: 'invalid or missing authorization' });
-  }
-  return next();
 };
