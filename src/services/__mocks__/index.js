@@ -1,13 +1,13 @@
 import faker from 'faker';
 
 export const User = {
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
+  firstName: 'kola',
+  lastName: 'laide',
   email: faker.internet.email(),
   password: faker.internet.password(),
-  gender: 'male',
+  gender: 'female',
   jobRole: faker.name.jobTitle(),
-  department: faker.name.jobArea(),
+  department: 'backend',
   address: faker.address.city(),
 };
 

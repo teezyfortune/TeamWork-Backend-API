@@ -18,6 +18,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         .end((err, response) => {
           if (err) done(err);
           expect(response.statusCode).to.equal(201);
+          console.log(response.message);
           done();
         });
     });
