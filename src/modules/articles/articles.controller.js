@@ -3,12 +3,14 @@ import {
   getOneArticle,
   editArticle,
   getOneArticleById,
+  deleteArticle,
 } from '../../services/articles/article.services';
 import {
   ARTICLE_CONFLICTS,
   ARTICLE_SUCCESS,
   SERVER_ERROR_MESSAGE,
   ARTICLE_NOT_FOUND,
+  DELETE_ARTICLE_SUCCESS,
 } from '../../utils/constant';
 
 export const createArticle = async (req, res) => {
@@ -60,6 +62,24 @@ export const updateArticle = async (req, res) => {
       });
     }
   } catch (err) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+export const destroyArticle = async (req, res) => {
+  try {
+    const articleId = req.params.id;
+    const id = req.token.payload.userId;
+    const findArticle = await getOneArticleById(articleId, id);
+    if (findArticle === false) {
+      return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
+    }
+    const destroyed = await deleteArticle(articleId);
+    if (destroyed) {
+      return res.status(200).json({ status: 'success', message: DELETE_ARTICLE_SUCCESS });
+    }
+  } catch (error) {
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
