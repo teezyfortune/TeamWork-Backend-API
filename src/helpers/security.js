@@ -46,4 +46,5 @@ export const verifyMiddleWare = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
   }
+  return false;
 };
