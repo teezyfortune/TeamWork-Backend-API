@@ -32,21 +32,18 @@ export const newToken = (payload) => {
 };
 
 export const verifyMiddleWare = async (req, res, next) => {
-  // try {
-  const bearerHeader = req.headers.authorization;
-  // Bearer is not undefined
-  const Bearer = await bearerHeader.split(' ');
-  const bearerToken = await Bearer[1];
-  req.token = await bearerToken;
-  const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
-  if (!decoded) {
-    res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
-  } else {
-    req.token = await decoded;
-
-    // } catch (error) {
-    //   res.status(500).json({ code: 500, messgae: 'u are not loggedIn' });
-    // }
+  try {
+    const bearerHeader = req.headers.authorization;
+    // Bearer is not undefined
+    const Bearer = await bearerHeader.split(' ');
+    const bearerToken = await Bearer[1];
+    req.token = await bearerToken;
+    const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
+    if (decoded) {
+      req.token = await decoded;
+    }
     return next();
+  } catch (error) {
+    res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
   }
 };

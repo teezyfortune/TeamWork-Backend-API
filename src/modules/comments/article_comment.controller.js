@@ -1,22 +1,22 @@
-import articleComment from '../../services/articles/comment';
-import { getOneArticleById } from '../../services/articles/article.services';
+import conn from '../../database/index';
 import { SERVER_ERROR_MESSAGE, ARTICLE_NOT_FOUND, COMMENT_SUCCESS } from '../../utils/constant';
 
-const createComment = async (req, res) => {
+const articleComment = async (req, res) => {
   try {
     const { comment } = await req.body;
     const articleId = await req.params.id;
-    console.log('>>>userId', articleId);
-    const id = await req.token.payload.userId;
-    console.log('>>>userId', id);
-    const findArticle = await getOneArticleById(articleId, id);
-    console.log('>>>article', findArticle);
-    if (findArticle.rowCount === 0) {
-      return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
+    const empid = await req.token.payload.userId;
+    const sql = 'SELECT * FROM articles WHERE id = $1  LIMIT 1';
+    const values = [articleId];
+    const find = await conn.query(sql, values);
+    if (find.rowCount === 0) {
+      return res.status(404).json({ status: 'error', message: 'not found' });
     }
-    const { title, article } = findArticle.rows[0];
-    const reply = await articleComment(articleId, id, title, article, comment);
-    console.log('>>>reply', reply);
+    const { title, article } = find.rows[0];
+    const query =
+      'INSERT INTO article_comments (articleid, empid, title, article, comment) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const value = [articleId, empid, title, article, comment];
+    const reply = await conn.query(query, value);
     if (reply) {
       return res.status(201).json({
         status: 'success',
@@ -29,11 +29,11 @@ const createComment = async (req, res) => {
         },
       });
     }
-  } catch (err) {
-    console.log('error', err);
+  } catch (error) {
+    console.log('>>>Error', error);
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
 };
 
-export default createComment;
+export default articleComment;

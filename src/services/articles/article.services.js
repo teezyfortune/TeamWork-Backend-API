@@ -6,7 +6,7 @@ export const getOneArticle = async (id, article) => {
     const values = [id, article];
     const articleArticle = await conn.query(sql, values);
     if (articleArticle.rowCount !== 0) {
-      return articleArticle;
+      return true;
     }
   } catch (error) {
     return error;
@@ -19,7 +19,7 @@ export const getOneArticleById = async (id, empid) => {
     const sql = 'SELECT * FROM articles WHERE id = $1 AND empid =$2  LIMIT 1';
     const values = [id, empid];
     const articleRows = await conn.query(sql, values);
-    if (articleRows) {
+    if (articleRows.rowCount !== 0) {
       return articleRows;
     }
   } catch (error) {

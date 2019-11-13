@@ -1,6 +1,6 @@
 import express from 'express';
 import { createArticle, updateArticle, destroyArticle } from '../articles/articles.controller';
-import createComment from '../comments/article_comment.controller';
+import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle } from '../../middleware/validation';
 
@@ -134,6 +134,6 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
  *         description: Server error
  */
 
-articleRoute.post('/article/:id/comment', verifyMiddleWare, createComment);
+articleRoute.post('/article/:id/comment', verifyMiddleWare, articleComment);
 
 export default articleRoute;
