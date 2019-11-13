@@ -80,3 +80,30 @@ describe('Authentication: Update Article', () => {
       });
   });
 });
+
+describe('Authentication: Delte Article', () => {
+  it('It should respond with field can not be empty', (done) => {
+    chai
+      .request(app)
+      .delete(mock.basedelete1)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(200);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+  it('this article have been deleted by you', (done) => {
+    chai
+      .request(app)
+      .delete(mock.basedelete2)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(404);
+        expect(response.body).to.contains({ status: 'error' });
+        done();
+      });
+  });
+});
