@@ -32,6 +32,7 @@ export const newToken = (payload) => {
 };
 
 export const verifyMiddleWare = async (req, res, next) => {
+  // try {
   const bearerHeader = req.headers.authorization;
   // Bearer is not undefined
   const Bearer = await bearerHeader.split(' ');
@@ -42,8 +43,10 @@ export const verifyMiddleWare = async (req, res, next) => {
     res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
   } else {
     req.token = await decoded;
-    console.log('>>>', decoded);
+
+    // } catch (error) {
+    //   res.status(500).json({ code: 500, messgae: 'u are not loggedIn' });
+    // }
     return next();
   }
-  return false;
 };

@@ -24,7 +24,7 @@ export const validateUserInput = (request, response, next) => {
       department,
       address,
     } = request.body;
-
+    const regEx = /[^a-z/d]/i;
     if (!firstName || !lastName || !email || !gender || !jobRole || !department || !address) {
       return response.status(422).json({ status: 'error', message: REQUIRED });
     }
@@ -33,17 +33,22 @@ export const validateUserInput = (request, response, next) => {
       return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
     }
 
-    if (validator.isAlphanumeric(firstName)) {
-      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    if (regEx.test(firstName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${firstName} ` });
+    }
+
+    if (regEx.test(lastName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${lastName} ` });
     }
 
     if (lastName && typeof lastName !== 'string') {
       return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
     }
 
-    if (validator.isAlphanumeric(lastName)) {
-      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
-    }
 
     if (email && typeof email !== 'string') {
       return response.status(422).json({ status: 'error', message: EMAIL_MESSAGE });
@@ -74,8 +79,10 @@ export const validateUserInput = (request, response, next) => {
     if (gender && gender.includes(' ')) {
       return response.status(422).json({ status: 'error', message: `${NO_SPACE}$ for ${gender} ` });
     }
-    if (gender && validator.isAlphanumeric(gender)) {
-      return response.status(422).json({ status: 'error', message: `${NO_SPACE}$ for ${gender} ` });
+    if (regEx.test(gender) === true) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${gender} ` });
     }
 
     if (address && typeof address !== 'string') {

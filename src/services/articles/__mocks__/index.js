@@ -23,3 +23,5 @@ export const baseLogin = '/api/v1/login';
 export const baseUrl = '/api/v1/article';
 
 export const baseuPdate = '/api/v1/article/63';
+export const basedelete1 = '/api/v1/article/68';
+export const basedelete2 = '/api/v1/article/200';

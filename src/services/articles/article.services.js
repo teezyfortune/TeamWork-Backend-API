@@ -18,9 +18,9 @@ export const getOneArticleById = async (id, empid) => {
   try {
     const sql = 'SELECT * FROM articles WHERE id = $1 AND empid =$2  LIMIT 1';
     const values = [id, empid];
-    const articleArticle = await conn.query(sql, values);
-    if (articleArticle.rowCount !== 0) {
-      return true;
+    const articleRows = await conn.query(sql, values);
+    if (articleRows) {
+      return articleRows;
     }
   } catch (error) {
     return error;
@@ -52,6 +52,20 @@ export const editArticle = async (title, article, articleId, empid) => {
     const updated = await conn.query(sql, values);
     if (updated) {
       return updated;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+export const deleteArticle = async (id) => {
+  try {
+    const sql = 'DELETE FROM  articles  WHERE id = $1';
+    const values = [id];
+    const deleted = await conn.query(sql, values);
+    if (deleted) {
+      return true;
     }
   } catch (error) {
     return error;

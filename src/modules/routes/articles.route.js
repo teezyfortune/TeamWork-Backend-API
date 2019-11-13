@@ -1,5 +1,6 @@
 import express from 'express';
-import { createArticle, updateArticle } from '../articles/articles.controller';
+import { createArticle, updateArticle, destroyArticle } from '../articles/articles.controller';
+import createComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle } from '../../middleware/validation';
 
@@ -44,14 +45,18 @@ articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
  * @swagger
  *
  * /article:
- *   post:
+ *   put:
  *     tags:
- *       - Employees create an article.
- *     description: Employees can write or create articls .
+ *       - Employees update their article.
+ *     description: Employees can edit or update their articls .
  *       - application/json
  *     parameters:
  *       - name: userId
- *         in: formData
+ *         in: request
+ *         required: true
+ *         type: integer
+ *       - name: articleId
+ *         in: request
  *         required: true
  *         type: string
  *       - name: title
@@ -64,7 +69,7 @@ articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
  *         type: string
  *     responses:
  *       200:
- *         description: Article updated successfully.
+ *         description: Article successfully deleted.
  *       404:
  *         description: This article might have been deleted by you
  *       422:
@@ -74,5 +79,61 @@ articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
  */
 
 articleRoute.put('/article/:id', verifyMiddleWare, validateArticle, updateArticle);
+
+/**
+ * @swagger
+ *
+ * /article:
+ *   delete:
+ *     tags:
+ *       - Employees can delete their article
+ *     description: Employees can delete their
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request
+ *         required: true
+ *         type: integr
+ *       - name: id
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Article updated successfully.
+ *       404:
+ *       500:
+ *         description: Server error
+ */
+
+articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
+
+/**
+ * @swagger
+ *
+ * /article:
+ *   delete:
+ *     tags:
+ *       - Employees can delete their article
+ *     description: Employees can delete their
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request
+ *         required: true
+ *         type: integr
+ *       - name: id
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Article updated successfully.
+ *       404:
+ *       500:
+ *         description: Server error
+ */
+
+articleRoute.post('/article/:id/comment', verifyMiddleWare, createComment);
 
 export default articleRoute;
