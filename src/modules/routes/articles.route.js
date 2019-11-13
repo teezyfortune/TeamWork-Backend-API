@@ -1,5 +1,5 @@
 import express from 'express';
-import { createArticle, updateArticle } from '../articles/articles.controller';
+import { createArticle, updateArticle, destroyArticle } from '../articles/articles.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle } from '../../middleware/validation';
 
@@ -74,5 +74,33 @@ articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
  */
 
 articleRoute.put('/article/:id', verifyMiddleWare, validateArticle, updateArticle);
+
+/**
+ * @swagger
+ *
+ * /article:
+ *   delete:
+ *     tags:
+ *       - Employees can delete an article.
+ *     description: Employees can delete an article .
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request
+ *         required: true
+ *         type: integer
+ *       - name: articleId
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Article updated successfully.
+ *       404:
+ *         description: This article might have been deleted by you
+ *       500:
+ *         description: Server error
+ */
+articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
 
 export default articleRoute;
