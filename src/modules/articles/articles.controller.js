@@ -1,4 +1,9 @@
-import { saveArticle, getOneArticle, editArticle, getOneArticleById } from '../../services/articles/article.services';
+import {
+  saveArticle,
+  getOneArticle,
+  editArticle,
+  getOneArticleById,
+} from '../../services/articles/article.services';
 import {
   ARTICLE_CONFLICTS,
   ARTICLE_SUCCESS,
