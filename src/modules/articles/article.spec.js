@@ -107,3 +107,45 @@ describe('Authentication: Delte Article', () => {
       });
   });
 });
+
+describe('Authentication: Comment Article', () => {
+  it('It should create new comment', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseComment)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.correctComment)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(201);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+
+  it('It should respond with invalid authorization or not loggedIn', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseComment)
+      .send(mock.correctcomment)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(401);
+        done();
+      });
+  });
+
+  it('this field can not be empty', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseComment)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.emptycomment)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(422);
+        expect(response.body).to.contains({ status: 'error' });
+        done();
+      });
+  });
+});

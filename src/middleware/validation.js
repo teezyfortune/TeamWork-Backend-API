@@ -9,6 +9,7 @@ import {
   USE_STRING_MESSAGE,
   EMPTY_TITLE_MESSAGE,
   EMPTY_ARTICLE_MESSAGE,
+  EMPTY_COMMENT_MESSAGE,
 } from './validation_message';
 import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
@@ -24,7 +25,7 @@ export const validateUserInput = (request, response, next) => {
       department,
       address,
     } = request.body;
-
+    const regEx = /[^a-z/d]/i;
     if (!firstName || !lastName || !email || !gender || !jobRole || !department || !address) {
       return response.status(422).json({ status: 'error', message: REQUIRED });
     }
@@ -33,15 +34,19 @@ export const validateUserInput = (request, response, next) => {
       return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
     }
 
-    if (validator.isAlphanumeric(firstName)) {
-      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    if (regEx.test(firstName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${firstName} ` });
+    }
+
+    if (regEx.test(lastName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${lastName} ` });
     }
 
     if (lastName && typeof lastName !== 'string') {
-      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
-    }
-
-    if (validator.isAlphanumeric(lastName)) {
       return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
     }
 
@@ -74,8 +79,10 @@ export const validateUserInput = (request, response, next) => {
     if (gender && gender.includes(' ')) {
       return response.status(422).json({ status: 'error', message: `${NO_SPACE}$ for ${gender} ` });
     }
-    if (gender && validator.isAlphanumeric(gender)) {
-      return response.status(422).json({ status: 'error', message: `${NO_SPACE}$ for ${gender} ` });
+    if (regEx.test(gender) === true) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${gender} ` });
     }
 
     if (address && typeof address !== 'string') {
@@ -125,6 +132,18 @@ export const validateArticle = async (request, response, next) => {
 
     if (validator.isEmpty(article) === true) {
       return response.status(422).json({ status: 'error', message: EMPTY_ARTICLE_MESSAGE });
+    }
+  } catch (error) {
+    return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return next();
+};
+
+export const validateComment = async (request, response, next) => {
+  try {
+    const { comment } = request.body;
+    if (validator.isEmpty(comment) === true) {
+      return response.status(422).json({ status: 'error', message: EMPTY_COMMENT_MESSAGE });
     }
   } catch (error) {
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
