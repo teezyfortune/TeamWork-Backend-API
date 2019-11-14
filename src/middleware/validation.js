@@ -9,6 +9,7 @@ import {
   USE_STRING_MESSAGE,
   EMPTY_TITLE_MESSAGE,
   EMPTY_ARTICLE_MESSAGE,
+  EMPTY_COMMENT_MESSAGE,
 } from './validation_message';
 import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
@@ -48,7 +49,6 @@ export const validateUserInput = (request, response, next) => {
     if (lastName && typeof lastName !== 'string') {
       return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
     }
-
 
     if (email && typeof email !== 'string') {
       return response.status(422).json({ status: 'error', message: EMAIL_MESSAGE });
@@ -132,6 +132,18 @@ export const validateArticle = async (request, response, next) => {
 
     if (validator.isEmpty(article) === true) {
       return response.status(422).json({ status: 'error', message: EMPTY_ARTICLE_MESSAGE });
+    }
+  } catch (error) {
+    return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return next();
+};
+
+export const validateComment = async (request, response, next) => {
+  try {
+    const { comment } = request.body;
+    if (validator.isEmpty(comment) === true) {
+      return response.status(422).json({ status: 'error', message: EMPTY_COMMENT_MESSAGE });
     }
   } catch (error) {
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });

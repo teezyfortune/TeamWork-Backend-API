@@ -15,3 +15,4 @@ export const UNDEFINED_MESSAGE = 'This field can not be empty, pkease enter a va
 export const EMPTY_TITLE_MESSAGE = 'Title can not be emport';
 export const EMPTY_ARTICLE_MESSAGE = 'Article cannot be empty';
 export const GENDER_ERROR = 'Gender cannot contain number';
+export const EMPTY_COMMENT_MESSAGE = 'comment cannot be empty';

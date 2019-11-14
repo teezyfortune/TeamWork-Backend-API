@@ -1,4 +1,4 @@
-export const AUTHORIZATION_FAILURE = 'Invalid authorization';
+export const AUTHORIZATION_FAILURE = 'Invalid authorization or not loggedIn';
 export const SUCESS_MESSAGE = 'User account successfully created';
 export const EMAIL_CONFLICT = 'This email already been taken, please enter a new mail';
 export const SERVER_ERROR_MESSAGE = 'Internal Server Error';

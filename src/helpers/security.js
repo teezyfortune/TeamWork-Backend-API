@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { getOneUserById } from '../services/users/users.services';
+import { AUTHORIZATION_FAILURE } from '../utils/constant';
 
 export const SIGN_OPTION = {
   issuer: 'Authorization/Resource/TeamWork',
@@ -44,7 +45,7 @@ export const verifyMiddleWare = async (req, res, next) => {
     }
     return next();
   } catch (error) {
-    res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
+    res.status(401).json({ code: 'error', messgae: AUTHORIZATION_FAILURE });
   }
   return false;
 };

@@ -2,7 +2,7 @@ import express from 'express';
 import { createArticle, updateArticle, destroyArticle } from '../articles/articles.controller';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
-import { validateArticle } from '../../middleware/validation';
+import { validateArticle, validateComment } from '../../middleware/validation';
 
 const articleRoute = express.Router();
 
@@ -93,7 +93,7 @@ articleRoute.put('/article/:id', verifyMiddleWare, validateArticle, updateArticl
  *       - name: userId
  *         in: request
  *         required: true
- *         type: integr
+ *         type: integer
  *       - name: id
  *         in: request
  *         required: true
@@ -112,28 +112,37 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
  * @swagger
  *
  * /article:
- *   delete:
+ *   put:
  *     tags:
- *       - Employees can delete their article
- *     description: Employees can delete their
+ *       - Employees update their article.
+ *     description: Employees can edit or update their articls .
  *       - application/json
  *     parameters:
  *       - name: userId
  *         in: request
  *         required: true
- *         type: integr
- *       - name: id
+ *         type: integer
+ *       - name: articleId
  *         in: request
  *         required: true
  *         type: integer
+ *       - name: comment
+ *         in: formData
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
- *         description: Article updated successfully.
+ *         description: Article successfully deleted.
  *       404:
+ *         description: This article might have been deleted by you
+ *       401:
+ *         description: invalid authorization or not loggedIn
+ *       422:
+ *         description: Validation Error
  *       500:
  *         description: Server error
  */
 
-articleRoute.post('/article/:id/comment', verifyMiddleWare, articleComment);
+articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, articleComment);
 
 export default articleRoute;
