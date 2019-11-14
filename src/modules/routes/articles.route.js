@@ -174,8 +174,6 @@ articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, art
 
 articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
 
-
-
 /**
  * @swagger
  *
