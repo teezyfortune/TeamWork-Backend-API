@@ -4,6 +4,7 @@ import {
   updateArticle,
   destroyArticle,
   fetchAllArticle,
+  getOneSpecificArticle,
 } from '../articles/articles.controller';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
@@ -166,11 +167,36 @@ articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, art
  *         type: integer
  *     responses:
  *       200:
- *         description: Article successfully deleted.
+ *         description: success.
  *       500:
  *         description: Server error
  */
 
-articleRoute.get('/article', verifyMiddleWare, fetchAllArticle);
+articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
+
+
+
+/**
+ * @swagger
+ *
+ * /article:
+ *   get:
+ *     tags:
+ *       - Employees can view an article
+ *     description: Employees can view a specific article.
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: success.
+ *       500:
+ *         description: Server error
+ */
+
+articleRoute.get('/feed/:id', verifyMiddleWare, getOneSpecificArticle);
 
 export default articleRoute;
