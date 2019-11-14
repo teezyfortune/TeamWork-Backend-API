@@ -111,11 +111,11 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
 /**
  * @swagger
  *
- * /article:
- *   put:
+ * /article/:id/comment:
+ *   post:
  *     tags:
- *       - Employees update their article.
- *     description: Employees can edit or update their articls .
+ *       - Employees can comment 
+ *     description: Employees can comment on other colleague article.
  *       - application/json
  *     parameters:
  *       - name: userId
