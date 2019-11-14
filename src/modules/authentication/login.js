@@ -19,7 +19,8 @@ const loginUser = async (request, response) => {
       if (userPassword) {
         const authToken = newToken({ userId: id, email: findUser.rows[0].email });
         return response.status(200).json({
-          status: LOGIN_SUCCESS,
+          status: 'success',
+          message: LOGIN_SUCCESS,
           data: {
             userId: findUser.rows[0].id,
             token: authToken,

@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { getOneUserById } from '../services/users/users.services';
-import { AUTHORIZATION_FAILURE } from '../utils/constant';
 
 export const SIGN_OPTION = {
   issuer: 'Authorization/Resource/TeamWork',
@@ -33,19 +32,18 @@ export const newToken = (payload) => {
 };
 
 export const verifyMiddleWare = async (req, res, next) => {
-  try {
-    const bearerHeader = req.headers.authorization;
-    // Bearer is not undefined
-    const Bearer = await bearerHeader.split(' ');
-    const bearerToken = await Bearer[1];
-    req.token = await bearerToken;
-    const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
-    if (decoded) {
-      req.token = await decoded;
-    }
+  const bearerHeader = req.headers.authorization;
+  // Bearer is not undefined
+  const Bearer = await bearerHeader.split(' ');
+  const bearerToken = await Bearer[1];
+  req.token = await bearerToken;
+  const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
+  if (!decoded) {
+    res.status(401).json({ code: 401, messgae: 'u are not loggedIn' });
+  } else {
+    req.token = await decoded;
+    console.log('>>>', decoded);
     return next();
-  } catch (error) {
-    res.status(401).json({ code: 'error', messgae: AUTHORIZATION_FAILURE });
   }
   return false;
 };

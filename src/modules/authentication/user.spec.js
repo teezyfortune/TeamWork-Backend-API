@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaHttp from 'chai-http';
 import app from '../../app';
 
-import * as mock from '../../services/users/__mocks__/index';
+import * as mock from '../../services/__mocks__/index';
 
 const { expect } = chai;
 chai.use(chaHttp);
@@ -18,6 +18,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         .end((err, response) => {
           if (err) done(err);
           expect(response.statusCode).to.equal(201);
+          console.log(response.message);
           done();
         });
     });
