@@ -4,6 +4,7 @@ import {
   editArticle,
   getOneArticleById,
   deleteArticle,
+  getAllArticle,
 } from '../../services/articles/article.services';
 import {
   ARTICLE_CONFLICTS,
@@ -11,6 +12,7 @@ import {
   SERVER_ERROR_MESSAGE,
   ARTICLE_NOT_FOUND,
   DELETE_ARTICLE_SUCCESS,
+  ARTICLE_FETCH_SUCCESS,
 } from '../../utils/constant';
 
 export const createArticle = async (req, res) => {
@@ -78,6 +80,21 @@ export const destroyArticle = async (req, res) => {
     const destroyed = await deleteArticle(articleId);
     if (destroyed) {
       return res.status(200).json({ status: 'success', message: DELETE_ARTICLE_SUCCESS });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+export const fetchAllArticle = async (req, res) => {
+  try {
+    const findArticle = await getAllArticle();
+    if (findArticle) {
+      return res.status(200).json({
+        status: ARTICLE_FETCH_SUCCESS,
+        data: findArticle.rows,
+      });
     }
   } catch (error) {
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });

@@ -1,5 +1,10 @@
 import express from 'express';
-import { createArticle, updateArticle, destroyArticle } from '../articles/articles.controller';
+import {
+  createArticle,
+  updateArticle,
+  destroyArticle,
+  fetchAllArticle,
+} from '../articles/articles.controller';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle, validateComment } from '../../middleware/validation';
@@ -114,7 +119,7 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
  * /article/:id/comment:
  *   post:
  *     tags:
- *       - Employees can comment 
+ *       - Employees can comment on articles
  *     description: Employees can comment on other colleague article.
  *       - application/json
  *     parameters:
@@ -144,5 +149,28 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
  */
 
 articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, articleComment);
+
+/**
+ * @swagger
+ *
+ * /article:
+ *   get:
+ *     tags:
+ *       - Employees can view all article
+ *     description: Employees can view all article showing most recently posted articles.
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Article successfully deleted.
+ *       500:
+ *         description: Server error
+ */
+
+articleRoute.get('/article', verifyMiddleWare, fetchAllArticle);
 
 export default articleRoute;

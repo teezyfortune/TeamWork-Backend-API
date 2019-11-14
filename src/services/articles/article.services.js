@@ -72,3 +72,17 @@ export const deleteArticle = async (id) => {
   }
   return false;
 };
+
+export const getAllArticle = async () => {
+  try {
+    const sql =
+      'SELECT id as id, createdon as createdOn, title, article, empid as authorId  FROM articles ORDER BY createdOn DESC';
+    const allArticles = await conn.query(sql);
+    if (allArticles) {
+      return allArticles;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};

@@ -11,3 +11,4 @@ export const ARTICLE_NOT_FOUND =
 export const ARTICLE_UPDATE = 'Article successfully updated';
 export const DELETE_ARTICLE_SUCCESS = 'Article successfully deleted';
 export const COMMENT_SUCCESS = 'Commnet successfully created';
+export const ARTICLE_FETCH_SUCCESS = 'success';

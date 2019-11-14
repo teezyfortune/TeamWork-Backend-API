@@ -10,7 +10,7 @@ const articleComment = async (req, res) => {
     const values = [articleId];
     const find = await conn.query(sql, values);
     if (find.rowCount === 0) {
-      return res.status(404).json({ status: 'error', message: 'not found' });
+      return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
     }
     const { title, article } = find.rows[0];
     const query =
@@ -30,7 +30,6 @@ const articleComment = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log('>>>Error', error);
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
