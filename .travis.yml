@@ -1,37 +1,25 @@
-os: windows
 language: node_js
-node_js: 
-  - "v10.16.3"
-cache:
-  directories:
-    - "node_modules"
- 
+node_js:
+  - "stable"
 install:
-  - npm ci
-    services:
+  - npm install
+services:
   - postgresql
+  env:
+    -NODE_ENV = test
+before_script:
+  - psql -c 'CREATE DATABASE testing;' -U postgres
+  - psql -c "CREATE USER fortune WITH PASSWORD passoword ;" -U postgres
 
-# before_install:
-#   - nvm install
-# install:
-#   - npm ci
-# services:
-  - postgresql
-env:
-  global:
-  - NODE_ENV=test
-before_script:                         # Install node version from .nvmrc
- 
-    before_script:
-  - psql -c "CREATE DATABASE testing;" -U postgres
-  - psql -c "CREATE USER fortune WITH PASSWORD 'password';" -U postgres
-
+  - chmod 0777 ./node_modules/.bin/mocha
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - npm run coverage
-after_script:
+  - npm run test
+cache:
+  directories:
+    - "node_modules"
+after_success:
+  - npm run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-notification:
-  - email: false
