@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/app.js",
     "test": "mocha  --require @babel/register src/**/**/*.spec.js",
-    "build": "rm -rf ./build && babel -d ./build ./api -s"
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage",
+    "build": "rm -rf ./build && @babel -d ./build ./api -s"
   },
   "repository": {
     "type": "git",
