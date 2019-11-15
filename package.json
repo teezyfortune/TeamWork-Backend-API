@@ -31,6 +31,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "heroku-cli": "^7.0.9",
     "jsonwebtoken": "^8.5.1",
     "logger": "0.0.1",
     "mocha": "^6.2.2",
