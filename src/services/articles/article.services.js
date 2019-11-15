@@ -76,10 +76,25 @@ export const deleteArticle = async (id) => {
 export const getAllArticle = async () => {
   try {
     const sql =
-      'SELECT id as id, createdon as createdOn, title, article, empid as authorId  FROM articles ORDER BY createdOn DESC';
+      'SELECT id, createdon as createdOn, title, article, empid as authorId  FROM articles ORDER BY createdOn DESC';
     const allArticles = await conn.query(sql);
     if (allArticles) {
       return allArticles;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+export const getSpecificArticle = async (id) => {
+  try {
+    const sql =
+      'SELECT articles.id, articles.createdon as createdAt, articles.title, articles.article, articles.empid as authorId, article_comments.id as commenId, article_comments.comment as comments  FROM articles JOIN article_comments ON articles.id = article_comments.articleid WHERE articleid = $1';
+    const value = [id];
+    const findOne = conn.query(sql, value);
+    if (findOne.rowCount !== 0) {
+      return findOne;
     }
   } catch (error) {
     return error;
