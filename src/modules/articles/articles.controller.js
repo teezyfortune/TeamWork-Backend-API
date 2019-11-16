@@ -102,13 +102,10 @@ export const fetchAllArticle = async (req, res) => {
   return false;
 };
 
-
-
 export const getOneSpecificArticle = async (req, res) => {
   try {
     const { id } = req.params;
     const findArticle = await getSpecificArticle(id);
-    console.log('>>>error', findArticle);
     if (findArticle === false) {
       return res.status(404).json({
         status: 'error',
@@ -122,7 +119,6 @@ export const getOneSpecificArticle = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log('>>>error', error)
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

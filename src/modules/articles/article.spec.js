@@ -14,9 +14,10 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mock.baseLogin)
-      .send(mock.signIn)
+      .send(mock.sign2)
       .end((err, response) => {
         userToken = response.body.data;
+        console.log(userToken);
         if (err) done(err);
         expect(response.statusCode).to.equal(200);
         done();
@@ -153,7 +154,7 @@ describe('Get all articles', () => {
   it('should respond with success', (done) => {
     chai
       .request(app)
-      .get(mock.baseUrl)
+      .get(mock.baseGeAll)
       .set('authorization', `Bearer ${userToken.token}`)
       .end((err, response) => {
         if (err) done(err);
