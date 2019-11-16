@@ -10,6 +10,7 @@ import {
   EMPTY_TITLE_MESSAGE,
   EMPTY_ARTICLE_MESSAGE,
   EMPTY_COMMENT_MESSAGE,
+  EMPTY_GIF_MESSAGE,
 } from './validation_message';
 import { SERVER_ERROR_MESSAGE } from '../utils/constant';
 
@@ -144,6 +145,26 @@ export const validateComment = async (request, response, next) => {
     const { comment } = request.body;
     if (validator.isEmpty(comment) === true) {
       return response.status(422).json({ status: 'error', message: EMPTY_COMMENT_MESSAGE });
+    }
+  } catch (error) {
+    return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return next();
+};
+
+export const validateGif = async (request, response, next) => {
+  try {
+    const { title, gif } = request.body;
+    if (validator.isEmpty(title) === true) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${EMPTY_GIF_MESSAGE} ${title}` });
+    }
+    if (title && typeof title !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+    if (validator.isEmpty(gif) === true) {
+      return response.status(422).json({ status: 'error', message: `${EMPTY_GIF_MESSAGE} ${gif}` });
     }
   } catch (error) {
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
