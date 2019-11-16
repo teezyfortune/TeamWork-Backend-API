@@ -59,30 +59,30 @@ describe('Test Suite for User Adim/employess Signup', () => {
   });
 });
 
-// describe('Test Suite for Authentication signin ', () => {
-//   it('It should respond with all fields required', (done) => {
-//     chai
-//       .request(app)
-//       .post(mock.baseLogin)
-//       .send(mock.signIn)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(200);
-//         expect(response.body).to.contains({ status: 'success' });
-//         done();
-//       });
-//   });
+describe('Test Suite for Authentication signin ', () => {
+  it('It should respond with all fields required', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseLogin)
+      .send(mock.signIn)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(200);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
 
-//   it('It should respond with all fields required', (done) => {
-//     chai
-//       .request(app)
-//       .post(mock.baseLogin)
-//       .send(mock.invalidSignIn)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(404);
-//         expect(response.body).to.contains({ status: 'error' });
-//         done();
-//       });
-//   });
-// });
+  it('It should respond with all fields required', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseLogin)
+      .send(mock.invalidSignIn)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(404);
+        expect(response.body).to.contains({ status: 'error' });
+        done();
+      });
+  });
+});
