@@ -12,3 +12,7 @@ export const ARTICLE_UPDATE = 'Article successfully updated';
 export const DELETE_ARTICLE_SUCCESS = 'Article successfully deleted';
 export const COMMENT_SUCCESS = 'Commnet successfully created';
 export const ARTICLE_FETCH_SUCCESS = 'success';
+export const GIF_SUCCESS = 'Gif successfully updated';
+export const ERROR_MESSAGE = 'error';
+export const DELETED_GIF_SUCCESS = 'Gif successfully deleted';
+export const GIF_NOT_FOUND = 'This gif migth have been deleted by you, please upload new gif';
