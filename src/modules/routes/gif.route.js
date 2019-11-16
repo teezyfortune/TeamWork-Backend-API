@@ -60,6 +60,6 @@ gifRoute.post('/gif', verifyMiddleWare, validateGif, createGif);
  *         description: Server error
  */
 
-gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
+// gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
 
 export default gifRoute;

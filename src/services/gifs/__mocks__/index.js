@@ -2,7 +2,7 @@ import faker from 'faker';
 
 export const correctGif = {
   title: faker.name.title(),
-  article: faker.name.image(),
+  gif: 'C:/Users/HP/baby.jfif',
 };
 
 export const emptySpace = {
@@ -23,7 +23,7 @@ export const gifSignIn = {
   password: 'teezy123@',
 };
 
-export const signComment = {
+export const sign2 = {
   email: 'devFortune14@gmail.com',
   password: '@wesQ123bn',
 };

@@ -23,7 +23,7 @@ export const signIn = {
   password: 'teezy123@',
 };
 
-export const signComment = {
+export const sign2 = {
   email: 'devFortune14@gmail.com',
   password: '@wesQ123bn',
 };
@@ -39,3 +39,5 @@ export const baseuPdate = '/api/v1/article/40';
 export const basedelete1 = '/api/v1/article/36';
 export const basedelete2 = '/api/v1/article/200';
 export const baseComment = '/api/v1/article/40/comment';
+
+export const baseGeAll = '/api/v1/feed';
