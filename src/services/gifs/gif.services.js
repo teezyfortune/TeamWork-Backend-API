@@ -27,3 +27,17 @@ export const saveGifs = async (empid, title, cloudUrl) => {
   }
   return false;
 };
+
+export const deleteGif = async (id) => {
+  try {
+    const sql = 'DELETE FROM  Gifs  WHERE id = $1';
+    const values = [id];
+    const deleted = await conn.query(sql, values);
+    if (deleted) {
+      return true;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
