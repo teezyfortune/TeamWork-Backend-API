@@ -25,7 +25,7 @@ export const gifSignIn = {
 
 export const sign2 = {
   email: 'devFortune14@gmail.com',
-  password: '@wesQ123bn',
+  password: 'teezy123@',
 };
 
 export const invalidUser = {
