@@ -14,3 +14,4 @@ export const emptyCredentials = {
 };
 
 export const baseLogin = '/api/v1/admin';
+export const baseGet = '/api/v1/emloyees';

@@ -10,17 +10,17 @@ chai.use(chaHttp);
 
 describe('Test Suite for User Adim/employess Signup', () => {
   describe('Authentication: Signup User', () => {
-    it('It should create new user ', (done) => {
-      chai
-        .request(app)
-        .post(mock.baseUrl)
-        .send(mock.User)
-        .end((err, response) => {
-          if (err) done(err);
-          expect(response.statusCode).to.equal(201);
-          done();
-        });
-    });
+    // it('It should create new user ', (done) => {
+    //   chai
+    //     .request(app)
+    //     .post(mock.baseUrl)
+    //     .send(mock.User)
+    //     .end((err, response) => {
+    //       if (err) done(err);
+    //       expect(response.statusCode).to.equal(201);
+    //       done();
+    //     });
+    // });
     it('It should respond with all fields invalid ', (done) => {
       chai
         .request(app)

@@ -1,15 +1,9 @@
 import getAdmin from '../../services/admin/adm.services';
 import { comparePassWord, newToken } from '../../helpers/security';
 import { getAllUsers, getOneUserById } from '../../services/users/users.services';
-import {
-  SERVER_ERROR_MESSAGE,
-  RETRIEVED,
-  BAD_EMAIL,
-  NOT_ADMIN,
-  SUCESS_MESSAGE,
-} from '../../utils/constant';
+import { SERVER_ERROR_MESSAGE, RETRIEVED, BAD_EMAIL, NOT_ADMIN } from '../../utils/constant';
 
-const loginAdmin = async (request, response) => {
+export const loginAdmin = async (request, response) => {
   try {
     const { email, password } = await request.body;
     const findAdmin = await getAdmin(email);
@@ -53,16 +47,17 @@ const loginAdmin = async (request, response) => {
 
 export const verifyAdmin = async (req, res, next) => {
   try {
-    const adminId = req.token.payload.id;
+    const adminId = req.token.payload.userId;
     const verify = await getOneUserById(adminId);
-    const { isAdmin } = verify;
-    if (isAdmin === false) {
+
+    const { isadmin } = verify.rows[0];
+    if (isadmin === false) {
       return res.status(404).json({
         status: 'error',
         message: NOT_ADMIN,
       });
     }
-  } catch (errr) {
+  } catch (err) {
     return res.status(500).json({
       status: 'error',
       message: SERVER_ERROR_MESSAGE,

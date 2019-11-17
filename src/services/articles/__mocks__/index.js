@@ -25,7 +25,7 @@ export const signIn = {
 
 export const sign2 = {
   email: 'devFortune14@gmail.com',
-  password: '@wesQ123bn',
+  password: 'teezy123@',
 };
 
 export const invalidSignIn = {
