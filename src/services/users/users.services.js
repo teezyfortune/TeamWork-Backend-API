@@ -28,3 +28,16 @@ export const getOneUserByEmail = async (email) => {
   }
   return false;
 };
+
+export const getAllUsers = async () => {
+  try {
+    const sql = `SELECT id, firstName, lastName, email, gender, jobRole, department,address, createdon FROM employees  WHERE isAdmin = ${false}`;
+    const checkUser = await conn.query(sql);
+    if (checkUser) {
+      return checkUser;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};

@@ -16,3 +16,4 @@ export const GIF_SUCCESS = 'Gif successfully updated';
 export const ERROR_MESSAGE = 'error';
 export const DELETED_GIF_SUCCESS = 'Gif successfully deleted';
 export const GIF_NOT_FOUND = 'This gif migth have been deleted by you, please upload new gif';
+export const RETRIEVED = 'Users fetcexhed successfully';
