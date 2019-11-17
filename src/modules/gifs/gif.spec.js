@@ -27,7 +27,7 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
+      .set('Authorization', `Bearer ${gifToken.token}`)
       .send(mocks.correctGif)
       .end((err, response) => {
         if (err) done(err);
@@ -40,7 +40,7 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
+      .set('Authorization', `Bearer ${gifToken.token}`)
       .send(mocks.emptySpace)
       .end((err, response) => {
         if (err) done(err);
