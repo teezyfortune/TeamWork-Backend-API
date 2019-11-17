@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">23.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>15/30</span>
+        <span class='fraction'>7/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.43% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/56</span>
+        <span class='fraction'>0/56</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">60% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/15</span>
+        <span class='fraction'>5/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.17% </span>
+        <span class="strong">30.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/23</span>
+        <span class='fraction'>7/23</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -189,15 +189,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -260,9 +260,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,15 +314,15 @@ import {
   ARTICLE_FETCH_SUCCESS,
 } from '../../utils/constant';
 &nbsp;
-export const createArticle = <span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" >async (r</span></span></span></span>eq, res) =&gt; {
+export const <span class="fstat-no" title="function not covered" >createArticle </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res) =&gt; {
   try {
-    const { title, article } = await req.body;
-    const id = req.token.payload.userId;
-    const findArticle = await getOneArticle(id, article);
+    const { <span class="cstat-no" title="statement not covered" >title, <span class="cstat-no" title="statement not covered" >article } = await req.body;</span></span>
+    const <span class="cstat-no" title="statement not covered" >id = req.token.payload.userId;</span>
+    const <span class="cstat-no" title="statement not covered" >findArticle = await getOneArticle(id, article);</span>
     if (findArticle) {
       return res.status(409).json({ status: 'error', message: ARTICLE_CONFLICTS });
     }
-    const newArticle = await saveArticle(id, title, article);
+    const <span class="cstat-no" title="statement not covered" >newArticle = await saveArticle(id, title, article);</span>
     if (newArticle) {
       return res.status(201).json({
         status: 'success',
@@ -385,9 +385,9 @@ export const <span class="fstat-no" title="function not covered" >destroyArticle
   }
   return false;
 };
-export const fetchAllArticle = <span class="missing-if-branch" title="if path not taken" >I</span><span class="branch-5 cbranch-no" title="branch not covered" ><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >async (r</span></span></span></span>eq, res) =&gt; {
+export const <span class="fstat-no" title="function not covered" >fetchAllArticle </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res) =&gt; {
   try {
-    const findArticle = await getAllArticle();
+    const <span class="cstat-no" title="statement not covered" >findArticle = await getAllArticle();</span>
     if (findArticle) {
       return res.status(200).json({
         status: ARTICLE_FETCH_SUCCESS,
@@ -427,7 +427,7 @@ export const <span class="fstat-no" title="function not covered" >getOneSpecific
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 16 2019 20:40:28 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 17 2019 12:16:54 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

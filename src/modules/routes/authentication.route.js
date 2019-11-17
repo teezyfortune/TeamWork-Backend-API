@@ -11,8 +11,8 @@ const authRoute = express.Router();
  * /signup:
  *   post:
  *     tags:
- *       - Admin can create an employee user account.
- *     description: Admin can create an employee user account.
+ *       - User can create an employee account.
+ *     description: User can create an employee user account.
  *       - application/json
  *     parameters:
  *       - name: firstName
@@ -64,7 +64,7 @@ authRoute.post('/signup', validateUserInput, saveUser);
  * /login:
  *   post:
  *     tags:
- *       - Admin can create an employee user account.
+ *       - User can create an employee user account.
  *     description: Admin can create an employee user account.
  *       - application/json
  *     parameters:
@@ -79,9 +79,9 @@ authRoute.post('/signup', validateUserInput, saveUser);
  *         required: true
  *         type: string
  *     responses:
- *       201:
+ *       200:
  *         description: User account successfully created
- *       409:
+ *       400:
  *         description: This email already been taken, please enter a new mail
  *       422:
  *         description: Validation Error
