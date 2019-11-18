@@ -18,3 +18,4 @@ export const DELETED_GIF_SUCCESS = 'Gif successfully deleted';
 export const GIF_NOT_FOUND = 'This gif migth have been deleted by you, please upload new gif';
 export const BAD_EMAIL = 'The email provided is invalid';
 export const NOT_ADMIN = 'You are not allowed here';
+export const GIF_FETCHED = 'success';
