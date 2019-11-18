@@ -1,5 +1,5 @@
 import express from 'express';
-import createGif from '../gifs/gif.controller';
+import { createGif, destroyGif } from '../gifs/gif.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateGif } from '../../middleware/validation';
 
@@ -12,7 +12,7 @@ const gifRoute = express.Router();
  *   post:
  *     tags:
  *       - Employees can post a gif.
- *     description: Employees can write or create articls .
+ *     description: Employees can upload a gif .
  *       - application/json
  *     parameters:
  *       - name: title
@@ -39,18 +39,8 @@ gifRoute.post('/gif', verifyMiddleWare, validateGif, createGif);
  * /gif:
  *   post:
  *     tags:
- *       - Employees can post a gif.
- *     description: Employees can write or create articls .
- *       - application/json
- *     parameters:
- *       - name: title
- *         in: formData
- *         required: true
- *         type: string
- *       - name: gif
- *         in: formData
- *         required: true
- *         type: string
+ *       - Employees .
+ *     description: Employees can delete a gif .
  *     responses:
  *       201:
  *         description: Gif successfully created
@@ -60,6 +50,6 @@ gifRoute.post('/gif', verifyMiddleWare, validateGif, createGif);
  *         description: Server error
  */
 
-// gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
+gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
 
 export default gifRoute;

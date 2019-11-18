@@ -14,7 +14,7 @@ cloudinary.config({
   secret_key: process.env.SECRET_KEY,
 });
 
-const createGif = async (req, res) => {
+export const createGif = async (req, res) => {
   try {
     const { title, gif } = req.body;
     const empid = req.token.payload.userId;
@@ -55,5 +55,3 @@ export const destroyGif = async (req, res) => {
   }
   return false;
 };
-
-export default createGif;
