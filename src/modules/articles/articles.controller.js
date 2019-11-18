@@ -87,6 +87,8 @@ export const destroyArticle = async (req, res) => {
   }
   return false;
 };
+
+
 export const fetchAllArticle = async (req, res) => {
   try {
     const findArticle = await getAllArticle();

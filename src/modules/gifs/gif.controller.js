@@ -1,11 +1,12 @@
 import cloudinary from 'cloudinary';
-import { saveGifs, getOneGifById, deleteGif } from '../../services/gifs/gif.services';
+import { saveGifs, getOneGifById, deleteGif, getAllGif } from '../../services/gifs/gif.services';
 import {
   SERVER_ERROR_MESSAGE,
   ERROR_MESSAGE,
   GIF_SUCCESS,
   GIF_NOT_FOUND,
   DELETED_GIF_SUCCESS,
+  GIF_FETCHED,
 } from '../../utils/constant';
 
 cloudinary.config({
@@ -49,6 +50,21 @@ export const destroyGif = async (req, res) => {
     const destroyed = await deleteGif(gifId);
     if (destroyed) {
       return res.status(200).json({ status: 'success', message: DELETED_GIF_SUCCESS });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+export const fetchAllGif = async (req, res) => {
+  try {
+    const findGif = await getAllGif();
+    if (findGif) {
+      return res.status(200).json({
+        status: GIF_FETCHED,
+        data: findGif.rows[0],
+      });
     }
   } catch (error) {
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
