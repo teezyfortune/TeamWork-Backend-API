@@ -9,7 +9,11 @@ env:
   - NODE_ENV = test
 before_script:
   - psql -c 'CREATE DATABASE testing;' -U postgres
+<<<<<<< HEAD
+  - psql -c 'src/database/migration/tables;' -U postgres
+=======
   - node  src/database/migration/tables creatAllTables 
+>>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
   - chmod 0777 ./node_modules/.bin/mocha
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -18,6 +22,11 @@ script:
   - npm run test
 cache:
   directories:
+<<<<<<< HEAD
+  - "node_modules"
+after_success:
+  - npm run coveralls
+=======
     - "node_modules"
  
 install:
@@ -46,6 +55,7 @@ before_script:                         # Install node version from .nvmrc
 script:
   - npm run coverage
 after_script:
+>>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 notification:
   - email: false
