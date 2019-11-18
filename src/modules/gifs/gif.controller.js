@@ -6,7 +6,7 @@ import {
   GIF_SUCCESS,
   GIF_NOT_FOUND,
   DELETED_GIF_SUCCESS,
-  GIF_FETCHED
+  GIF_FETCHED,
 } from '../../utils/constant';
 
 cloudinary.config({
@@ -67,7 +67,6 @@ export const fetchAllGif = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log('>>>>', error)
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

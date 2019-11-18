@@ -1,5 +1,5 @@
 import conn from '../../database/index';
-import { SERVER_ERROR_MESSAGE, ARTICLE_FETCH_SUCCESS } from '../../utils/constant';
+import { SERVER_ERROR_MESSAGE } from '../../utils/constant';
 
 export const getOneArticle = async (id, article) => {
   try {

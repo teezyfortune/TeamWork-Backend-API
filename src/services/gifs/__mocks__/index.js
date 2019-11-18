@@ -35,6 +35,6 @@ export const invalidUser = {
 export const gifLogin = '/api/v1/login';
 export const gifUrl = '/api/v1/gif';
 
-export const basedelete1 = '/api/v1/gif/5';
+export const basedelete1 = '/api/v1/gif/1';
 export const basedelete2 = '/api/v1/gf/200';
-export const baseComment = '/api/v1/article/8/comment';
+export const baseComment = '/api/v1/article/1/comment';
