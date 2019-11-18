@@ -63,10 +63,11 @@ export const fetchAllGif = async (req, res) => {
     if (findGif) {
       return res.status(200).json({
         status: GIF_FETCHED,
-        data: findGif.rows,
+        data: findGif.rows[0],
       });
     }
   } catch (error) {
+    console.log('>>>>', error)
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

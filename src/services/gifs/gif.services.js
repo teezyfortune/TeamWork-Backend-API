@@ -42,7 +42,6 @@ export const deleteGif = async (id) => {
   return false;
 };
 
-
 export const getAll = async (id) => {
   try {
     const sql = 'DELETE FROM  Gifs  WHERE id = $1';
@@ -56,7 +55,6 @@ export const getAll = async (id) => {
   }
   return false;
 };
-
 
 export const getAllGif = async () => {
   try {

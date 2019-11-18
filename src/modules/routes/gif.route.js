@@ -71,6 +71,6 @@ gifRoute.post('/gif', verifyMiddleWare, validateGif, createGif);
  *       500:
  *         description: Server error
  */
-gifRoute.get('/feed', verifyMiddleWare, fetchAllGif);
+gifRoute.get('/feeds', verifyMiddleWare, fetchAllGif);
 
 export default gifRoute;
