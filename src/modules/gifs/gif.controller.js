@@ -1,11 +1,12 @@
 import cloudinary from 'cloudinary';
-import { saveGifs, getOneGifById, deleteGif } from '../../services/gifs/gif.services';
+import { saveGifs, getOneGifById, deleteGif, getAllGif } from '../../services/gifs/gif.services';
 import {
   SERVER_ERROR_MESSAGE,
   ERROR_MESSAGE,
   GIF_SUCCESS,
   GIF_NOT_FOUND,
   DELETED_GIF_SUCCESS,
+  GIF_FETCHED
 } from '../../utils/constant';
 
 cloudinary.config({
@@ -14,7 +15,7 @@ cloudinary.config({
   secret_key: process.env.SECRET_KEY,
 });
 
-const createGif = async (req, res) => {
+export const createGif = async (req, res) => {
   try {
     const { title, gif } = req.body;
     const empid = req.token.payload.userId;
@@ -56,4 +57,17 @@ export const destroyGif = async (req, res) => {
   return false;
 };
 
-export default createGif;
+export const fetchAllGif = async (req, res) => {
+  try {
+    const findGif = await getAllGif();
+    if (findGif) {
+      return res.status(200).json({
+        status: GIF_FETCHED,
+        data: findGif.rows,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
