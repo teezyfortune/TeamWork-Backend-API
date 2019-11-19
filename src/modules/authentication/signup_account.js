@@ -1,7 +1,12 @@
 import { encryptPassWord, newToken } from '../../helpers/security';
 import conn from '../../database/index';
-import { SUCESS_MESSAGE, EMAIL_CONFLICT, SERVER_ERROR_MESSAGE } from '../../utils/constant';
-import { getOneUserByEmail } from '../../services/users/users.services';
+import {
+  SUCESS_MESSAGE,
+  EMAIL_CONFLICT,
+  SERVER_ERROR_MESSAGE,
+  SUCCESS,
+} from '../../utils/constant';
+import { getOneUserByEmail, getOneUserById } from '../../services/users/users.services';
 
 export const saveUser = async (request, response) => {
   try {
@@ -17,7 +22,6 @@ export const saveUser = async (request, response) => {
     } = await request.body;
     const hash = encryptPassWord(password);
     const findUser = await getOneUserByEmail(email);
-    console.log('>>user', findUser);
     if (findUser) {
       return response.status(409).json({ status: 'error', message: EMAIL_CONFLICT });
     }
@@ -43,4 +47,17 @@ export const saveUser = async (request, response) => {
   return false;
 };
 
-export const signInUser = async () => {};
+export const viewProfile = async (req, res) => {
+  try {
+    const id = req.token.payload.userId;
+    const user = await getOneUserById(id);
+    console.log('user>>>>', user.rows[0]);
+    if (user.rowCount !== 0) {
+      return res.status(200).json({ status: 200, message: SUCCESS, data: user.rows[0] });
+    }
+  } catch (err) {
+    console.log('>>>ERR', err);
+    return res.status(500).json({ status: 500, message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};

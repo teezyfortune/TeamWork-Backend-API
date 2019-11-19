@@ -4,4 +4,4 @@ const conn = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export default conn;
+module.exports = conn;

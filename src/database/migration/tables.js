@@ -41,7 +41,7 @@ export const dropTables = async () => {
 
 export const createUserArticleTable = async () => {
   try {
-    const createEmployees = `CREATE TABLE Articles (
+    const createArticle = `CREATE TABLE Articles (
          id serial NOT NULL,
          empId integer NOT NULL,
          title VARCHAR(255) NOT NULL,
@@ -49,7 +49,7 @@ export const createUserArticleTable = async () => {
          createdOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
          CONSTRAINT "Articles_pk" PRIMARY KEY (id)
      ) `;
-    const query = conn.query(createEmployees);
+    const query = conn.query(createArticle);
     if (query) {
       return query;
     }

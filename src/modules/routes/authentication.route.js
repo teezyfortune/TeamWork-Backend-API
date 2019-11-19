@@ -1,7 +1,8 @@
 import express from 'express';
 import { validateUserInput, validateLogin } from '../../middleware/validation';
-import { saveUser } from '../authentication/signup_account';
+import { saveUser, viewProfile } from '../authentication/signup_account';
 import loginUser from '../authentication/login';
+import { verifyMiddleWare } from '../../helpers/security';
 
 const authRoute = express.Router();
 
@@ -89,5 +90,28 @@ authRoute.post('/signup', validateUserInput, saveUser);
  *         description: Server error
  */
 authRoute.post('/login', validateLogin, loginUser);
+
+/**
+ * @swagger
+ *
+ * /login:
+ *   post:
+ *     tags:
+ *       - User can create an employee user account.
+ *     description: Admin can create an employee user account.
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request body
+ *     description: user id
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: User account successfully created
+ *       500:
+ *         description: Server error
+ */
+authRoute.get('/profile', verifyMiddleWare, viewProfile);
 
 export default authRoute;

@@ -5,8 +5,8 @@ import { BAD_EMAIL, LOGIN_SUCCESS, NO_USER, SERVER_ERROR_MESSAGE } from '../../u
 
 const loginUser = async (request, response) => {
   try {
-    const { email, password } = await request.body;
-    const findUser = await getOneUserByEmail(email);
+    const { username, password } = await request.body;
+    const findUser = await getOneUserByEmail(username);
     if (findUser.rowCount !== 0) {
       const { id } = findUser.rows[0];
       const userPassword = await comparePassWord(password, id);
@@ -34,6 +34,7 @@ const loginUser = async (request, response) => {
       }
     }
   } catch (error) {
+    console.log('>>>>', error);
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

@@ -14,10 +14,10 @@ export const getOneUserById = async (id) => {
   return false;
 };
 
-export const getOneUserByEmail = async (email) => {
+export const getOneUserByEmail = async (username) => {
   try {
     const sql = 'SELECT * FROM employees WHERE email = $1 LIMIT 1';
-    const values = [email];
+    const values = [username];
 
     const checkUser = await conn.query(sql, values);
     if (checkUser.rowCount !== 0) {
@@ -28,3 +28,5 @@ export const getOneUserByEmail = async (email) => {
   }
   return false;
 };
+
+
