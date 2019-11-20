@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/9</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/9</span>
+        <span class='fraction'>13/13</span>
       </div>
     </div>
     <p class="quiet">
@@ -103,7 +103,23 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,7 +164,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,6 +175,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import faker from 'faker';
 &nbsp;
 export const User = {
@@ -200,7 +232,6 @@ export const invalidEmail = {
   lastName: faker.name.lastName(),
   email: 'gaba123#.com',
   password: faker.internet.password(),
-  gender: 'male',
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
@@ -217,17 +248,30 @@ export const invalidSignIn = {
 };
 export const baseLogin = '/api/v1/login';
 export const baseUrl = '/api/v1/signup';
+&nbsp;
+export const usertoken =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
+&nbsp;
+export const adminToken =
+  ' Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6MSwiZW1haWwiOiJnYWJ0ZWV6eTE0QGdtYWlsLmNvLnVrIn0sImlhdCI6MTU3NDI0ODIwNywiZXhwIjoxNTc2ODQwMjA3LCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.5jjx-ywtKjARB7lMzt5OEvZIGDLGKN3UHQOqGbBF_g8';
+&nbsp;
+export const invAlidSignIn =
+  'Bearer I1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
+&nbsp;
+export const updateProfile = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  jobRole: faker.name.jobTitle(),
+  department: faker.name.jobArea(),
+  address: faker.address.city(),
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-<<<<<<< HEAD
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 16 2019 20:40:28 GMT+0100 (West Africa Standard Time)
-=======
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 17 2019 12:16:54 GMT+0100 (West Africa Standard Time)
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 20 2019 22:39:38 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>

@@ -103,10 +103,65 @@ export const validateUserInput = (request, response, next) => {
   return next();
 };
 
-export const validateLogin = (request, response, next) => {
-  const { email, password } = request.body;
+export const validateUserProfile = (request, response, next) => {
+  try {
+    const { firstName, lastName, gender, jobRole, department, address } = request.body;
+    const regEx = /[^a-z/d]/i;
 
-  if (email && !validator.isEmail(email)) {
+    if (firstName && typeof firstName !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+
+    if (regEx.test(firstName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${firstName} ` });
+    }
+
+    if (regEx.test(lastName)) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${lastName} ` });
+    }
+
+    if (lastName && typeof lastName !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+
+    if (gender && typeof gender !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+
+    if (gender && gender.includes(' ')) {
+      return response.status(422).json({ status: 'error', message: `${NO_SPACE}$ for ${gender} ` });
+    }
+    if (regEx.test(gender) === true) {
+      return response
+        .status(422)
+        .json({ status: 'error', message: `${USE_STRING_MESSAGE} for ${gender} ` });
+    }
+
+    if (address && typeof address !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+
+    if (department && typeof department !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+
+    if (jobRole && typeof jobRole !== 'string') {
+      return response.status(422).json({ status: 'error', message: USE_STRING_MESSAGE });
+    }
+  } catch (error) {
+    return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return next();
+};
+
+export const validateLogin = (request, response, next) => {
+  const { username, password } = request.body;
+
+  if (username && !validator.isEmail(username)) {
     return response.status(422).json({ status: 'error', message: EMAIL_MESSAGE });
   }
 

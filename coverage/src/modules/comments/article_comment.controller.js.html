@@ -20,26 +20,6 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
-        <span class="strong">100% </span>
-        <span class="quiet">Statements</span>
-        <span class='fraction'>14/14</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">71.43% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>10/14</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
-        <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
-        <span class="quiet">Lines</span>
-        <span class='fraction'>13/13</span>
-=======
         <span class="strong">28.57% </span>
         <span class="quiet">Statements</span>
         <span class='fraction'>4/14</span>
@@ -58,18 +38,13 @@
         <span class="strong">30.77% </span>
         <span class="quiet">Lines</span>
         <span class='fraction'>4/13</span>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-<<<<<<< HEAD
-  <div class='status-line high'></div>
-=======
   <div class='status-line low'></div>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,16 +87,6 @@
 <a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
-<span class="cline-any cline-yes">35x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-=======
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -130,22 +95,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-=======
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,16 +125,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import conn from '../../database/index';
 import { SERVER_ERROR_MESSAGE, ARTICLE_NOT_FOUND, COMMENT_SUCCESS } from '../../utils/constant';
 &nbsp;
-<<<<<<< HEAD
-const articleComment = <span class="branch-10 cbranch-no" title="branch not covered" ><span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" >async (r</span></span></span></span>eq, res) =&gt; {
-  try {
-    const { comment } = await req.body;
-    const articleId = await req.params.id;
-    const empid = await req.token.payload.userId;
-    const sql = 'SELECT * FROM articles WHERE id = $1  LIMIT 1';
-    const values = [articleId];
-    const find = await conn.query(sql, values);
-=======
 const <span class="fstat-no" title="function not covered" >articleComment </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res) =&gt; {
   try {
     const { <span class="cstat-no" title="statement not covered" >comment } = await req.body;</span>
@@ -186,22 +133,14 @@ const <span class="fstat-no" title="function not covered" >articleComment </span
     const <span class="cstat-no" title="statement not covered" >sql = 'SELECT * FROM articles WHERE id = $1  LIMIT 1';</span>
     const <span class="cstat-no" title="statement not covered" >values = [articleId];</span>
     const <span class="cstat-no" title="statement not covered" >find = await conn.query(sql, values);</span>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
     if (find.rowCount === 0) {
       return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
     }
     const { title, article } = find.rows[0];
-<<<<<<< HEAD
-    const query =
-      'INSERT INTO article_comments (articleid, empid, title, article, comment) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-    const value = [articleId, empid, title, article, comment];
-    const reply = await conn.query(query, value);
-=======
     const <span class="cstat-no" title="statement not covered" >query =</span>
       'INSERT INTO article_comments (articleid, empid, title, article, comment) VALUES ($1, $2, $3, $4, $5) RETURNING *';
     const <span class="cstat-no" title="statement not covered" >value = [articleId, empid, title, article, comment];</span>
     const <span class="cstat-no" title="statement not covered" >reply = await conn.query(query, value);</span>
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
     if (reply) {
       return res.status(201).json({
         status: 'success',
@@ -227,11 +166,7 @@ export default articleComment;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-<<<<<<< HEAD
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 16 2019 20:40:28 GMT+0100 (West Africa Standard Time)
-=======
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 17 2019 12:16:54 GMT+0100 (West Africa Standard Time)
->>>>>>> f38e0be337993a510ca99bf630084c4fc1d46385
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 20 2019 22:39:38 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>
