@@ -27,7 +27,7 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
+      .set('Authorization', `Bearer ${gifToken.token}`)
       .send(mocks.correctGif)
       .end((err, response) => {
         if (err) done(err);
@@ -36,12 +36,13 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
+});
+describe('DELETE GIF', () => {
   it('It should respond with field can not be empty', (done) => {
     chai
       .request(app)
-      .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
-      .send(mocks.emptySpace)
+      .delete(mocks.basedelete1)
+      .set('Authorization', `Bearer ${gifToken.token}`)
       .end((err, response) => {
         if (err) done(err);
         expect(response.statusCode).to.equal(422);
@@ -49,4 +50,18 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
+});
+
+it('It should respond with field can not be empty', (done) => {
+  chai
+    .request(app)
+    .post(mocks.gifUrl)
+    .set('Authorization', `Bearer ${gifToken.token}`)
+    .send(mocks.emptySpace)
+    .end((err, response) => {
+      if (err) done(err);
+      expect(response.statusCode).to.equal(422);
+      expect(response.body).to.contains({ status: 'error' });
+      done();
+    });
 });

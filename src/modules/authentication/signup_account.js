@@ -22,12 +22,13 @@ export const saveUser = async (request, response) => {
     } = await request.body;
     const hash = encryptPassWord(password);
     const findUser = await getOneUserByEmail(email);
+    console.log('>>user', findUser);
     if (findUser) {
       return response.status(409).json({ status: 'error', message: EMAIL_CONFLICT });
     }
     const sql =
-      'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, email';
-    const values = [firstName, lastName, email, hash, gender, jobRole, department, address];
+      'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id, email';
+    const values = [firstName, lastName, email, hash, gender, jobRole, department, address, false];
     const user = await conn.query(sql, values);
     if (user) {
       const { id } = user.rows[0];

@@ -4,8 +4,8 @@ import {
   updateArticle,
   destroyArticle,
   fetchAllArticle,
-  getOneSpecificArticle,
 } from '../articles/articles.controller';
+import {getSpecificArticle} from '../../services/articles/article.services';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle, validateComment } from '../../middleware/validation';
@@ -195,6 +195,6 @@ articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
  *         description: Server error
  */
 
-articleRoute.get('/feed/:id', verifyMiddleWare, getOneSpecificArticle);
+articleRoute.get('/articles/:id', verifyMiddleWare, getSpecificArticle);
 
 export default articleRoute;

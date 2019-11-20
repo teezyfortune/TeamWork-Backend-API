@@ -1,6 +1,13 @@
 import cloudinary from 'cloudinary';
-import { saveGifs } from '../../services/gifs/gif.services';
-import { SERVER_ERROR_MESSAGE, ERROR_MESSAGE, GIF_SUCCESS } from '../../utils/constant';
+import { saveGifs, getOneGifById, deleteGif, getAllGif } from '../../services/gifs/gif.services';
+import {
+  SERVER_ERROR_MESSAGE,
+  ERROR_MESSAGE,
+  GIF_SUCCESS,
+  GIF_NOT_FOUND,
+  DELETED_GIF_SUCCESS,
+  GIF_FETCHED,
+} from '../../utils/constant';
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -8,7 +15,7 @@ cloudinary.config({
   secret_key: process.env.SECRET_KEY,
 });
 
-const createGif = async (req, res) => {
+export const createGif = async (req, res) => {
   try {
     const { title, gif } = req.body;
     const empid = req.token.payload.userId;
@@ -33,4 +40,34 @@ const createGif = async (req, res) => {
   return false;
 };
 
-export default createGif;
+export const destroyGif = async (req, res) => {
+  try {
+    const gifId = req.params.id;
+    const findGif = await getOneGifById(gifId);
+    if (findGif === false) {
+      return res.status(404).json({ status: 'success', message: GIF_NOT_FOUND });
+    }
+    const destroyed = await deleteGif(gifId);
+    if (destroyed) {
+      return res.status(200).json({ status: 'success', message: DELETED_GIF_SUCCESS });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+export const fetchAllGif = async (req, res) => {
+  try {
+    const findGif = await getAllGif();
+    if (findGif) {
+      return res.status(200).json({
+        status: GIF_FETCHED,
+        data: findGif.rows[0],
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
