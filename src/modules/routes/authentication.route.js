@@ -8,7 +8,7 @@ const authRoute = express.Router();
 /**
  * @swagger
  *
- * /signup:
+ * /auth/signup:
  *   post:
  *     tags:
  *       - Admin can create an employee user account.
@@ -56,12 +56,12 @@ const authRoute = express.Router();
  *       500:
  *         description: Server error
  */
-authRoute.post('/signup', validateUserInput, saveUser);
+authRoute.post('/auth/signup', validateUserInput, saveUser);
 
 /**
  * @swagger
  *
- * /login:
+ * /auth/siginin:
  *   post:
  *     tags:
  *       - Admin can create an employee user account.
@@ -88,6 +88,6 @@ authRoute.post('/signup', validateUserInput, saveUser);
  *       500:
  *         description: Server error
  */
-authRoute.post('/login', validateLogin, loginUser);
+authRoute.post('/auth/signin', validateLogin, loginUser);
 
 export default authRoute;

@@ -15,7 +15,7 @@ const articleRoute = express.Router();
 /**
  * @swagger
  *
- * /article:
+ * /aarticle:
  *   post:
  *     tags:
  *       - Employees create an article.

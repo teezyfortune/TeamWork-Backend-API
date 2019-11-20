@@ -1,7 +1,12 @@
 import { encryptPassWord, newToken } from '../../helpers/security';
 import conn from '../../database/index';
-import { SUCESS_MESSAGE, EMAIL_CONFLICT, SERVER_ERROR_MESSAGE } from '../../utils/constant';
-import { getOneUserByEmail } from '../../services/users/users.services';
+import {
+  SUCESS_MESSAGE,
+  EMAIL_CONFLICT,
+  SERVER_ERROR_MESSAGE,
+  NO_USER,
+} from '../../utils/constant';
+import { getOneUserByEmail, editProfile } from '../../services/users/users.services';
 
 export const saveUser = async (request, response) => {
   try {
@@ -42,4 +47,33 @@ export const saveUser = async (request, response) => {
   return false;
 };
 
-export const signInUser = async () => {};
+export const updateProfile = async (req, res) => {
+  try {
+    const id = req.token.payload.userId;
+    const values = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      gender: req.body.gender,
+      jobRole: req.body.jobRole,
+      department: req.body.department,
+      address: req.body.address,
+    };
+    const profile = editProfile(values, id);
+    if (!profile) {
+      return res.status(404).json({
+        status: 'error',
+        message: NO_USER,
+      });
+    }
+    if (profile) {
+      return res.status(201).json({
+        status: 'success',
+        message: SUCESS_MESSAGE,
+      });
+    }
+  } catch (error) {
+    console.log('>>>', error);
+    return res.status(500).json({ status: 500, message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
