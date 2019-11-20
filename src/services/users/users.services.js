@@ -14,10 +14,10 @@ export const getOneUserById = async (id) => {
   return false;
 };
 
-export const getOneUserByEmail = async (email) => {
+export const getOneUserByEmail = async (username) => {
   try {
     const sql = 'SELECT * FROM employees WHERE email = $1 LIMIT 1';
-    const values = [email];
+    const values = [username];
 
     const checkUser = await conn.query(sql, values);
     if (checkUser.rowCount !== 0) {
@@ -29,12 +29,12 @@ export const getOneUserByEmail = async (email) => {
   return false;
 };
 
-
 export const editProfile = async (body) => {
+  const { firstName, lastName, gender, jobRole, address, department, id } = body;
   try {
     const sql =
-      'UPDATE employess SET firstName = $1, lastName = $2  ,gender = $5, jobRole = $6, department =$7,address =$8 WHERE id = $9 AND isAdmin = $10  RETURNING *';
-    const values = [body, false];
+      'UPDATE employees SET firstName = $1, lastName = $2  ,gender = $3, jobRole = $4, department =$5, address =$6 WHERE id = $7 RETURNING *';
+    const values = [firstName, lastName, gender, jobRole, department, address, id];
     const updated = await conn.query(sql, values);
     if (updated) {
       return updated;

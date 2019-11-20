@@ -17,7 +17,6 @@ describe('Authentication: Signin User', () => {
       .send(mock.sign2)
       .end((err, response) => {
         userToken = response.body.data;
-        console.log(userToken);
         if (err) done(err);
         expect(response.statusCode).to.equal(200);
         done();

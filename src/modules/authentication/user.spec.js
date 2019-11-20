@@ -85,4 +85,33 @@ describe('Test Suite for Authentication signin ', () => {
         done();
       });
   });
+
+  describe('Update acount ', () => {
+    it('It should create new contact****', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseLogin)
+        .set('Authorization', mock.adminToken)
+        .send(mock.updateProfile)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
+
+    it('It should respond with invalid authaurization or not loggedIn', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseLogin)
+        .send(mock.invAlidSignIn)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(404);
+          expect(response.body).to.contains({ status: 'error' });
+          done();
+        });
+    });
+  });
 });

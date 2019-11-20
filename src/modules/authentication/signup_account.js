@@ -5,8 +5,13 @@ import {
   EMAIL_CONFLICT,
   SERVER_ERROR_MESSAGE,
   NO_USER,
+  UPDATE_MESSAGE,
 } from '../../utils/constant';
-import { getOneUserByEmail, editProfile } from '../../services/users/users.services';
+import {
+  getOneUserByEmail,
+  editProfile,
+  getOneUserById,
+} from '../../services/users/users.services';
 
 export const saveUser = async (request, response) => {
   try {
@@ -22,7 +27,6 @@ export const saveUser = async (request, response) => {
     } = await request.body;
     const hash = encryptPassWord(password);
     const findUser = await getOneUserByEmail(email);
-    console.log('>>user', findUser);
     if (findUser) {
       return response.status(409).json({ status: 'error', message: EMAIL_CONFLICT });
     }
@@ -51,6 +55,13 @@ export const saveUser = async (request, response) => {
 export const updateProfile = async (req, res) => {
   try {
     const id = req.token.payload.userId;
+    const find = await getOneUserById(id);
+    if (find.rowCount === 0) {
+      return res.status(404).json({
+        status: 'error',
+        message: NO_USER,
+      });
+    }
     const values = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -58,8 +69,9 @@ export const updateProfile = async (req, res) => {
       jobRole: req.body.jobRole,
       department: req.body.department,
       address: req.body.address,
+      id,
     };
-    const profile = editProfile(values, id);
+    const profile = await editProfile(values);
     if (!profile) {
       return res.status(404).json({
         status: 'error',
@@ -69,12 +81,18 @@ export const updateProfile = async (req, res) => {
     if (profile) {
       return res.status(201).json({
         status: 'success',
-        message: SUCESS_MESSAGE,
+        message: UPDATE_MESSAGE,
+        data: {
+          userId: profile.rows[0].id,
+          firstName: profile.rows[0].firstName,
+          lastNmae: profile.rows[0].lastName,
+          email: profile.rows[0].email,
+          address: profile.rows[0].address,
+        },
       });
     }
   } catch (error) {
-    console.log('>>>', error);
-    return res.status(500).json({ status: 500, message: SERVER_ERROR_MESSAGE });
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
 };

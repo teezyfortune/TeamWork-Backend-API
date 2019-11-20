@@ -1,7 +1,8 @@
 import express from 'express';
-import { validateUserInput, validateLogin } from '../../middleware/validation';
-import { saveUser } from '../authentication/signup_account';
+import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
+import { saveUser, updateProfile } from '../authentication/signup_account';
 import loginUser from '../authentication/login';
+import { verifyMiddleWare } from '../../helpers/security';
 
 const authRoute = express.Router();
 
@@ -89,5 +90,37 @@ authRoute.post('/auth/signup', validateUserInput, saveUser);
  *         description: Server error
  */
 authRoute.post('/auth/signin', validateLogin, loginUser);
+
+/**
+ * @swagger
+ *
+ * /auth/siginin:
+ *   post:
+ *     tags:
+ *       - User can create an employee user account.
+ *     description: Admin can create an employee user account.
+ *       - application/json
+ *     parameters:
+ *       - name: email
+ *         in: formData
+ *     description: User's password.
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: User account successfully created
+ *       400:
+ *         description: This email already been taken, please enter a new mail
+ *       422:
+ *         description: Validation Error
+ *       500:
+ *         description: Server error
+ */
+authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
 
 export default authRoute;
