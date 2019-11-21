@@ -43,31 +43,46 @@ export const invalidEmail = {
   address: faker.address.city(),
 };
 
+export const User1 = {
+  firstName: 'fortune',
+  lastName: 'Gabriel',
+  email: 'devFortune@yahoo.com',
+  password: 'Gab@teez.3me12',
+  gender: 'male',
+  jobRole: 'Ui/UX',
+  department: 'software',
+  address: '23 loko strret',
+};
+
+export const User2 = {
+  firstName: 'Daniel',
+  lastName: 'tosin',
+  email: 'topeadekey@yahoo.com',
+  password: 'Gab@teez.3me12',
+  gender: 'male',
+  jobRole: 'frontend developer',
+  department: 'software',
+  address: '23 loko strret',
+};
+
 export const signIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'teezy123@',
+  username: User.email,
+  password: User.password,
 };
 
 export const invalidSignIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'eezy123@',
+  username: 'gabteezy14@gmail.co.uk',
+  password: 'bbbbbjbb',
 };
-export const baseLogin = '/api/v1/login';
-export const baseUrl = '/api/v1/signup';
-
-export const usertoken =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
-
-export const adminToken =
-  ' Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6MSwiZW1haWwiOiJnYWJ0ZWV6eTE0QGdtYWlsLmNvLnVrIn0sImlhdCI6MTU3NDI0ODIwNywiZXhwIjoxNTc2ODQwMjA3LCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.5jjx-ywtKjARB7lMzt5OEvZIGDLGKN3UHQOqGbBF_g8';
-
-export const invAlidSignIn =
-  'Bearer I1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
+export const baseLogin = '/api/v1/auth/signin';
+export const baseUrl = '/api/v1/auth/signup';
+export const baseUpdate = '/api/v1/auth/profile';
 
 export const updateProfile = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   jobRole: faker.name.jobTitle(),
+  gender: 'male',
   department: faker.name.jobArea(),
   address: faker.address.city(),
 };

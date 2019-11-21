@@ -5,7 +5,9 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --exit",
+    "db-migrate": "babel-node src/database/migration/tables.js",
+    "pretest": "cross-env NODE_ENV=test && npm run  db-migrate",
+    "test": "cross-env NODE_ENV=test  && nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --timeout 50000 --exit",
     "build": "rm -rf ./build && @babel  src -d ./build  -s",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
@@ -28,6 +30,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "cloudinary": "^1.16.0",
+    "cross-env": "^6.0.3",
     "datauri": "^2.0.0",
     "dataurl": "^0.1.0",
     "dotenv": "^8.2.0",
@@ -44,6 +47,7 @@
     "nyc": "^14.1.1",
     "pg": "^7.12.1",
     "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2",
     "validator": "^12.0.0"
   },
   "devDependencies": {

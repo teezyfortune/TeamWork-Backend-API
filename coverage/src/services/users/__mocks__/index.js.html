@@ -119,7 +119,22 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,23 +184,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,31 +267,46 @@ export const invalidEmail = {
   address: faker.address.city(),
 };
 &nbsp;
+export const User1 = {
+  firstName: 'fortune',
+  lastName: 'Gabriel',
+  email: 'devFortune@yahoo.com',
+  password: 'Gab@teez.3me12',
+  gender: 'male',
+  jobRole: 'Ui/UX',
+  department: 'software',
+  address: '23 loko strret',
+};
+&nbsp;
+export const User2 = {
+  firstName: 'Daniel',
+  lastName: 'tosin',
+  email: 'topeadekey@yahoo.com',
+  password: 'Gab@teez.3me12',
+  gender: 'male',
+  jobRole: 'frontend developer',
+  department: 'software',
+  address: '23 loko strret',
+};
+&nbsp;
 export const signIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'teezy123@',
+  username: User.email,
+  password: User.password,
 };
 &nbsp;
 export const invalidSignIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'eezy123@',
+  username: 'gabteezy14@gmail.co.uk',
+  password: 'bbbbbjbb',
 };
-export const baseLogin = '/api/v1/login';
-export const baseUrl = '/api/v1/signup';
-&nbsp;
-export const usertoken =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
-&nbsp;
-export const adminToken =
-  ' Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6MSwiZW1haWwiOiJnYWJ0ZWV6eTE0QGdtYWlsLmNvLnVrIn0sImlhdCI6MTU3NDI0ODIwNywiZXhwIjoxNTc2ODQwMjA3LCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.5jjx-ywtKjARB7lMzt5OEvZIGDLGKN3UHQOqGbBF_g8';
-&nbsp;
-export const invAlidSignIn =
-  'Bearer I1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJJZCI6NSwiZW1haWwiOiJGb3J0dW5lMTRAZ21haWwuY29tIn0sImlhdCI6MTU3NDIzNDU0MCwiZXhwIjoxNTc2ODI2NTQwLCJpc3MiOiJBdXRob3JpemF0aW9uL1Jlc291cmNlL1RlYW1Xb3JrIiwic3ViIjoiQXV0aGVudGljYXRpb24gQmVhcmVyIChkZXZGb3J0dW5lKSJ9.ds5A2ZdgYHT_exkmqzZNPnVwR2T-jVbSiHNoc2EVXDk';
+export const baseLogin = '/api/v1/auth/signin';
+export const baseUrl = '/api/v1/auth/signup';
+export const baseUpdate = '/api/v1/auth/profile';
 &nbsp;
 export const updateProfile = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   jobRole: faker.name.jobTitle(),
+  gender: 'male',
   department: faker.name.jobArea(),
   address: faker.address.city(),
 };
@@ -271,7 +316,7 @@ export const updateProfile = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 20 2019 22:39:38 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 21 2019 23:28:16 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>

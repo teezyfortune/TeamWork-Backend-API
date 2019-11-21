@@ -6,36 +6,37 @@ import conn from '../../database';
 
 const loginUser = async (request, response) => {
   try {
-    const { username, password } = await request.body;
-    const findUser = await getOneUserByEmail(username);
-    if (findUser.rowCount !== 0) {
-      const { id } = findUser.rows[0];
-      const userPassword = await comparePassWord(password, id);
-      if (findUser === false) {
-        return response.status(404).json({
-          status: 'error',
-          message: BAD_EMAIL,
-        });
-      }
-      if (userPassword === false) {
-        return response.status(404).json({
-          status: 'error',
-          message: NO_USER,
-        });
-      }
-      if (userPassword) {
-        const authToken = newToken({ userId: id, username: findUser.rows[0].email });
-        return response.status(200).json({
-          status: LOGIN_SUCCESS,
-          data: {
-            userId: findUser.rows[0].id,
-            token: authToken,
-          },
-        });
-      }
+    const { email, password } = await request.body;
+    const findUser = await getOneUserByEmail(email);
+    if (findUser === false) {
+      return response.status(404).json({
+        status: 'error',
+        message: BAD_EMAIL,
+      });
     }
+
+    const { id } = findUser.rows[0];
+    const userPassword = await comparePassWord(password, id);
+    if (userPassword === false) {
+      return response.status(404).json({
+        status: 'error',
+        message: NO_USER,
+      });
+    }
+    if (userPassword) {
+      const authToken = newToken({ userId: id, email: findUser.rows[0].email });
+      return response.status(200).json({
+        status: LOGIN_SUCCESS,
+        data: {
+          userId: findUser.rows[0].id,
+          token: authToken,
+        },
+      });
+    }
+
     conn.end();
   } catch (error) {
+    // console.log('errr', error)
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

@@ -2,8 +2,15 @@ import faker from 'faker';
 
 export const correctGif = {
   title: faker.name.title(),
-  gif: 'C:/Users/HP/baby.jfif',
+  gif: 'faker.image.animals();',
 };
+
+
+export const correctGif1 = {
+  title: faker.name.title(),
+  gif: 'faker.image.animals();',
+};
+
 
 export const emptySpace = {
   title: '',
@@ -18,33 +25,30 @@ export const emptycomment = {
   comment: '',
 };
 
-export const gifSignIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'teezy123@',
+export const User = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+  gender: 'female',
+  jobRole: faker.name.jobTitle(),
+  department: faker.name.jobArea(),
+  address: faker.address.city(),
 };
 
-export const sign2 = {
-  email: 'devFortune14@gmail.com',
-<<<<<<< HEAD
-  password: '@wesQ123bn',
-=======
-  password: 'teezy123@',
->>>>>>> fb725fdb41236ea1fdc5bca970ea12cd11c01238
+export const signIn = {
+  username: User.email,
+  password: User.password,
 };
 
 export const invalidUser = {
   email: 'gabteezy14@gmail.co.uk',
   password: 'eezy123@',
 };
-export const gifLogin = '/api/v1/login';
+export const gifLogin = '/api/v1/auth/signin';
 export const gifUrl = '/api/v1/gif';
+export const basesignUp = '/api/v1/auth/signup';
 
-<<<<<<< HEAD
-export const basedelete1 = '/api/v1/gif/5';
-export const basedelete2 = '/api/v1/gf/200';
-export const baseComment = '/api/v1/article/8/comment';
-=======
 export const basedelete1 = '/api/v1/gif/1';
 export const basedelete2 = '/api/v1/gf/200';
-export const baseComment = '/api/v1/article/1/comment';
->>>>>>> fb725fdb41236ea1fdc5bca970ea12cd11c01238
+export const baseComment = '/api/v1/gif/2/comment';
