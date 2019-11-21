@@ -5,7 +5,9 @@
   "main": "src/app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --exit",
+    "db-migrate": "babel-node src/database/migration/tables.js",
+    "pretest": "export NODE_ENV=test || SET \"NODE_ENV=test\" && npm run  db-migrate",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --exit",
     "build": "rm -rf ./build && @babel  src -d ./build  -s",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"

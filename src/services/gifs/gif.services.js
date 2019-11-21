@@ -42,7 +42,7 @@ export const deleteGif = async (id) => {
   return false;
 };
 
-export const getAll = async (id) => {
+export const deleteOne = async (id) => {
   try {
     const sql = 'DELETE FROM  Gifs  WHERE id = $1';
     const values = [id];
@@ -58,8 +58,7 @@ export const getAll = async (id) => {
 
 export const getAllGif = async () => {
   try {
-    const sql =
-      'SELECT id, createdon as createdOn, title, article, empid as authorId  FROM gifs ORDER BY createdOn DESC';
+    const sql = 'SELECT * from gifs';
     const allGifs = await conn.query(sql);
     if (allGifs) {
       return allGifs;

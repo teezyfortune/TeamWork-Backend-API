@@ -17,7 +17,7 @@ const swaggerOption = {
       contact: {
         name: 'DevFortune',
       },
-      server: ['http://localhost:5000'],
+      server: ['http://localhost:7000'],
     },
   },
   // ['.routes/*.js']
@@ -28,7 +28,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOption);
 app.use('/api/v1', router);
 
 app.listen(getEnv('PORT', 7000), () =>
-  logger(`server listening on: http://localhost:${getEnv('PORT', 5000)}`)
+  logger(`server listening on: http://localhost:${getEnv('PORT', 7000)}`)
 );
 
 export default app;
