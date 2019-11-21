@@ -79,7 +79,7 @@ export const updateProfile = async (req, res) => {
       });
     }
     if (profile) {
-      return res.status(201).json({
+      return res.status(200).json({
         status: 'success',
         message: UPDATE_MESSAGE,
         data: {
