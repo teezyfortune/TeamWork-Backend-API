@@ -1,8 +1,7 @@
 import express from 'express';
-import createGif from '../gifs/gif.controller';
 import { verifyMiddleWare } from '../../helpers/security';
-import { validateGif } from '../../middleware/validation';
 import { multerUploads } from '../../services/gifs/multer';
+import { createGif, destroyGif, fetchAllGif } from '../gifs/gif.controller';
 
 const gifRoute = express.Router();
 
@@ -13,7 +12,7 @@ const gifRoute = express.Router();
  *   post:
  *     tags:
  *       - Employees can post a gif.
- *     description: Employees can write or create articls .
+ *     description: Employees can upload a gif .
  *       - application/json
  *     parameters:
  *       - name: title
@@ -40,27 +39,40 @@ gifRoute.post('/gif', verifyMiddleWare, multerUploads, createGif);
  * /gif:
  *   post:
  *     tags:
- *       - Employees can post a gif.
- *     description: Employees can write or create articls .
+ *       - Employees .
+ *     description: Employees can delete a gif .
+ *       - Employees can delete a gif.
+ *     description: Employees can delete a gif .
  *       - application/json
  *     parameters:
- *       - name: title
- *         in: formData
- *         required: true
- *         type: string
- *       - name: gif
- *         in: formData
+ *       - name: id
+ *         in: request parameter
  *         required: true
  *         type: string
  *     responses:
- *       201:
+ *       200:
  *         description: Gif successfully created
- *       422:
- *         description: Validation Error
  *       500:
  *         description: Server error
  */
 
-// gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
+gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
+
+/**
+ * @swagger
+ *
+ * /gif:
+ *   post:
+ *     tags:
+ *       - Employees
+ *     description: Employees can get all gif .
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: success
+ *       500:
+ *         description: Server error
+ */
+gifRoute.get('/feeds', verifyMiddleWare, fetchAllGif);
 
 export default gifRoute;

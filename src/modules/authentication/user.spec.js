@@ -10,17 +10,17 @@ chai.use(chaHttp);
 
 describe('Test Suite for User Adim/employess Signup', () => {
   describe('Authentication: Signup User', () => {
-    it('It should create new user ', (done) => {
-      chai
-        .request(app)
-        .post(mock.baseUrl)
-        .send(mock.User)
-        .end((err, response) => {
-          if (err) done(err);
-          expect(response.statusCode).to.equal(201);
-          done();
-        });
-    });
+    // it('It should create new user ', (done) => {
+    //   chai
+    //     .request(app)
+    //     .post(mock.baseUrl)
+    //     .send(mock.User)
+    //     .end((err, response) => {
+    //       if (err) done(err);
+    //       expect(response.statusCode).to.equal(201);
+    //       done();
+    //     });
+    // });
     it('It should respond with all fields invalid ', (done) => {
       chai
         .request(app)
@@ -84,5 +84,34 @@ describe('Test Suite for Authentication signin ', () => {
         expect(response.body).to.contains({ status: 'error' });
         done();
       });
+  });
+
+  describe('Update acount ', () => {
+    it('It should create new contact****', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseLogin)
+        .set('Authorization', mock.adminToken)
+        .send(mock.updateProfile)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
+
+    it('It should respond with invalid authaurization or not loggedIn', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseLogin)
+        .send(mock.invAlidSignIn)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(404);
+          expect(response.body).to.contains({ status: 'error' });
+          done();
+        });
+    });
   });
 });

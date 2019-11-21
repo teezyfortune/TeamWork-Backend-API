@@ -7,5 +7,5 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
- const upload = (gif) => cloudinary.uploader.upload(gif);
+const upload = (gif) => cloudinary.uploader.upload(gif);
 export default upload;
