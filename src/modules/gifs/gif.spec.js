@@ -27,7 +27,11 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mocks.gifUrl)
+<<<<<<< HEAD
+      .set('authorization', `Bearer ${gifToken.token}`)
+=======
       .set('Authorization', `Bearer ${gifToken.token}`)
+>>>>>>> fb725fdb41236ea1fdc5bca970ea12cd11c01238
       .send(mocks.correctGif)
       .end((err, response) => {
         if (err) done(err);
@@ -36,6 +40,14 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
+<<<<<<< HEAD
+  it('It should respond with field can not be empty', (done) => {
+    chai
+      .request(app)
+      .post(mocks.gifUrl)
+      .set('authorization', `Bearer ${gifToken.token}`)
+      .send(mocks.emptySpace)
+=======
 });
 describe('DELETE GIF', () => {
   it('It should respond with field can not be empty', (done) => {
@@ -43,6 +55,7 @@ describe('DELETE GIF', () => {
       .request(app)
       .delete(mocks.basedelete1)
       .set('Authorization', `Bearer ${gifToken.token}`)
+>>>>>>> fb725fdb41236ea1fdc5bca970ea12cd11c01238
       .end((err, response) => {
         if (err) done(err);
         expect(response.statusCode).to.equal(422);
@@ -51,6 +64,8 @@ describe('DELETE GIF', () => {
       });
   });
 });
+<<<<<<< HEAD
+=======
 
 it('It should respond with field can not be empty', (done) => {
   chai
@@ -65,3 +80,4 @@ it('It should respond with field can not be empty', (done) => {
       done();
     });
 });
+>>>>>>> fb725fdb41236ea1fdc5bca970ea12cd11c01238

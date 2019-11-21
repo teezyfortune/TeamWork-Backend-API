@@ -24,7 +24,7 @@ const loginUser = async (request, response) => {
         });
       }
       if (userPassword) {
-        const authToken = newToken({ userId: id, email: findUser.rows[0].email });
+        const authToken = newToken({ userId: id, username: findUser.rows[0].email });
         return response.status(200).json({
           status: LOGIN_SUCCESS,
           data: {
