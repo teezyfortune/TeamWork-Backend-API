@@ -5,8 +5,8 @@ import { LOGIN_SUCCESS, NO_USER, SERVER_ERROR_MESSAGE } from '../../utils/consta
 
 const loginUser = async (request, response) => {
   try {
-    const { email, password } = await request.body;
-    const findUser = await getOneUserByEmail(email);
+    const { username, password } = await request.body;
+    const findUser = await getOneUserByEmail(username);
     if (findUser.rowCount !== 0) {
       const { id } = findUser.rows[0];
       const userPassword = await comparePassWord(password, id);
@@ -17,7 +17,7 @@ const loginUser = async (request, response) => {
         });
       }
       if (userPassword) {
-        const authToken = newToken({ userId: id, email: findUser.rows[0].email });
+        const authToken = newToken({ userId: id, username: findUser.rows[0].email });
         return response.status(200).json({
           status: LOGIN_SUCCESS,
           data: {

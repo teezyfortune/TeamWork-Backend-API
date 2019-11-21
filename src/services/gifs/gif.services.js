@@ -14,6 +14,9 @@ export const getOneGifById = async (id) => {
   return false;
 };
 
+
+
+
 export const saveGifs = async (empid, title, cloudUrl) => {
   try {
     const sql = 'INSERT INTO gifs(empid, title, imageurl) VALUES ($1, $2, $3) RETURNING *';

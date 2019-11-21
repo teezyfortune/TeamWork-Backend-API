@@ -2,6 +2,7 @@ import express from 'express';
 import createGif from '../gifs/gif.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateGif } from '../../middleware/validation';
+import { multerUploads } from '../../services/gifs/multer';
 
 const gifRoute = express.Router();
 
@@ -31,7 +32,7 @@ const gifRoute = express.Router();
  *       500:
  *         description: Server error
  */
-gifRoute.post('/gif', verifyMiddleWare, validateGif, createGif);
+gifRoute.post('/gif', verifyMiddleWare, multerUploads, createGif);
 
 /**
  * @swagger
