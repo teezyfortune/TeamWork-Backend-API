@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.22% </span>
+        <span class="strong">81.48% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/27</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/24</span>
+        <span class='fraction'>22/27</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">33.33% </span>
-        <span class="quiet">Functions</span>
-        <span class='fraction'>2/6</span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">24% </span>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/25</span>
+        <span class='fraction'>21/25</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -159,30 +159,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,30 +257,30 @@ import {
   getOneUserById,
 } from '../../services/users/users.services';
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >saveUser </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>equest, response) =&gt; {
+export const saveUser = <span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" >async (r</span></span></span></span>equest, response) =&gt; {
   try {
     const {
-<span class="cstat-no" title="statement not covered" >      firstName,</span>
-<span class="cstat-no" title="statement not covered" >      lastName,</span>
-<span class="cstat-no" title="statement not covered" >      email,</span>
-<span class="cstat-no" title="statement not covered" >      password,</span>
-<span class="cstat-no" title="statement not covered" >      gender,</span>
-<span class="cstat-no" title="statement not covered" >      jobRole,</span>
-<span class="cstat-no" title="statement not covered" >      department,</span>
-<span class="cstat-no" title="statement not covered" >      address,</span>
+      firstName,
+      lastName,
+      email,
+      password,
+      gender,
+      jobRole,
+      department,
+      address,
     } = await request.body;
-    const <span class="cstat-no" title="statement not covered" >hash = encryptPassWord(password);</span>
-    const <span class="cstat-no" title="statement not covered" >findUser = await getOneUserByEmail(email);</span>
+    const hash = encryptPassWord(password);
+    const findUser = await getOneUserByEmail(email);
     if (findUser) {
       return response.status(409).json({ status: 'error', message: EMAIL_CONFLICT });
     }
-    const <span class="cstat-no" title="statement not covered" >sql =</span>
+    const sql =
       'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id, email';
-    const <span class="cstat-no" title="statement not covered" >values = [firstName, lastName, email, hash, gender, jobRole, department, address, false];</span>
-    const <span class="cstat-no" title="statement not covered" >user = await conn.query(sql, values);</span>
+    const values = [firstName, lastName, email, hash, gender, jobRole, department, address, false];
+    const user = await conn.query(sql, values);
     if (user) {
-      const { <span class="cstat-no" title="statement not covered" >id } = user.rows[0];</span>
-      const <span class="cstat-no" title="statement not covered" >jwtToken = newToken({ id, email: user.rows.email });</span>
+      const { id } = user.rows[0];
+      const jwtToken = newToken({ id, email: user.rows.email });
       return response.status(201).json({
         status: 'success',
         message: SUCESS_MESSAGE,
@@ -346,7 +346,7 @@ export const <span class="fstat-no" title="function not covered" >updateProfile 
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 22 2019 12:33:37 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 02:12:24 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

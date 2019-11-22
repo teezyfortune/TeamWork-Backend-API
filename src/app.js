@@ -1,12 +1,12 @@
 import express from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
+// import swaggerUi from 'swagger-ui-express';
 import polyfill from '@babel/polyfill';
 import bodyParser from 'body-parser';
 import path from 'path';
 import { getEnv, logger } from './utils/utils';
 import router from './modules/routes/index';
-import swaggerSpec from '../documentation/swagger-ui';
+// import swaggerSpec from '../documentation/swagger-ui';
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,9 +40,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   res.sendFile(path.join(__dirname, '../swagger-documentation/index.html'));
 // });
 
-app.get(`/api/v1/doc`, (req, res) =>{
+app.get(`/api/v1/doc`, (req, res) => {
   res.setHeader('content-Type', 'application/json');
-  res.send(swaggerSpec);
+  // res.send(swaggerSpec);
 });
 
 app.get('/', (req, res) => {
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1', router);
-app.use(`/api/v1/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// app.use(`/api/v1/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.listen(getEnv('PORT', 5000), () =>
   logger(`server listening on: http://localhost:${getEnv('PORT', 5000)}`)

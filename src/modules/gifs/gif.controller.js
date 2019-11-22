@@ -61,7 +61,7 @@ export const fetchAllGif = async (req, res) => {
     const findGif = await getAllGif();
     if (findGif) {
       return res.status(200).json({
-        status: GIF_FETCHED,  
+        status: GIF_FETCHED,
         data: findGif.rows[0],
       });
     }

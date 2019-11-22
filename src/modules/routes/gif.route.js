@@ -75,7 +75,7 @@ gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
  *       500:
  *         description: Server error
  */
-gifRoute.get('/feeds', verifyMiddleWare, fetchAllGif);
+gifRoute.get('/gif', verifyMiddleWare, fetchAllGif);
 
 
 /**
