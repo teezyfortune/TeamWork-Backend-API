@@ -66,7 +66,7 @@ export const getSpecificGif = async (req, res) => {
     const { id } = req.params;
     const gif = await conn.query(`SELECT * FROM gifs WHERE id = ${[id]}`);
     const comments = await conn.query(
-      `SELECT id as commendId, comment, empid as authorId FROM gif_comments WHERE  gif_comments.id =  ${gif.rows[0].id}`
+      `SELECT id as commendId, comment, empid as authorId FROM gifs_comments WHERE  gifs_comments.id =  ${gif.rows[0].id}`
     );
     if (gif === false) {
       return res.status(404).json({ status: 'error', message: NOTFOUND });
