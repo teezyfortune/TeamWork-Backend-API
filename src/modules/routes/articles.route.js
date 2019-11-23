@@ -5,7 +5,7 @@ import {
   destroyArticle,
   fetchAllArticle,
 } from '../articles/articles.controller';
-import {getSpecificArticle} from '../../services/articles/article.services';
+import { getSpecificArticle } from '../../services/articles/article.services';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 import { validateArticle, validateComment } from '../../middleware/validation';
@@ -15,7 +15,7 @@ const articleRoute = express.Router();
 /**
  * @swagger
  *
- * /article:
+ * /aarticle:
  *   post:
  *     tags:
  *       - Employees create an article.

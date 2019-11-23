@@ -101,26 +101,3 @@ export const fetchAllArticle = async (req, res) => {
   }
   return false;
 };
-
-export const getOneSpecificArticle = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const findArticle = await getSpecificArticle(id);
-    if (findArticle === false) {
-      return res.status(404).json({
-        status: 'error',
-        message: findArticle.rows,
-      });
-    }
-    if (findArticle) {
-      return res.status(200).json({
-        status: ARTICLE_FETCH_SUCCESS,
-        data: findArticle.rows,
-      });
-    }
-  } catch (error) {
-    console.log('>>>>>><<>>>>', error)
-    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
-  }
-  return false;
-};
