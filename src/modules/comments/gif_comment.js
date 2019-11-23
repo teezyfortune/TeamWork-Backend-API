@@ -1,21 +1,21 @@
 import conn from '../../database/index';
-import { SERVER_ERROR_MESSAGE, ARTICLE_NOT_FOUND, COMMENT_SUCCESS } from '../../utils/constant';
+import { SERVER_ERROR_MESSAGE, GIF_NOT_FOUND, COMMENT_SUCCESS } from '../../utils/constant';
 
-const articleComment = async (req, res) => {
+const gifComment = async (req, res) => {
   try {
     const { comment } = await req.body;
-    const articleId = await req.params.id;
+    const gifId = await req.params.id;
     const empid = await req.token.payload.userId;
-    const sql = 'SELECT * FROM articles WHERE id = $1  LIMIT 1';
-    const values = [articleId];
+    const sql = 'SELECT * FROM gifs WHERE id = $1  LIMIT 1';
+    const values = [gifId];
     const find = await conn.query(sql, values);
     if (find.rowCount === 0) {
-      return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
+      return res.status(404).json({ status: 'error', message: GIF_NOT_FOUND });
     }
-    const { title, article } = find.rows[0];
+    const { title } = find.rows[0];
     const query =
-      'INSERT INTO articles_comments (articleid, empid, title, article, comment) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-    const value = [articleId, empid, title, article, comment];
+      'INSERT INTO gifs_comments (gifid, empid, title, comment) VALUES ($1, $2, $3, $4) RETURNING *';
+    const value = [gifId, empid, title, comment];
     const reply = await conn.query(query, value);
     if (reply) {
       return res.status(201).json({
@@ -23,16 +23,17 @@ const articleComment = async (req, res) => {
         data: {
           message: COMMENT_SUCCESS,
           created: reply.rows[0].createdon,
-          articleId: reply.rows[0].id,
+          gifId: reply.rows[0].id,
           title: reply.rows[0].title,
           commnet: reply.rows[0].comment,
         },
       });
     }
   } catch (error) {
+    console.log('>>>>', error);
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
 };
 
-export default articleComment;
+export default gifComment;

@@ -33,7 +33,7 @@ export const saveGifs = async (empid, title, cloudUrl) => {
 
 
 
-export const DeleteGif = async (id) => {
+export const deleteGif = async (id) => {
   try {
     const sql = 'DELETE FROM  Gifs  WHERE id = $1';
     const values = [id];

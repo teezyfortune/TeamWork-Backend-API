@@ -27,7 +27,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOption);
 
 app.use('/api/v1', router);
 
-app.listen(getEnv('PORT', 6000), () =>
+app.listen(getEnv('PORT', 7000), () =>
   logger(`server listening on: http://localhost:${getEnv('PORT', 7000)}`)
 );
 
