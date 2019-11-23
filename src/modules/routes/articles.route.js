@@ -195,6 +195,6 @@ articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
  *         description: Server error
  */
 
-articleRoute.get('/articles/:id', verifyMiddleWare, getSpecificArticle);
+articleRoute.get('/article/:id', verifyMiddleWare, getSpecificArticle);
 
 export default articleRoute;
