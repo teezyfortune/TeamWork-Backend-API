@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">70.83% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/24</span>
+        <span class='fraction'>24/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.38% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>11/21</span>
+        <span class='fraction'>14/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.18% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/22</span>
+        <span class='fraction'>22/22</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,14 +109,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,24 +127,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">364x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,12 +159,12 @@ export const SIGN_OPTION = {
   expiresIn: '30d',
 };
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >encryptPassWord </span>= (password) =&gt; {
-  const hash = <span class="cstat-no" title="statement not covered" >bcrypt.h</span>ashSync(password, 10);
-<span class="cstat-no" title="statement not covered" >  return h</span>ash;
+export const encryptPassWord = (password) =&gt; {
+  const hash = bcrypt.hashSync(password, 10);
+  return hash;
 };
 &nbsp;
-export const comparePassWord = <span class="branch-5 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >async (p</span></span>assword, id) =&gt; {
+export const comparePassWord = <span class="missing-if-branch" title="if path not taken" >I</span><span class="branch-5 cbranch-no" title="branch not covered" ><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" >async (p</span></span></span></span>assword, id) =&gt; {
   try {
     const savedpassword = await getOneUserById(id);
     const compare = bcrypt.compareSync(password, savedpassword.rows[0].password);
@@ -182,16 +182,16 @@ export const newToken = (payload) =&gt; {
   return token;
 };
 &nbsp;
-export const verifyMiddleWare = <span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" ><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >async (r</span></span></span></span></span></span>eq, res, next) =&gt; {
+export const verifyMiddleWare = <span class="missing-if-branch" title="if path not taken" >I</span><span class="branch-8 cbranch-no" title="branch not covered" >async (r</span>eq, res, next) =&gt; {
   try {
     const bearerHeader = req.headers.authorization;
     // Bearer is not undefined
-    const <span class="cstat-no" title="statement not covered" >Bearer = await bearerHeader.split(' ');</span>
-    const <span class="cstat-no" title="statement not covered" >bearerToken = await Bearer[1];</span>
-<span class="cstat-no" title="statement not covered" >    req.token = await bearerToken;</span>
-    const <span class="cstat-no" title="statement not covered" >decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);</span>
+    const Bearer = await bearerHeader.split(' ');
+    const bearerToken = await Bearer[1];
+    req.token = await bearerToken;
+    const decoded = jwt.verify(req.token, process.env.JWT_SECRET, SIGN_OPTION);
     if (decoded) {
-<span class="cstat-no" title="statement not covered" >      req.token = await decoded;</span>
+      req.token = await decoded;
     }
     return next();
   } catch (error) {
@@ -205,7 +205,7 @@ export const verifyMiddleWare = <span class="branch-8 cbranch-no" title="branch 
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 17 2019 12:16:54 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 22 2019 20:19:28 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

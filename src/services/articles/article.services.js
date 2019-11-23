@@ -1,5 +1,5 @@
 import conn from '../../database/index';
-import { SERVER_ERROR_MESSAGE, ARTICLE_FETCH_SUCCESS } from '../../utils/constant';
+import { SERVER_ERROR_MESSAGE } from '../../utils/constant';
 
 export const getOneArticle = async (id, article) => {
   try {
@@ -84,6 +84,36 @@ export const getAllArticle = async () => {
     }
   } catch (error) {
     return error;
+  }
+  return false;
+};
+
+export const getSpecificArticle = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const article = await conn.query(`SELECT * FROM articles WHERE id = ${[id]}`);
+
+    const comments = await conn.query(
+      `SELECT id as commendId, comment, empid as authorId FROM article_comments WHERE  article_comments.id =  ${article.rows[0].id}`
+    );
+    if (article) {
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          id: article.rows[0].id,
+          createdOn: article.rows[0].createdon,
+          title: article.rows[0].title,
+          article: article.rows[0].article,
+          comments: [
+            {
+              comments: comments.rows[0],
+            },
+          ],
+        },
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
 };
