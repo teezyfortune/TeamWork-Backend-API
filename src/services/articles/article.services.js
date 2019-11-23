@@ -94,7 +94,7 @@ export const getSpecificArticle = async (req, res) => {
     const article = await conn.query(`SELECT * FROM articles WHERE id = ${[id]}`);
 
     const comments = await conn.query(
-      `SELECT id as commendId, comment, empid as authorId FROM article_comments WHERE  article_comments.id =  ${article.rows[0].id}`
+      `SELECT id as commendId, comment, empid as authorId FROM articles_comments WHERE  articles_comments.id =  ${article.rows[0].id}`
     );
     if (article) {
       return res.status(200).json({
