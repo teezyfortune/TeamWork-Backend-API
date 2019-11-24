@@ -8,7 +8,11 @@ services:
 env:
   - NODE_ENV = test
 before_script:
+<<<<<<< HEAD
   - psql -c 'CREATE DATABASE testing_test' -U postgres
+=======
+  - psql -c 'CREATE DATABASE ebewytaa;' -U postgres
+>>>>>>> e80387d034197b521e714e6aec8bb60725d46af8
   - chmod 0777 ./node_modules/.bin/mocha
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
