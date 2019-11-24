@@ -101,7 +101,8 @@ export const updateProfile = async (req, res) => {
 export const viewProfile = async (req, res) => {
   try {
     const id = req.token.payload.userId;
-    const profile = getOneUserById(id);
+    const profile = await getOneUserById(id);
+    console.log('>>><>>', profile);
     if (profile) {
       return res.status(200).json({
         status: 'success',

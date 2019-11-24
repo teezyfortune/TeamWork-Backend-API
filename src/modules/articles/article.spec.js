@@ -30,7 +30,17 @@ describe('Authentication: Signin User', () => {
       .post(mock.baseLogin)
       .send(mock.signIn)
       .end((err, response) => {
+<<<<<<< HEAD
         });
+=======
+        userToken = response.body.data;
+        console.log({
+          '>>><>>>>>>>': userToken,
+          '>>><>>>>>': mock.signIn,
+          '>>>>>>>': response,
+        });
+        if (err) done(err);
+>>>>>>> e80387d034197b521e714e6aec8bb60725d46af8
         expect(response.statusCode).to.equal(200);
         done();
       });
