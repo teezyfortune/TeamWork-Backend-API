@@ -2,12 +2,20 @@ import faker from 'faker';
 
 export const correctGif = {
   title: faker.name.title(),
+<<<<<<< HEAD
   gif: faker.image.imageUrl(),
+=======
+  gif: faker.image.avatar(),
+>>>>>>> fd114a91578d1f6315a3b4af2066a1ad28ce65b9
 };
 
 export const correctGif1 = {
   title: faker.name.title(),
+<<<<<<< HEAD
   gif: faker.image.imageUrl(),
+=======
+  gif: faker.image.avatar(),
+>>>>>>> fd114a91578d1f6315a3b4af2066a1ad28ce65b9
 };
 
 export const emptySpace = {
