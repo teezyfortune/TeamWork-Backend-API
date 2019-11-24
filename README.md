@@ -1,8 +1,7 @@
 # TeamWork-Backend-API
 TravisCi
 
-[![Build Status](https://travis-ci.com/teezyfortune/Onekiosk-Backend-API.svg?token=f1gUyhph1Tmgsbo9ZBo1&branch=develop)](https://travis-ci.com/teezyfortune/Onekiosk-Backend-API)
-
+[![Build Status](https://travis-ci.org/teezyfortune/TeamWork-Backend-API.svg?branch=develop)](https://travis-ci.org/teezyfortune/TeamWork-Backend-API)
 
 [![Coverage Status](https://coveralls.io/repos/github/teezyfortune/TeamWork-Backend-API/badge.svg?branch=develop)](https://coveralls.io/github/teezyfortune/TeamWork-Backend-API?branch=develop)
 

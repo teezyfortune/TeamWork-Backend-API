@@ -1,21 +1,14 @@
 import faker from 'faker';
+import fs from 'fs';
 
 export const correctGif = {
   title: faker.name.title(),
-<<<<<<< HEAD
-  gif: faker.image.imageUrl(),
-=======
   gif: faker.image.avatar(),
->>>>>>> fd114a91578d1f6315a3b4af2066a1ad28ce65b9
 };
 
 export const correctGif1 = {
   title: faker.name.title(),
-<<<<<<< HEAD
-  gif: faker.image.imageUrl(),
-=======
   gif: faker.image.avatar(),
->>>>>>> fd114a91578d1f6315a3b4af2066a1ad28ce65b9
 };
 
 export const emptySpace = {
@@ -43,7 +36,7 @@ export const User = {
 };
 
 export const signIn = {
-  username: User.email,
+  email: User.email,
   password: User.password,
 };
 

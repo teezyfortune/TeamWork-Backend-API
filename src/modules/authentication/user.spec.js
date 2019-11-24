@@ -69,7 +69,6 @@ describe('SIGNIN, Test Suite for Authentication signin ', () => {
       .send(mock.signIn)
       .end((err, response) => {
         userToken = response.body.data;
-        console.log('>><>>>>', userToken)
         if (err) done(err);
         expect(response.statusCode).to.equal(200);
         expect(response.body).to.contains({ status: 'success' });

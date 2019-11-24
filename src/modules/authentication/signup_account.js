@@ -101,8 +101,6 @@ export const updateProfile = async (req, res) => {
 export const viewProfile = async (req, res) => {
   try {
     const id = req.token.payload.userId;
-    console.log('>>><>>useerId', id);
-
     const profile = getOneUserById(id);
     if (profile) {
       return res.status(200).json({
@@ -118,7 +116,6 @@ export const viewProfile = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log('>>><>>', err)
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

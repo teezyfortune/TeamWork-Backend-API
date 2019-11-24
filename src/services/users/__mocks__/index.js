@@ -66,12 +66,12 @@ export const User2 = {
 };
 
 export const signIn = {
-  username: User.email,
+  email: User.email,
   password: User.password,
 };
 
 export const invalidSignIn = {
-  username: 'gabteezy14@gmail.co.uk',
+  email: 'gabteezy14@gmail.co.uk',
   password: 'bbbbbjbb',
 };
 export const baseLogin = '/api/v1/auth/signin';

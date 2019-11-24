@@ -6,8 +6,8 @@ import conn from '../../database';
 
 const loginUser = async (request, response) => {
   try {
-    const { username, password } = await request.body;
-    const findUser = await getOneUserByEmail(username);
+    const { email, password } = await request.body;
+    const findUser = await getOneUserByEmail(email);
     if (findUser === false) {
       return response.status(404).json({
         status: 'error',
@@ -24,7 +24,7 @@ const loginUser = async (request, response) => {
       });
     }
     if (userPassword) {
-      const authToken = newToken({ userId: id, username: findUser.rows[0].email });
+      const authToken = newToken({ userId: id, email: findUser.rows[0].email });
       return response.status(200).json({
         status: LOGIN_SUCCESS,
         data: {

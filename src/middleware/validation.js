@@ -159,9 +159,9 @@ export const validateUserProfile = (request, response, next) => {
 };
 
 export const validateLogin = (request, response, next) => {
-  const { username, password } = request.body;
+  const { email, password } = request.body;
 
-  if (username && !validator.isEmail(username)) {
+  if (email && !validator.isEmail(email)) {
     return response.status(422).json({ status: 'error', message: EMAIL_MESSAGE });
   }
 
