@@ -14,7 +14,7 @@ const gifComment = async (req, res) => {
     }
     const { title } = find.rows[0];
     const query =
-      'INSERT INTO gifs_comments (gifid, empid, giftitle, comment) VALUES ($1, $2, $3, $4) RETURNING *';
+      'INSERT INTO gifs_comments (gifid, empid, title, comment) VALUES ($1, $2, $3, $4) RETURNING *';
     const value = [gifId, empid, title, comment];
     const reply = await conn.query(query, value);
     if (reply) {

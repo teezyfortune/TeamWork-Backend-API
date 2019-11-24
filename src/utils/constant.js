@@ -20,3 +20,4 @@ export const BAD_EMAIL = 'The email provided is invalid';
 export const NOT_ADMIN = 'You are not allowed here';
 export const GIF_FETCHED = 'success';
 export const UPDATE_MESSAGE = 'Account successfully updated';
+export const VIEW_PROFILE = 'Profile retrieved succesfully';

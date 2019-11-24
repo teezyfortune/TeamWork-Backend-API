@@ -96,9 +96,7 @@ describe('Update acount ', () => {
       .set('Authorization', `Bearer ${userToken}`)
       .send(mock.updateProfile)
       .end((err, response) => {
-        // console.log(response);
         if (err) {
-          console.log(err);
           done(err);
         }
         expect(response.statusCode).to.equal(200);

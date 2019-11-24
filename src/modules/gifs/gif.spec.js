@@ -28,41 +28,26 @@ describe('Authentication: Signin User', () => {
       .post(mocks.gifLogin)
       .send(mocks.signIn)
       .end((err, response) => {
-  
-
         gifToken = response.body.data;
         if (err) done(err);
-        expect(response.statusCode).to.equal(200);
+        expect(response.statusCode).to.equal(201);
         done();
       });
   });
+
   it('It should create new new gif', (done) => {
     chai
       .request(app)
       .post(mocks.gifUrl)
-      .set('Authorization', `Bearer ${gifToken.token}`)
-      .send(mocks.correctGif)
+      .set('authorization', `Bearer ${gifToken.token}`)
+      .send(mocks.correctGif1)
       .end((err, response) => {
         if (err) done(err);
         expect(response.statusCode).to.equal(201);
         expect(response.body).to.contains({ status: 'success' });
         done();
       });
-  }).timeout(5000);
-
-  //   it('It should create new new gif', (done) => {
-  //     chai
-  //       .request(app)
-  //       .post(mocks.gifUrl)
-  //       .set('authorization', `Bearer ${gifToken.token}`)
-  //       .send(mocks.correctGif1)
-  //       .end((err, response) => {
-  //         if (err) done(err);
-  //         expect(response.statusCode).to.equal(201);
-  //         expect(response.body).to.contains({ status: 'success' });
-  //         done();
-  //       });
-  //   });
+  });
 });
 // describe('DELETE GIF', () => {
 //   it('It should respond with field can not be empty', (done) => {
@@ -91,5 +76,5 @@ describe('Authentication: Signin User', () => {
 //       expect(response.body).to.contains({ status: 'error' });
 //       done();
 //     });
-//   });
+// });
 // });

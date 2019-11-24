@@ -1,6 +1,6 @@
 import express from 'express';
 import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
-import { saveUser, updateProfile } from '../authentication/signup_account';
+import { saveUser, updateProfile , viewProfile} from '../authentication/signup_account';
 import loginUser from '../authentication/login';
 import { verifyMiddleWare } from '../../helpers/security';
 
@@ -92,7 +92,7 @@ authRoute.post('/auth/signup', validateUserInput, saveUser);
 authRoute.post('/auth/signin', validateLogin, loginUser);
 
 /**
- * @swagger
+    @swagger
  *
  * /auth/siginin:
  *   post:
@@ -123,4 +123,40 @@ authRoute.post('/auth/signin', validateLogin, loginUser);
  */
 authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
 
+
+
+/**
+    @swagger
+ *
+ * /auth/siginin:
+ *   post:
+ *     tags:
+ *       - User can create an employee user account.
+ *     description: Admin can create an employee user account.
+ *       - application/json
+ *     parameters:
+ *       - name: email
+ *         in: formData
+ *     description: User's password.
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: User account successfully created
+ *       400:
+ *         description: This email already been taken, please enter a new mail
+ *       422:
+ *         description: Validation Error
+ *       500:
+ *         description: Server error
+ */
+authRoute.get('/auth/view-profile', verifyMiddleWare, viewProfile);
+
 export default authRoute;
+
+

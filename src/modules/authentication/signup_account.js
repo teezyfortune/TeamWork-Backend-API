@@ -6,6 +6,7 @@ import {
   SERVER_ERROR_MESSAGE,
   NO_USER,
   UPDATE_MESSAGE,
+  VIEW_PROFILE,
 } from '../../utils/constant';
 import {
   getOneUserByEmail,
@@ -92,6 +93,29 @@ export const updateProfile = async (req, res) => {
       });
     }
   } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+export const viewProfile = async (req, res) => {
+  try {
+    const id = req.token.payload.userId;
+    const profile = getOneUserById(id);
+    if (profile) {
+      return res.status(200).json({
+        status: 'success',
+        message: VIEW_PROFILE,
+        data: {
+          userId: profile.rows[0].id,
+          firstName: profile.rows[0].firstName,
+          lastNmae: profile.rows[0].lastName,
+          email: profile.rows[0].email,
+          address: profile.rows[0].address,
+        },
+      });
+    }
+  } catch (err) {
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

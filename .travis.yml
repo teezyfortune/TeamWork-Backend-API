@@ -19,7 +19,14 @@ cache:
   directories:
   - "node_modules"
 after_success:
-  - npm run coveralls
+  - npm run coveralls 
+install:
+  - npm ci
+    services:
+  - postgresql
+  - 
+  - npm ci
+services:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 notification:
   - email: false

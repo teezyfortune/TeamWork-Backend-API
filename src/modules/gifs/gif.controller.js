@@ -51,6 +51,8 @@ export const destroyGif = async (req, res) => {
       return res.status(200).json({ status: 'success', message: DELETED_GIF_SUCCESS });
     }
   } catch (error) {
+    console.log('>>><<>>>', error)
+
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
@@ -61,11 +63,12 @@ export const fetchAllGif = async (req, res) => {
     const findGif = await getAllGif();
     if (findGif) {
       return res.status(200).json({
-        status: GIF_FETCHED,
+        status: GIF_FETCHED,  
         data: findGif.rows[0],
       });
     }
   } catch (error) {
+    console.log('>>><<>>>', error)
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
