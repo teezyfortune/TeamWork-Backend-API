@@ -34,7 +34,7 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
-
+  console.log('>><>>>');
   it('It should create new new gif', async () => {
     const response = await chai
       .request(app)
@@ -44,8 +44,6 @@ describe('Authentication: Signin User', () => {
     expect(response.statusCode).to.equal(201);
     expect(response.body).to.contains({ status: 'success' });
   });
-
-  
 
   //
   // describe('DELETE GIF', () => {
