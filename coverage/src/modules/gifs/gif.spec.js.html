@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">86.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/36</span>
+        <span class='fraction'>25/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/8</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/10</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/32</span>
+        <span class='fraction'>24/26</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -184,24 +184,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -277,27 +277,27 @@ describe('Authentication: Signin User', () =&gt; {
       .post(mocks.gifUrl)
       .set('Authorization', `Bearer ${gifToken.token}`)
       .send(mocks.correctGif)
-      .end(<span class="fstat-no" title="function not covered" >(e</span>rr, response) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >done(</span></span>err);
-<span class="cstat-no" title="statement not covered" >        expect(</span>response.statusCode).to.equal(201);
+      .end((err, response) =&gt; {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (err) done(err);
+        expect(response.statusCode).to.equal(201);
 <span class="cstat-no" title="statement not covered" >        expect(</span>response.body).to.contains({ status: 'success' });
 <span class="cstat-no" title="statement not covered" >        done();</span>
       });
   });
 &nbsp;
-  it('It should create new new gif', (done) =&gt; {
-    chai
-      .request(app)
-      .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
-      .send(mocks.correctGif1)
-      .end(<span class="fstat-no" title="function not covered" >(e</span>rr, response) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >done(</span></span>err);
-<span class="cstat-no" title="statement not covered" >        expect(</span>response.statusCode).to.equal(201);
-<span class="cstat-no" title="statement not covered" >        expect(</span>response.body).to.contains({ status: 'success' });
-<span class="cstat-no" title="statement not covered" >        done();</span>
-      });
-  });
+  // it('It should create new new gif', (done) =&gt; {
+  //   chai
+  //     .request(app)
+  //     .post(mocks.gifUrl)
+  //     .set('authorization', `Bearer ${gifToken.token}`)
+  //     .send(mocks.correctGif1)
+  //     .end((err, response) =&gt; {
+  //       if (err) done(err);
+  //       expect(response.statusCode).to.equal(201);
+  //       expect(response.body).to.contains({ status: 'success' });
+  //       done();
+  //     });
+  // });
 });
 // describe('DELETE GIF', () =&gt; {
 //   it('It should respond with field can not be empty', (done) =&gt; {
@@ -334,7 +334,7 @@ describe('Authentication: Signin User', () =&gt; {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 23 2019 19:23:34 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 12:23:25 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

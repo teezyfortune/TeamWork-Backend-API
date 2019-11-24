@@ -49,19 +49,19 @@ describe('Authentication: Signin User', () => {
       });
   });
 
-  it('It should create new new gif', (done) => {
-    chai
-      .request(app)
-      .post(mocks.gifUrl)
-      .set('authorization', `Bearer ${gifToken.token}`)
-      .send(mocks.correctGif1)
-      .end((err, response) => {
-        if (err) done(err);
-        expect(response.statusCode).to.equal(201);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
-  });
+  // it('It should create new new gif', (done) => {
+  //   chai
+  //     .request(app)
+  //     .post(mocks.gifUrl)
+  //     .set('authorization', `Bearer ${gifToken.token}`)
+  //     .send(mocks.correctGif1)
+  //     .end((err, response) => {
+  //       if (err) done(err);
+  //       expect(response.statusCode).to.equal(201);
+  //       expect(response.body).to.contains({ status: 'success' });
+  //       done();
+  //     });
+  // });
 });
 // describe('DELETE GIF', () => {
 //   it('It should respond with field can not be empty', (done) => {
