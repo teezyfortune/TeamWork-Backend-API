@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">78.57% </span>
+        <span class="strong">92.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>22/28</span>
+        <span class='fraction'>26/28</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/32</span>
+        <span class='fraction'>16/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/6</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">78.57% </span>
+        <span class="strong">92.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>22/28</span>
+        <span class='fraction'>26/28</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -223,17 +223,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,7 +242,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -345,17 +345,17 @@ export const saveUser = <span class="branch-8 cbranch-no" title="branch not cove
   return false;
 };
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >updateProfile </span>= <span class="fstat-no" title="function not covered" >async (r</span>eq, res) =&gt; {
+export const updateProfile = <span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" >async (r</span></span></span></span>eq, res) =&gt; {
   try {
-    const <span class="cstat-no" title="statement not covered" >id = req.token.payload.userId;</span>
-    const <span class="cstat-no" title="statement not covered" >find = await getOneUserById(id);</span>
+    const id = req.token.payload.userId;
+    const find = await getOneUserById(id);
     if (find.rowCount === 0) {
       return res.status(404).json({
         status: 'error',
         message: NO_USER,
       });
     }
-    const <span class="cstat-no" title="statement not covered" >values = {</span>
+    const values = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       gender: req.body.gender,
@@ -364,7 +364,7 @@ export const <span class="fstat-no" title="function not covered" >updateProfile 
       address: req.body.address,
       id,
     };
-    const <span class="cstat-no" title="statement not covered" >profile = await editProfile(values);</span>
+    const profile = await editProfile(values);
     if (!profile) {
       return res.status(404).json({
         status: 'error',
@@ -418,7 +418,7 @@ export const <span class="fstat-no" title="function not covered" >viewProfile </
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 12:42:43 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 19:37:48 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

@@ -35,7 +35,7 @@ export const User = {
 };
 
 export const signIn = {
-  username: User.email,
+  email: User.email,
   password: User.password,
 };
 

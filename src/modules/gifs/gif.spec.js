@@ -30,51 +30,50 @@ describe('Authentication: Signin User', () => {
       .end((err, response) => {
         gifToken = response.body.data;
         if (err) done(err);
-        expect(response.statusCode).to.equal(201);
+        expect(response.statusCode).to.equal(200);
         done();
       });
   });
 
-  it('It should create new new gif', (done) => {
-    chai
+  it('It should create new new gif', async () => {
+    const response = await chai
       .request(app)
       .post(mocks.gifUrl)
       .set('authorization', `Bearer ${gifToken.token}`)
-      .send(mocks.correctGif1)
-      .end((err, response) => {
-        if (err) done(err);
-        expect(response.statusCode).to.equal(201);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
+      .attach(mocks.correctGif1);
+    expect(response.statusCode).to.equal(201);
+    expect(response.body).to.contains({ status: 'success' });
   });
-});
-// describe('DELETE GIF', () => {
-//   it('It should respond with field can not be empty', (done) => {
-//     chai
-//       .request(app)
-//       .delete(mocks.basedelete1)
-//       .set('Authorization', `Bearer ${gifToken.token}`)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(422);
-//         expect(response.body).to.contains({ status: 'error' });
-//         done();
-//       });
-//   });
-// });
 
-// it('It should respond with field can not be empty', (done) => {
-//   chai
-//     .request(app)
-//     .post(mocks.gifUrl)
-//     .set('Authorization', `Bearer ${gifToken.token}`)
-//     .send(mocks.emptySpace)
-//     .end((err, response) => {
-//       if (err) done(err);
-//       expect(response.statusCode).to.equal(422);
-//       expect(response.body).to.contains({ status: 'error' });
-//       done();
-//     });
-// });
-// });
+  
+
+  //
+  // describe('DELETE GIF', () => {
+  //   it('It should respond with field can not be empty', (done) => {
+  //     chai
+  //       .request(app)
+  //       .delete(mocks.basedelete1)
+  //       .set('Authorization', `Bearer ${gifToken.token}`)
+  //       .end((err, response) => {
+  //         if (err) done(err);
+  //         expect(response.statusCode).to.equal(422);
+  //         expect(response.body).to.contains({ status: 'error' });
+  //         done();
+  //       });
+  //   });
+  // });
+
+  // it('It should respond with field can not be empty', (done) => {
+  //   chai
+  //     .request(app)
+  //     .post(mocks.gifUrl)
+  //     .set('Authorization', `Bearer ${gifToken.token}`)
+  //     .send(mocks.emptySpace)
+  //     .end((err, response) => {
+  //       if (err) done(err);
+  //       expect(response.statusCode).to.equal(422);
+  //       expect(response.body).to.contains({ status: 'error' });
+  //       done();
+  //     });
+  // });
+});

@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">69.23% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/13</span>
+        <span class='fraction'>12/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.46% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/13</span>
+        <span class='fraction'>9/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">91.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>11/12</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,7 +97,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">73x</span>
+<span class="cline-any cline-yes">109x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -108,8 +108,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,7 +117,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,7 +142,7 @@ import { comparePassWord, newToken } from '../../helpers/security';
 import { BAD_EMAIL, LOGIN_SUCCESS, NO_USER, SERVER_ERROR_MESSAGE } from '../../utils/constant';
 import conn from '../../database';
 &nbsp;
-const loginUser = <span class="missing-if-branch" title="if path not taken" >I</span><span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" ><span class="branch-4 cbranch-no" title="branch not covered" ><span class="branch-3 cbranch-no" title="branch not covered" >async (r</span></span></span></span></span></span></span>equest, response) =&gt; {
+const loginUser = <span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" >async (r</span></span></span></span>equest, response) =&gt; {
   try {
     const { email, password } = await request.body;
     const findUser = await getOneUserByEmail(email);
@@ -153,8 +153,8 @@ const loginUser = <span class="missing-if-branch" title="if path not taken" >I</
       });
     }
 &nbsp;
-    const { <span class="cstat-no" title="statement not covered" >id } = findUser.rows[0];</span>
-    const <span class="cstat-no" title="statement not covered" >userPassword = await comparePassWord(password, id);</span>
+    const { id } = findUser.rows[0];
+    const userPassword = await comparePassWord(password, id);
     if (userPassword === false) {
       return response.status(404).json({
         status: 'error',
@@ -162,7 +162,7 @@ const loginUser = <span class="missing-if-branch" title="if path not taken" >I</
       });
     }
     if (userPassword) {
-      const <span class="cstat-no" title="statement not covered" >authToken = newToken({ userId: id, email: findUser.rows[0].email });</span>
+      const authToken = newToken({ userId: id, email: findUser.rows[0].email });
       return response.status(200).json({
         status: LOGIN_SUCCESS,
         data: {
@@ -187,7 +187,7 @@ export default loginUser;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 12:42:43 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 24 2019 19:37:48 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>
