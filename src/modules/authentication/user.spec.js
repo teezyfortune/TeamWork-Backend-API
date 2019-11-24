@@ -68,7 +68,7 @@ describe('SIGNIN, Test Suite for Authentication signin ', () => {
       .post(mock.baseLogin)
       .send(mock.signIn)
       .end((err, response) => {
-        userToken = response.body.data.token;
+        userToken = response.body.data;
         if (err) done(err);
         expect(response.statusCode).to.equal(200);
         expect(response.body).to.contains({ status: 'success' });
@@ -93,7 +93,7 @@ describe('Update acount ', () => {
     chai
       .request(app)
       .put(mock.baseUpdate)
-      .set('Authorization', `Bearer ${userToken}`)
+      .set('Authorization', `Bearer ${userToken.token}`)
       .send(mock.updateProfile)
       .end((err, response) => {
         if (err) {
