@@ -5,7 +5,6 @@ import {
   getOneArticleById,
   deleteArticle,
   getAllArticle,
-  getSpecificArticle,
 } from '../../services/articles/article.services';
 import {
   ARTICLE_CONFLICTS,

@@ -13,4 +13,5 @@ const conn = new Pool({
   connectionString: url[env],
 });
 
+console.log('>>><>>>', conn);
 export default conn;

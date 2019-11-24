@@ -2,15 +2,13 @@ import faker from 'faker';
 
 export const correctGif = {
   title: faker.name.title(),
-  gif: 'faker.image.animals();',
+  gif: faker.image.avatar(),
 };
-
 
 export const correctGif1 = {
   title: faker.name.title(),
-  gif: 'faker.image.animals();',
+  gif: faker.image.avatar(),
 };
-
 
 export const emptySpace = {
   title: '',

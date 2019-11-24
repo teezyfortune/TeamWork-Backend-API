@@ -1,7 +1,8 @@
 import express from 'express';
+import { createGif, destroyGif, fetchAllGif } from '../gifs/gif.controller';
+import { getSpecificGif } from '../../services/gifs/gif.services';
 import { verifyMiddleWare } from '../../helpers/security';
 import { multerUploads } from '../../services/gifs/multer';
-import { createGif, destroyGif, fetchAllGif } from '../gifs/gif.controller';
 import gifComment from '../comments/gif_comment';
 import { validateComment } from '../../middleware/validation';
 
@@ -77,6 +78,22 @@ gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
  */
 gifRoute.get('/feeds', verifyMiddleWare, fetchAllGif);
 
+/**
+ * @swagger
+ *
+ * /gif:
+ *   post:
+ *     tags:
+ *       - Employees
+ *     description: Employees can get specific gif .
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: success
+ *       500:
+ *         description: Server error
+ */
+gifRoute.get('/gif/:id', verifyMiddleWare, getSpecificGif);
 
 /**
  * @swagger
@@ -114,7 +131,5 @@ gifRoute.get('/feeds', verifyMiddleWare, fetchAllGif);
  */
 
 gifRoute.post('/gif/:id/comment', verifyMiddleWare, validateComment, gifComment);
-
-
 
 export default gifRoute;
