@@ -29,4 +29,18 @@ export const getOneUserByEmail = async (username) => {
   return false;
 };
 
-
+export const editProfile = async (body) => {
+  const { firstName, lastName, gender, jobRole, address, department, id } = body;
+  try {
+    const sql =
+      'UPDATE employees SET firstName = $1, lastName = $2  ,gender = $3, jobRole = $4, department =$5, address =$6 WHERE id = $7 RETURNING *';
+    const values = [firstName, lastName, gender, jobRole, department, address, id];
+    const updated = await conn.query(sql, values);
+    if (updated) {
+      return updated;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};

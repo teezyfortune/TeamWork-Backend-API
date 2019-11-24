@@ -4,9 +4,15 @@ import {
   SUCESS_MESSAGE,
   EMAIL_CONFLICT,
   SERVER_ERROR_MESSAGE,
-  SUCCESS,
+  NO_USER,
+  UPDATE_MESSAGE,
+  VIEW_PROFILE,
 } from '../../utils/constant';
-import { getOneUserByEmail, getOneUserById } from '../../services/users/users.services';
+import {
+  getOneUserByEmail,
+  editProfile,
+  getOneUserById,
+} from '../../services/users/users.services';
 
 export const saveUser = async (request, response) => {
   try {
@@ -47,17 +53,70 @@ export const saveUser = async (request, response) => {
   return false;
 };
 
+export const updateProfile = async (req, res) => {
+  try {
+    const id = req.token.payload.userId;
+    const find = await getOneUserById(id);
+    if (find.rowCount === 0) {
+      return res.status(404).json({
+        status: 'error',
+        message: NO_USER,
+      });
+    }
+    const values = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      gender: req.body.gender,
+      jobRole: req.body.jobRole,
+      department: req.body.department,
+      address: req.body.address,
+      id,
+    };
+    const profile = await editProfile(values);
+    if (!profile) {
+      return res.status(404).json({
+        status: 'error',
+        message: NO_USER,
+      });
+    }
+    if (profile) {
+      return res.status(200).json({
+        status: 'success',
+        message: UPDATE_MESSAGE,
+        data: {
+          userId: profile.rows[0].id,
+          firstName: profile.rows[0].firstName,
+          lastNmae: profile.rows[0].lastName,
+          email: profile.rows[0].email,
+          address: profile.rows[0].address,
+        },
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
 export const viewProfile = async (req, res) => {
   try {
     const id = req.token.payload.userId;
-    const user = await getOneUserById(id);
-    console.log('user>>>>', user.rows[0]);
-    if (user.rowCount !== 0) {
-      return res.status(200).json({ status: 200, message: SUCCESS, data: user.rows[0] });
+    const profile = await getOneUserById(id);
+    if (profile) {
+      return res.status(200).json({
+        status: 'success',
+        message: VIEW_PROFILE,
+        data: {
+          userId: profile.rows[0].id,
+          firstName: profile.rows[0].firstName,
+          lastNmae: profile.rows[0].lastName,
+          email: profile.rows[0].email,
+          address: profile.rows[0].address,
+        },
+      });
     }
   } catch (err) {
-    console.log('>>>ERR', err);
-    return res.status(500).json({ status: 500, message: SERVER_ERROR_MESSAGE });
+    return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
 };

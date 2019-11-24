@@ -40,7 +40,6 @@ const loginAdmin = async (request, response) => {
       }
     }
   } catch (error) {
-    console.log('>>Error', error);
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;
