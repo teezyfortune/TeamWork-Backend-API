@@ -13,4 +13,8 @@ const conn = new Pool({
   connectionString: url[env],
 });
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> e80387d034197b521e714e6aec8bb60725d46af8
 export default conn;
