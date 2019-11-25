@@ -21,7 +21,5 @@ cache:
 after_success:
   - npm run coveralls 
   - "node_modules"
-before_script:                         # Install node version from .nvmrc
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 notification:
   - email: false

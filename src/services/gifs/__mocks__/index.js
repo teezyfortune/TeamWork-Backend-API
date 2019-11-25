@@ -1,5 +1,4 @@
 import faker from 'faker';
-import fs from 'fs';
 
 export const correctGif = {
   title: faker.name.title(),

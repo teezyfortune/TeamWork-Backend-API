@@ -5,7 +5,6 @@ export const article = {
   article: faker.name.jobTitle(),
 };
 
-
 export const article1 = {
   title: faker.name.firstName(),
   article: faker.name.jobTitle(),

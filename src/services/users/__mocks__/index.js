@@ -11,6 +11,17 @@ export const User = {
   address: faker.address.city(),
 };
 
+export const User2 = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+  gender: 'female',
+  jobRole: faker.name.jobTitle(),
+  department: faker.name.jobArea(),
+  address: faker.address.city(),
+};
+
 export const emptySpace = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
@@ -43,7 +54,6 @@ export const invalidEmail = {
   address: faker.address.city(),
 };
 
-
 export const signIn = {
   email: User.email,
   password: User.password,
@@ -57,7 +67,6 @@ export const baseLogin = '/api/v1/auth/signin';
 export const baseUrl = '/api/v1/auth/signup';
 export const baseUpdate = '/api/v1/auth/profile';
 export const baseProfile = '/api/v1/auth/view-profile';
-
 
 export const updateProfile = {
   firstName: faker.name.firstName(),
