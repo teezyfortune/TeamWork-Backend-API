@@ -1,11 +1,7 @@
 import express from 'express';
-<<<<<<< HEAD
-import { validateUserInput, validateLogin } from '../../middleware/validation';
-import { saveUser, viewProfile } from '../authentication/signup_account';
-=======
 import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
-import { saveUser, updateProfile , viewProfile} from '../authentication/signup_account';
->>>>>>> 75829b867b9f05290c16388e5d85cf5e6c02a289
+import { saveUser, updateProfile, viewProfile } from '../authentication/signup_account';
+
 import loginUser from '../authentication/login';
 import { verifyMiddleWare } from '../../helpers/security';
 
@@ -128,8 +124,6 @@ authRoute.post('/auth/signin', validateLogin, loginUser);
  */
 authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
 
-
-
 /**
     @swagger
  *
@@ -186,5 +180,3 @@ authRoute.get('/auth/view-profile', verifyMiddleWare, viewProfile);
 authRoute.get('/profile', verifyMiddleWare, viewProfile);
 
 export default authRoute;
-
-
