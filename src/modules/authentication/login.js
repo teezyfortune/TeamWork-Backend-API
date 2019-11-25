@@ -33,10 +33,8 @@ const loginUser = async (request, response) => {
         },
       });
     }
-
     conn.end();
   } catch (error) {
-    // console.log('errr', error)
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return false;

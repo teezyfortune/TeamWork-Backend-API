@@ -1,6 +1,7 @@
 import express from 'express';
 import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
-import { saveUser, updateProfile , viewProfile} from '../authentication/signup_account';
+import { saveUser, updateProfile, viewProfile } from '../authentication/signup_account';
+
 import loginUser from '../authentication/login';
 import { verifyMiddleWare } from '../../helpers/security';
 
@@ -123,8 +124,6 @@ authRoute.post('/auth/signin', validateLogin, loginUser);
  */
 authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
 
-
-
 /**
     @swagger
  *
@@ -157,6 +156,27 @@ authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProf
  */
 authRoute.get('/auth/view-profile', verifyMiddleWare, viewProfile);
 
+/**
+ * @swagger
+ *
+ * /login:
+ *   post:
+ *     tags:
+ *       - User can create an employee user account.
+ *     description: Admin can create an employee user account.
+ *       - application/json
+ *     parameters:
+ *       - name: userId
+ *         in: request body
+ *     description: user id
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: User account successfully created
+ *       500:
+ *         description: Server error
+ */
+authRoute.get('/profile', verifyMiddleWare, viewProfile);
+
 export default authRoute;
-
-
