@@ -105,3 +105,21 @@ describe('Update acount ', () => {
       });
   });
 });
+
+describe('View profile acount ', () => {
+  it('It should successfully retrieve profile', (done) => {
+    chai
+      .request(app)
+      .get(mock.baseProfile)
+      .set('Authorization', `Bearer ${userToken.token}`)
+      .end((err, response) => {
+        if (err) {
+          done(err);
+        }
+        expect(response.statusCode).to.equal(200);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+});
+
