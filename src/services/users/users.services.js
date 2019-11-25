@@ -29,6 +29,21 @@ export const getOneUserByEmail = async (username) => {
   return false;
 };
 
+export const getAllUsers = async () => {
+  try {
+    const sql = 'SELECT * FROM employees WHERE isAdmin = $1 ';
+    const values = [false];
+
+    const checkUser = await conn.query(sql, values);
+    if (checkUser.rowCount !== 0) {
+      return checkUser;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
 export const editProfile = async (body) => {
   const { firstName, lastName, gender, jobRole, address, department, id } = body;
   try {

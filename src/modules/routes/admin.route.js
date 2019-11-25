@@ -1,6 +1,7 @@
 import express from 'express';
-import loginAdmin from '../admin/login_admin.controller';
+import { getEmployees, verifyAdmin, loginAdmin } from '../admin/login_admin.controller';
 import { validateLogin } from '../../middleware/validation';
+import { verifyMiddleWare } from '../../helpers/security';
 
 const adminRoute = express.Router();
 
@@ -35,5 +36,28 @@ const adminRoute = express.Router();
  *         description: Server error
  */
 adminRoute.post('/admin', validateLogin, loginAdmin);
+
+/**
+ * @swagger
+ *
+ * /Employees:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     description: Amin can view all emplyees.
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: success.
+ *       500:
+ *         description: Server error
+ */
+
+adminRoute.get('/employees', verifyMiddleWare, verifyAdmin, getEmployees);
 
 export default adminRoute;

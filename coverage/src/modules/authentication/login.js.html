@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.31% </span>
+        <span class="strong">84.62% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/13</span>
+        <span class='fraction'>11/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">69.23% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/13</span>
+        <span class='fraction'>9/14</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">91.67% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/12</span>
+        <span class='fraction'>10/12</span>
       </div>
     </div>
     <p class="quiet">
@@ -106,7 +106,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,7 +140,7 @@ import { comparePassWord, newToken } from '../../helpers/security';
 import { BAD_EMAIL, LOGIN_SUCCESS, NO_USER, SERVER_ERROR_MESSAGE } from '../../utils/constant';
 import conn from '../../database';
 &nbsp;
-const loginUser = <span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" >async (r</span></span></span></span>equest, response) =&gt; {
+const loginUser = <span class="branch-10 cbranch-no" title="branch not covered" ><span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" >async (r</span></span></span></span></span>equest, response) =&gt; {
   try {
     const { email, password } = await request.body;
     const findUser = await getOneUserByEmail(email);
@@ -149,7 +151,9 @@ const loginUser = <span class="branch-9 cbranch-no" title="branch not covered" >
       });
     }
 &nbsp;
-    const { id } = findUser.rows[0];
+    const { id, isAdmin } = findUser.rows[0];
+   
+&nbsp;
     const userPassword = await comparePassWord(password, id);
     if (userPassword === false) {
       return response.status(404).json({

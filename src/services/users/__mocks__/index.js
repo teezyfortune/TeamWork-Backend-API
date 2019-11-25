@@ -43,7 +43,6 @@ export const invalidEmail = {
   address: faker.address.city(),
 };
 
-
 export const signIn = {
   email: User.email,
   password: User.password,
@@ -57,7 +56,6 @@ export const baseLogin = '/api/v1/auth/signin';
 export const baseUrl = '/api/v1/auth/signup';
 export const baseUpdate = '/api/v1/auth/profile';
 export const baseProfile = '/api/v1/auth/view-profile';
-
 
 export const updateProfile = {
   firstName: faker.name.firstName(),

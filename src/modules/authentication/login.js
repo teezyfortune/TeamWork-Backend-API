@@ -15,7 +15,9 @@ const loginUser = async (request, response) => {
       });
     }
 
-    const { id } = findUser.rows[0];
+    const { id, isAdmin } = findUser.rows[0];
+   
+
     const userPassword = await comparePassWord(password, id);
     if (userPassword === false) {
       return response.status(404).json({
@@ -27,6 +29,16 @@ const loginUser = async (request, response) => {
       const authToken = newToken({ userId: id, email: findUser.rows[0].email });
       return response.status(200).json({
         status: LOGIN_SUCCESS,
+        data: {
+          userId: findUser.rows[0].id,
+          token: authToken,
+        },
+      });
+    }
+    if (isAdmin === true) {
+      const authToken = newToken({ userId: id, email: findUser.rows[0].email });
+      return response.status(200).json({
+        status: `Welcome ${findUser.rows[0].jobrole}`,
         data: {
           userId: findUser.rows[0].id,
           token: authToken,

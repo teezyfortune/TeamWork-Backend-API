@@ -2,6 +2,7 @@ import conn from '../index';
 
 const employeesTableQuery =
   'DROP TABLE IF EXISTS employees CASCADE; CREATE TABLE employees (id serial NOT NULL PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL,email VARCHAR NOT NULL,password VARCHAR NOT NULL,gender VARCHAR NOT NULL,jobRole VARCHAR NOT NULL,department VARCHAR NOT NULL,address VARCHAR NOT NULL,isAdmin Boolean NOT NULL, createdOn TIMESTAMP NOT NULL DEFAULT NOW());';
+const Users = `INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES('fortune','Gabriel','gabteezy14@gmail.com','admin@$123','male','admin','administration','20, waterleaf, street', true) RETURNING id, email`;
 
 const articleTableQuery =
   'DROP TABLE IF EXISTS articles CASCADE; CREATE TABLE articles (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,title VARCHAR NOT NULL,article TEXT NOT NULL,createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
@@ -21,7 +22,7 @@ const sharedArticleQuery =
 const sharedGifQuery =
   'DROP TABLE IF EXISTS shared_gifs; CREATE TABLE shared_gifs (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,gifId integer NOT NULL,sharedOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
 
-const allQuery = `${employeesTableQuery} ${articleTableQuery} ${gifTableQuery} ${articleCommentQuery} ${gifCommentQuery} ${sharedArticleQuery} ${sharedGifQuery} `;
+const allQuery = `${employeesTableQuery} ${articleTableQuery} ${gifTableQuery} ${articleCommentQuery} ${gifCommentQuery} ${sharedArticleQuery} ${sharedGifQuery}${Users} `;
 
 try {
   conn.query(allQuery);

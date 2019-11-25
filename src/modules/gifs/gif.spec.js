@@ -34,7 +34,6 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
-  console.log('>><>>>');
   it('It should create new new gif', async () => {
     const response = await chai
       .request(app)
