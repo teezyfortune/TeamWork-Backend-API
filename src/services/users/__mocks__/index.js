@@ -38,20 +38,30 @@ export const invalidEmail = {
   lastName: faker.name.lastName(),
   email: 'gaba123#.com',
   password: faker.internet.password(),
-  gender: 'male',
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
 };
 
 export const signIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'teezy123@',
+  email: User.email,
+  password: User.password,
 };
 
 export const invalidSignIn = {
   email: 'gabteezy14@gmail.co.uk',
-  password: 'eezy123@',
+  password: 'bbbbbjbb',
 };
-export const baseLogin = '/api/v1/login';
-export const baseUrl = '/api/v1/signup';
+export const baseLogin = '/api/v1/auth/signin';
+export const baseUrl = '/api/v1/auth/signup';
+export const baseUpdate = '/api/v1/auth/profile';
+export const baseProfile = '/api/v1/auth/view-profile';
+
+export const updateProfile = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  jobRole: faker.name.jobTitle(),
+  gender: 'male',
+  department: faker.name.jobArea(),
+  address: faker.address.city(),
+};

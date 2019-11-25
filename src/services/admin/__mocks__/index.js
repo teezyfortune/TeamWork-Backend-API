@@ -1,11 +1,11 @@
 export const signIn = {
-  email: 'gabteezy14@gmail.co.uk',
-  password: 'teezy123@',
+  email: 'gabteezy14@gmail.com',
+  password: 'admin@$123',
 };
 
 export const sign2 = {
   email: 'devFortune14@gmail.com',
-  password: 'teezy123@',
+  password: 'admin@$123',
 };
 
 export const emptyCredentials = {

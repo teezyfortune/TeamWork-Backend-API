@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">70% </span>
+        <span class="strong">70.59% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/20</span>
+        <span class='fraction'>12/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">31.25% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>10/32</span>
+        <span class='fraction'>8/32</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.56% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/9</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">68.75% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/16</span>
+        <span class='fraction'>11/16</span>
       </div>
     </div>
     <p class="quiet">
@@ -138,7 +138,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
+<span class="cline-any cline-yes">93x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -164,7 +164,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,7 +180,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -201,7 +201,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,7 +225,7 @@ import { comparePassWord, newToken } from '../../helpers/security';
 import { getAllUsers, getOneUserById } from '../../services/users/users.services';
 import { SERVER_ERROR_MESSAGE, RETRIEVED, BAD_EMAIL, NOT_ADMIN } from '../../utils/constant';
 &nbsp;
-export const loginAdmin = <span class="branch-10 cbranch-no" title="branch not covered" ><span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" >async (r</span></span></span></span>equest, response) =&gt; {
+export const loginAdmin = <span class="branch-10 cbranch-no" title="branch not covered" ><span class="branch-9 cbranch-no" title="branch not covered" ><span class="branch-8 cbranch-no" title="branch not covered" ><span class="branch-7 cbranch-no" title="branch not covered" ><span class="branch-6 cbranch-no" title="branch not covered" ><span class="branch-5 cbranch-no" title="branch not covered" >async (r</span></span></span></span></span></span>equest, response) =&gt; {
   try {
     const { email, password } = await request.body;
     const findAdmin = await getAdmin(email);
@@ -251,7 +251,7 @@ export const loginAdmin = <span class="branch-10 cbranch-no" title="branch not c
         });
       }
       if (userPassword) {
-        const authToken = newToken({ userId: id, email: findAdmin.rows[0].email });
+        const <span class="cstat-no" title="statement not covered" >authToken = newToken({ userId: id, email: findAdmin.rows[0].email });</span>
         return response.status(200).json({
           status: `Welcome ${findAdmin.rows[0].jobrole}`,
           data: {
@@ -267,7 +267,7 @@ export const loginAdmin = <span class="branch-10 cbranch-no" title="branch not c
   return false;
 };
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >verifyAdmin </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res, next) =&gt; {
+export const <span class="fstat-no" title="function not covered" >verifyAdmin </span>= <span class="fstat-no" title="function not covered" >async (r</span>eq, res, next) =&gt; {
   try {
     const <span class="cstat-no" title="statement not covered" >adminId = req.token.payload.userId;</span>
     const <span class="cstat-no" title="statement not covered" >verify = await getOneUserById(adminId);</span>
@@ -288,7 +288,7 @@ export const <span class="fstat-no" title="function not covered" >verifyAdmin </
   return next();
 };
 &nbsp;
-export const <span class="fstat-no" title="function not covered" >getEmployees </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res) =&gt; {
+export const <span class="fstat-no" title="function not covered" >getEmployees </span>= <span class="fstat-no" title="function not covered" >async (r</span>eq, res) =&gt; {
   try {
     const <span class="cstat-no" title="statement not covered" >Users = await getAllUsers();</span>
     if (Users) {
@@ -313,7 +313,7 @@ export default loginAdmin;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 17 2019 16:23:35 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 25 2019 13:06:02 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

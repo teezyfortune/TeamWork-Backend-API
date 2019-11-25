@@ -1,7 +1,16 @@
 import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const env = process.env.NODE_ENV || 'development';
+const url = {
+  development: process.env.DATABASE_URL,
+  test: process.env.DATABASE_TEST_URL,
+};
 
 const conn = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: url[env],
 });
 
 export default conn;

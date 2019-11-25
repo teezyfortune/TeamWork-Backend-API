@@ -9,15 +9,28 @@ const { expect } = chai;
 chai.use(chaHttp);
 let userToken;
 
+describe('Authentication: Signup User', () => {
+  it('It should create new user ', (done) => {
+    chai
+      .request(app)
+      .post(mock.basesignUp)
+      .send(mock.User)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(201);
+        done();
+      });
+  });
+});
+
 describe('Authentication: Signin User', () => {
   it('ARTICLE', (done) => {
     chai
       .request(app)
       .post(mock.baseLogin)
-      .send(mock.sign2)
+      .send(mock.signIn)
       .end((err, response) => {
         userToken = response.body.data;
-        console.log(userToken);
         if (err) done(err);
         expect(response.statusCode).to.equal(200);
         done();
@@ -37,6 +50,21 @@ describe('Authentication: Signin User', () => {
         done();
       });
   });
+
+  it('It should update article with target id', (done) => {
+    chai
+      .request(app)
+      .post(mock.baseUrl)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.article1)
+      .end((err, response) => {
+        if (err) done(err);
+        expect(response.statusCode).to.equal(201);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+
   it('It should respond with field can not be empty', (done) => {
     chai
       .request(app)
@@ -52,95 +80,41 @@ describe('Authentication: Signin User', () => {
   });
 });
 
-// describe('Authentication: Update Article', () => {
-//   it('It should update article with target id', (done) => {
-//     chai
-//       .request(app)
-//       .put(mock.baseuPdate)
-//       .set('authorization', `Bearer ${userToken.token}`)
-//       .send(mock.article)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(200);
-//         expect(response.body).to.contains({ status: 'success' });
-//         done();
-//       });
-//   });
-//   it('It should respond with field can not be empty', (done) => {
-//     chai
-//       .request(app)
-//       .put(mock.baseuPdate)
-//       .set('authorization', `Bearer ${userToken.token}`)
-//       .send(mock.emptySpace)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(422);
-//         expect(response.body).to.contains({ status: 'error' });
-//         done();
-//       });
-//   });
-// });
-
-// describe('Authentication: Delte Article', () => {
-//   it('It should respond with field can not be empty', (done) => {
-//     chai
-//       .request(app)
-//       .delete(mock.basedelete1)
-//       .set('authorization', `Bearer ${userToken.token}`)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(200);
-//         expect(response.body).to.contains({ status: 'success' });
-//         done();
-//       });
-//   });
-//   it('this article have been deleted by you', (done) => {
-//     chai
-//       .request(app)
-//       .delete(mock.basedelete2)
-//       .set('authorization', `Bearer ${userToken.token}`)
-//       .end((err, response) => {
-//         if (err) done(err);
-//         expect(response.statusCode).to.equal(404);
-//         expect(response.body).to.contains({ status: 'error' });
-//         done();
-//       });
-//   });
-// });
-
-describe('Comment Article', () => {
-  it('It should create new comment', (done) => {
+describe('Authentication: Update Article', () => {
+  it('It should update article with target id', (done) => {
     chai
       .request(app)
-      .post(mock.baseComment)
+      .put(mock.baseuPdate)
       .set('authorization', `Bearer ${userToken.token}`)
-      .send(mock.correctcomment)
+      .send(mock.article1)
       .end((err, response) => {
         if (err) done(err);
-        expect(response.statusCode).to.equal(201);
+        expect(response.statusCode).to.equal(200);
         expect(response.body).to.contains({ status: 'success' });
         done();
       });
   });
 
-  it('It should respond with invalid authorization or not loggedIn', (done) => {
+  it('It should update article with target id', (done) => {
     chai
       .request(app)
-      .post(mock.baseComment)
-      .send(mock.correctcomment)
+      .put(mock.baseuPdate)
+      .set('authorization', `Bearer ${userToken.token}`)
+      .send(mock.article1)
       .end((err, response) => {
         if (err) done(err);
-        expect(response.statusCode).to.equal(401);
+        expect(response.statusCode).to.equal(200);
+        expect(response.body).to.contains({ status: 'success' });
         done();
       });
   });
 
-  it('this field can not be empty', (done) => {
+  it('It should respond with field can not be empty', (done) => {
     chai
       .request(app)
-      .post(mock.baseComment)
+      .put(mock.baseuPdate)
       .set('authorization', `Bearer ${userToken.token}`)
-      .send(mock.emptycomment)
+      .send(mock.emptySpace)
       .end((err, response) => {
         if (err) done(err);
         expect(response.statusCode).to.equal(422);
@@ -148,19 +122,88 @@ describe('Comment Article', () => {
         done();
       });
   });
-});
 
-describe('Get all articles', () => {
-  it('should respond with success', (done) => {
-    chai
-      .request(app)
-      .get(mock.baseGeAll)
-      .set('authorization', `Bearer ${userToken.token}`)
-      .end((err, response) => {
-        if (err) done(err);
-        expect(response.statusCode).to.equal(200);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
+  describe('Authentication: Delete Article', () => {
+    it('It should respond with field can not be empty', (done) => {
+      chai
+        .request(app)
+        .delete(mock.basedelete1)
+        .set('authorization', `Bearer ${userToken.token}`)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
+    it('it should respond with this article have been deleted by you', (done) => {
+      chai
+        .request(app)
+        .delete(mock.basedelete2)
+        .set('authorization', `Bearer ${userToken.token}`)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(404);
+          expect(response.body).to.contains({ status: 'error' });
+          done();
+        });
+    });
+  });
+
+  describe('Comment Article', () => {
+    it('It should create new comment', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseComment)
+        .set('authorization', `Bearer ${userToken.token}`)
+        .send(mock.correctcomment)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(201);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
+
+    it('It should respond with invalid authorization or not loggedIn', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseComment)
+        .send(mock.correctcomment)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(401);
+          done();
+        });
+    });
+
+    it('this field can not be empty', (done) => {
+      chai
+        .request(app)
+        .post(mock.baseComment)
+        .set('authorization', `Bearer ${userToken.token}`)
+        .send(mock.emptycomment)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(422);
+          expect(response.body).to.contains({ status: 'error' });
+          done();
+        });
+    });
+  });
+
+  describe('Get all articles', () => {
+    it('should respond with success', (done) => {
+      chai
+        .request(app)
+        .get(mock.baseGeAll)
+        .set('authorization', `Bearer ${userToken.token}`)
+        .end((err, response) => {
+          if (err) done(err);
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
   });
 });

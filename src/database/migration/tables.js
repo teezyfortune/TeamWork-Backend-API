@@ -1,171 +1,31 @@
 import conn from '../index';
 
-export const createUserTable = async () => {
-  try {
-    const createEmployees = `CREATE TABLE employees (
-        id serial NOT NULL,
-        firstName VARCHAR(255) NOT NULL,
-        lastName VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        gender VARCHAR(255) NOT NULL,
-        jobRole VARCHAR(255) NOT NULL,
-        department VARCHAR(255) NOT NULL,
-        address VARCHAR(255) NOT NULL,
-        isAdmin Boolean NOT NULL
-        createdOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT Users_pk PRIMARY KEY (id)
-    )`;
-    const query = conn.query(createEmployees);
-    if (query) {
-      return true;
-    }
-  } catch (error) {
-    return error;
-  }
-  conn.end();
-  return false;
-};
+const employeesTableQuery =
+  'DROP TABLE IF EXISTS employees CASCADE; CREATE TABLE employees (id serial NOT NULL PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL,email VARCHAR NOT NULL,password VARCHAR NOT NULL,gender VARCHAR NOT NULL,jobRole VARCHAR NOT NULL,department VARCHAR NOT NULL,address VARCHAR NOT NULL,isAdmin Boolean NOT NULL, createdOn TIMESTAMP NOT NULL DEFAULT NOW());';
+const Users = `INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES('fortune','Gabriel','gabteezy14@gmail.com','admin@$123','male','admin','administration','20, waterleaf, street', true) RETURNING id, email`;
 
-export const dropTables = async () => {
-  try {
-    const queryText = 'DROP TABLE IF EXISTS employees';
-    const drop = await conn.query(queryText);
-    if (drop) return true;
-  } catch (err) {
-    return err;
-  }
-  conn.end();
-  return false;
-};
+const articleTableQuery =
+  'DROP TABLE IF EXISTS articles CASCADE; CREATE TABLE articles (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,title VARCHAR NOT NULL,article TEXT NOT NULL,createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
 
-export const createUserArticleTable = async () => {
-  try {
-    const createEmployees = `CREATE TABLE Articles (
-         id serial NOT NULL,
-         empId integer NOT NULL,
-         title VARCHAR(255) NOT NULL,
-         article TEXT NOT NULL,
-         createdOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-         CONSTRAINT "Articles_pk" PRIMARY KEY (id)
-     ) `;
-    const query = conn.query(createEmployees);
-    if (query) {
-      return query;
-    }
-  } catch (error) {
-    return error;
-  }
-  conn.end();
-  return false;
-};
+const gifTableQuery =
+  'DROP TABLE IF EXISTS gifs CASCADE; CREATE TABLE  gifs (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,title VARCHAR NOT NULL, imageUrl VARCHAR NOT NULL,createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
 
-export const dropArticle = async () => {
-  try {
-    const queryText = 'DROP TABLE IF EXISTS Articles';
-    const drop = await conn.query(queryText);
-    if (drop) return true;
-  } catch (err) {
-    return err;
-  }
-  conn.end();
-  return false;
-};
+const articleCommentQuery =
+  'DROP TABLE IF EXISTS articles_comments CASCADE; CREATE TABLE articles_comments (id serial NOT NULL PRIMARY KEY,articleId integer NOT NULL, empId integer NOT NULL,title VARCHAR NOT NULL, article TEXT NOT NULL, comment TEXT NOT NULL, createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id), FOREIGN KEY (articleId) REFERENCES "articles" (id));';
 
-export const createSharedArticleTable = async () => {
-  try {
-    const createSharedTable = `
-    CREATE TABLE shared_articles (
-        id serial NOT NULL,
-        empId integer NOT NULL,
-        articleId integer NOT NULL,
-        sharedOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT shared_articles_pk PRIMARY KEY (id)
-    )`;
-    const query = conn.query(createSharedTable);
-    if (query) {
-      return query;
-    }
-  } catch (error) {
-    return error;
-  }
-  conn.end();
-  return false;
-};
+const gifCommentQuery =
+  'DROP TABLE IF EXISTS gifs_comments CASCADE; CREATE TABLE gifs_comments (id serial NOT NULL PRIMARY KEY, gifId integer NOT NULL, empId integer NOT NULL,title VARCHAR NOT NULL, comment TEXT NOT NULL,createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id), FOREIGN KEY (gifId) REFERENCES "gifs" (id));';
 
-export const dropShredArticle = async () => {
-  try {
-    const queryText = 'DROP TABLE IF EXISTS shared_articles';
-    const drop = await conn.query(queryText);
-    if (drop) return true;
-  } catch (err) {
-    return err;
-  }
-  conn.end();
-  return false;
-};
+const sharedArticleQuery =
+  'DROP TABLE IF EXISTS shared_articles; CREATE TABLE shared_articles (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,articleId integer NOT NULL,sharedOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id),  FOREIGN KEY (articleId) REFERENCES "articles" (id) );';
 
-export const createGifShredTable = async () => {
-  try {
-    const createSharedTable = `
-      CREATE TABLE shared_gifs (
-          id serial NOT NULL,
-          empId integer NOT NULL,
-          gifId integer NOT NULL,
-          sharedOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          CONSTRAINT shared_gifs_pk PRIMARY KEY (id)
-      ) `;
-    const query = conn.query(createSharedTable);
-    if (query) {
-      return query;
-    }
-  } catch (error) {
-    return error;
-  }
-  conn.end();
-  return false;
-};
+const sharedGifQuery =
+  'DROP TABLE IF EXISTS shared_gifs; CREATE TABLE shared_gifs (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,gifId integer NOT NULL,sharedOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
 
-export const dropTableSharedGif = async () => {
-  try {
-    const queryText = 'DROP TABLE IF EXISTS shared_gifs';
-    const drop = await conn.query(queryText);
-    if (drop) return true;
-  } catch (err) {
-    return err;
-  }
-  conn.end();
-  return false;
-};
+const allQuery = `${employeesTableQuery} ${articleTableQuery} ${gifTableQuery} ${articleCommentQuery} ${gifCommentQuery} ${sharedArticleQuery} ${sharedGifQuery}${Users} `;
 
-export const createRelations = async () => {
-  try {
-    const createAllRelations = `
-      ALTER TABLE Gifs ADD CONSTRAINT Gifs_fk0 FOREIGN KEY (empId) REFERENCES employees(id);
-      
-      ALTER TABLE Articles ADD CONSTRAINT Articles_fk0 FOREIGN KEY (empId) REFERENCES employees(id);
-      
-      ALTER TABLE Article_Comments ADD CONSTRAINT Article_Comments_fk0 FOREIGN KEY (articleId) REFERENCES Articles(id);
-      ALTER TABLE Article_Comments ADD CONSTRAINT Article_Comments_fk1 FOREIGN KEY (empId) REFERENCES employees(id);
-      
-      ALTER TABLE Gifs_Comments ADD CONSTRAINT Gifs_Comments_fk0 FOREIGN KEY (gifId) REFERENCES Gifs(id);
-      ALTER TABLE Gifs_Comments ADD CONSTRAINT Gifs_Comments_fk1 FOREIGN KEY (empId) REFERENCES employees(id);
-      
-      ALTER TABLE shared_articles ADD CONSTRAINT shared_articles_fk0 FOREIGN KEY (empId) REFERENCES employees(id);
-      ALTER TABLE shared_articles ADD CONSTRAINT shared_articles_fk1 FOREIGN KEY (articleId) REFERENCES Articles(id);
-      
-      ALTER TABLE shared_gifs ADD CONSTRAINT shared_gifs_fk0 FOREIGN KEY (empId) REFERENCES employees(id);
-      ALTER TABLE shared_gifs ADD CONSTRAINT shared_gifs_fk1 FOREIGN KEY (gifId) REFERENCES Articles(id);
-       `;
-    const query = await conn.query(createAllRelations);
-    if (query) {
-      return query;
-    }
-  } catch (error) {
-    return error;
-  }
-  conn.end();
-  return false;
-};
-
-require('make-runnable');
+try {
+  conn.query(allQuery);
+} catch (error) {
+  console.log(error);
+}
