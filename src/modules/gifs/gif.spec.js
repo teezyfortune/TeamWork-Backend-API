@@ -1,14 +1,13 @@
 import { describe, it } from 'mocha';
 import chai from 'chai';
 import chaHttp from 'chai-http';
-import fs from 'fs';
 import app from '../../app';
 
 import * as mocks from '../../services/gifs/__mocks__/index';
 
-const { expect } = chai;
+// const { expect } = chai;
 chai.use(chaHttp);
-let gifToken;
+// let gifToken;
 
 before((done) => {
   chai

@@ -4,7 +4,6 @@ import express from 'express';
 import polyfill from '@babel/polyfill';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import path from 'path';
 import { getEnv, logger } from './utils/utils';
 import router from './modules/routes/index';
 
