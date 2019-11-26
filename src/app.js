@@ -43,8 +43,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1', router);
 
-app.listen(getEnv('PORT', 5000), () =>
-  logger(`server listening on: http://localhost:${getEnv('PORT', 5000)}`)
+app.listen(getEnv('PORT', 7000), () =>
+  logger(`server listening on: http://localhost:${getEnv('PORT', 7000)}`)
 );
 
 export default app;
