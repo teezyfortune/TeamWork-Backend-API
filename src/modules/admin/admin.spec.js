@@ -7,7 +7,6 @@ import * as mock from '../../services/admin/__mocks__';
 
 const { expect } = chai;
 chai.use(chaHttp);
-// let adminToken
 
 before((done) => {
   chai
@@ -15,7 +14,6 @@ before((done) => {
     .post(mock.signup)
     .send(mock.Admin)
     .end((err, response) => {
-      // adminToken = response.body.data.token;
       done();
     });
 });
