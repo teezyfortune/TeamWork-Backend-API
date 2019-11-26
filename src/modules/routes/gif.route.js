@@ -44,8 +44,6 @@ gifRoute.post('/gif', verifyMiddleWare, multerUploads, createGif);
  *     tags:
  *       - Employees .
  *     description: Employees can delete a gif .
- *       - Employees can delete a gif.
- *     description: Employees can delete a gif .
  *       - application/json
  *     parameters:
  *       - name: id
@@ -141,7 +139,7 @@ gifRoute.get('/gif/:id', verifyMiddleWare, getSpecificGif);
  * /article/:id/comment:
  *   post:
  *     tags:
- *       - Employees can comment on articles
+ *       - Employees
  *     description: Employees can comment on other colleague article.
  *       - application/json
  *     parameters:

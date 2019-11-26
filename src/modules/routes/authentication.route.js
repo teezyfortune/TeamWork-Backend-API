@@ -8,7 +8,7 @@ import { verifyMiddleWare } from '../../helpers/security';
 const authRoute = express.Router();
 
 /**
- * @swagger
+ *z @swagger
  *
  * /auth/signup:
  *   post:
@@ -71,8 +71,8 @@ authRoute.post('/auth/signup', validateUserInput, saveUser);
  *       - application/json
  *     parameters:
  *       - name: email
+ *         description: User email
  *         in: formData
- *     description: User's password.
  *         required: true
  *         type: string
  *       - name: password
@@ -98,13 +98,13 @@ authRoute.post('/auth/signin', validateLogin, loginUser);
  * /auth/siginin:
  *   post:
  *     tags:
- *       - User can create an employee user account.
+*       - Employees, Admin
  *     description: Admin can create an employee user account.
  *       - application/json
  *     parameters:
  *       - name: email
+ *         description: registered email
  *         in: formData
- *     description: User's password.
  *         required: true
  *         type: string
  *       - name: password
@@ -136,11 +136,9 @@ authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProf
  *     parameters:
  *       - name: email
  *         in: formData
- *     description: User's password.
  *         required: true
  *         type: string
  *       - name: password
- *         description: User's password.
  *         in: formData
  *         required: true
  *         type: string
@@ -168,7 +166,7 @@ authRoute.get('/auth/view-profile', verifyMiddleWare, viewProfile);
  *     parameters:
  *       - name: userId
  *         in: request body
- *     description: user id
+ *         description: user id
  *         required: true
  *         type: integer
  *     responses:

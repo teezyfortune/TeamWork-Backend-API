@@ -11,6 +11,17 @@ export const User = {
   address: faker.address.city(),
 };
 
+export const User2 = {
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  password: faker.internet.password(),
+  gender: 'female',
+  jobRole: faker.name.jobTitle(),
+  department: faker.name.jobArea(),
+  address: faker.address.city(),
+};
+
 export const emptySpace = {
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),

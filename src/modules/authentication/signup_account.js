@@ -33,7 +33,7 @@ export const saveUser = async (request, response) => {
     }
     const sql =
       'INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id, email';
-    const values = [firstName, lastName, email, hash, gender, jobRole, department, address, false];
+    const values = [firstName, lastName, email, hash, gender, jobRole, department, address, true];
     const user = await conn.query(sql, values);
     if (user) {
       const { id } = user.rows[0];

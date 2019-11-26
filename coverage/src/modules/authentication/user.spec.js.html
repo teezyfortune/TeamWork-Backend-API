@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.24% </span>
+        <span class="strong">88% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>60/68</span>
+        <span class='fraction'>66/75</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/16</span>
+        <span class='fraction'>9/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>21/21</span>
+        <span class='fraction'>24/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.77% </span>
+        <span class="strong">97.06% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>60/62</span>
+        <span class='fraction'>66/68</span>
       </div>
     </div>
     <p class="quiet">
@@ -171,7 +171,21 @@
 <a name='L123'></a><a href='#L123'>123</a>
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
-<a name='L126'></a><a href='#L126'>126</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,6 +208,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -321,113 +349,127 @@ describe('Test Suite for User Adim/employess Signup', () =&gt; {
           done();
         });
     });
-    it('It should respond with all fields invalid ', (done) =&gt; {
+&nbsp;
+    describe('Authentication: Signup User', () =&gt; {
+      it('It should create new user ', (done) =&gt; {
+        chai
+          .request(app)
+          .post(mock.baseUrl)
+          .send(mock.User2)
+          .end((err, response) =&gt; {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
+            expect(response.statusCode).to.equal(201);
+            done();
+          });
+      });
+&nbsp;
+      it('It should respond with all fields invalid ', (done) =&gt; {
+        chai
+          .request(app)
+          .post(mock.baseUrl)
+          .send(mock.emptyString)
+          .end((err, response) =&gt; {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
+            expect(response.statusCode).to.equal(422);
+            expect(response.body).to.contains({ status: 'error' });
+            done();
+          });
+      });
+      it('It should respond with all fields required', (done) =&gt; {
+        chai
+          .request(app)
+          .post(mock.baseUrl)
+          .end((err, response) =&gt; {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
+            expect(response.statusCode).to.equal(422);
+            expect(response.body).to.contains({ status: 'error' });
+            done();
+          });
+      });
+      it('It should respond with all fields required', (done) =&gt; {
+        chai
+          .request(app)
+          .post(mock.baseUrl)
+          .send(mock.unDefined)
+          .end((err, response) =&gt; {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
+            expect(response.statusCode).to.equal(422);
+            expect(response.body).to.contains({ status: 'error' });
+            done();
+          });
+      });
+    });
+  });
+&nbsp;
+  describe('SIGNIN, Test Suite for Authentication signin ', () =&gt; {
+    it('It should sigin user', (done) =&gt; {
       chai
         .request(app)
-        .post(mock.baseUrl)
-        .send(mock.emptyString)
+        .post(mock.baseLogin)
+        .send(mock.signIn)
         .end((err, response) =&gt; {
+          userToken = response.body.data;
           <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
-          expect(response.statusCode).to.equal(422);
-          expect(response.body).to.contains({ status: 'error' });
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
           done();
         });
     });
-    it('It should respond with all fields required', (done) =&gt; {
+&nbsp;
+    it('It should respond with the credentials you provided are not correct', (done) =&gt; {
       chai
         .request(app)
-        .post(mock.baseUrl)
+        .post(mock.baseLogin)
+        .send(mock.invalidSignIn)
         .end((err, response) =&gt; {
           <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
-          expect(response.statusCode).to.equal(422);
-          expect(response.body).to.contains({ status: 'error' });
-          done();
-        });
-    });
-    it('It should respond with all fields required', (done) =&gt; {
-      chai
-        .request(app)
-        .post(mock.baseUrl)
-        .send(mock.unDefined)
-        .end((err, response) =&gt; {
-          <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
-          expect(response.statusCode).to.equal(422);
-          expect(response.body).to.contains({ status: 'error' });
+          expect(response.statusCode).to.equal(404);
           done();
         });
     });
   });
-});
-&nbsp;
-describe('SIGNIN, Test Suite for Authentication signin ', () =&gt; {
-  it('It should sigin user', (done) =&gt; {
-    chai
-      .request(app)
-      .post(mock.baseLogin)
-      .send(mock.signIn)
-      .end((err, response) =&gt; {
-        userToken = response.body.data;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
-        expect(response.statusCode).to.equal(200);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
+  describe('Update acount ', () =&gt; {
+    it('It should successfully update a new contact', (done) =&gt; {
+      chai
+        .request(app)
+        .put(mock.baseUpdate)
+        .set('Authorization', `Bearer ${userToken.token}`)
+        .send(mock.updateProfile)
+        .end((err, response) =&gt; {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >            done(</span>err);
+          }
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
   });
 &nbsp;
-  it('It should respond with the credentials you provided are not correct', (done) =&gt; {
-    chai
-      .request(app)
-      .post(mock.baseLogin)
-      .send(mock.invalidSignIn)
-      .end((err, response) =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >done(</span>err);
-        expect(response.statusCode).to.equal(404);
-        done();
-      });
+  describe('View profile acount ', () =&gt; {
+    it('It should successfully retrieve profile', (done) =&gt; {
+      chai
+        .request(app)
+        .get(mock.baseProfile)
+        .set('Authorization', `Bearer ${userToken.token}`)
+        .end((err, response) =&gt; {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >            done(</span>err);
+          }
+          expect(response.statusCode).to.equal(200);
+          expect(response.body).to.contains({ status: 'success' });
+          done();
+        });
+    });
   });
 });
-describe('Update acount ', () =&gt; {
-  it('It should successfully update a new contact', (done) =&gt; {
-    chai
-      .request(app)
-      .put(mock.baseUpdate)
-      .set('Authorization', `Bearer ${userToken.token}`)
-      .send(mock.updateProfile)
-      .end((err, response) =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
-<span class="cstat-no" title="statement not covered" >          done(</span>err);
-        }
-        expect(response.statusCode).to.equal(200);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
-  });
-});
-&nbsp;
-describe('View profile acount ', () =&gt; {
-  it('It should successfully retrieve profile', (done) =&gt; {
-    chai
-      .request(app)
-      .get(mock.baseProfile)
-      .set('Authorization', `Bearer ${userToken.token}`)
-      .end((err, response) =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
-<span class="cstat-no" title="statement not covered" >          done(</span>err);
-        }
-        expect(response.statusCode).to.equal(200);
-        expect(response.body).to.contains({ status: 'success' });
-        done();
-      });
-  });
-});
-&nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 25 2019 12:52:21 GMT+0100 (West Africa Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 26 2019 18:45:26 GMT+0100 (West Africa Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>
