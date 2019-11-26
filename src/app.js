@@ -4,7 +4,6 @@ import express from 'express';
 import polyfill from '@babel/polyfill';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import path from 'path';
 import { getEnv, logger } from './utils/utils';
 import router from './modules/routes/index';
 
@@ -44,8 +43,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1', router);
 
-app.listen(getEnv('PORT', 7000), () =>
-  logger(`server listening on: http://localhost:${getEnv('PORT', 7000)}`)
+app.listen(getEnv('PORT', 5000), () =>
+  logger(`server listening on: http://localhost:${getEnv('PORT', 5000)}`)
 );
 
 export default app;
