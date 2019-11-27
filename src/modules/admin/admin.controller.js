@@ -6,8 +6,8 @@ export const verifyAdmin = async (req, res, next) => {
     const adminId = req.token.payload.userId;
     const verify = await getOneUserById(adminId);
 
-    const { isadmin } = verify.rows[0];
-    if (isadmin === false) {
+    const { isAdmin } = verify.rows[0];
+    if (isAdmin === true) {
       return res.status(404).json({
         status: 'error',
         message: NOT_ADMIN,
@@ -29,7 +29,7 @@ export const getEmployees = async (req, res) => {
       return res.status(200).json({
         status: 'succes',
         message: RETRIEVED,
-        data: Users.rows[0],
+        data: Users.rows,
       });
     }
   } catch (err) {

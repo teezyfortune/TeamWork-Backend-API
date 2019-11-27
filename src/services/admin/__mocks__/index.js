@@ -6,13 +6,10 @@ export const Admin = {
   email: faker.internet.email(),
   password: faker.internet.password(),
   gender: 'female',
-  jobRole: faker.name.jobTitle(),
+  jobRole: 'admin',
   department: faker.name.jobArea(),
   address: faker.address.city(),
-  isAdmin: true,
 };
-
-
 
 export const User = {
   firstName: faker.name.firstName(),
@@ -23,7 +20,6 @@ export const User = {
   jobRole: faker.name.jobTitle(),
   department: faker.name.jobArea(),
   address: faker.address.city(),
-  isAdmin: false,
 };
 
 export const signIn = {
