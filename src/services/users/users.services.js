@@ -31,11 +31,10 @@ export const getOneUserByEmail = async (username) => {
 
 export const getAllUsers = async () => {
   try {
-    const sql = 'SELECT * FROM employees WHERE isAdmin = $1 ';
-    const values = [false];
+    const sql = 'SELECT id as userId, firstname, lastname, email, address FROM employees ';
 
-    const checkUser = await conn.query(sql, values);
-    if (checkUser.rowCount !== 0) {
+    const checkUser = await conn.query(sql);
+    if (checkUser) {
       return checkUser;
     }
   } catch (error) {
