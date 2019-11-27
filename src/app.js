@@ -40,6 +40,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // const swaggerjsDoc = swaggerJSDoc(swaggerOption);
 
 // app.use('/swagger-doc', swaggerUi.serve, swaggerUi.setup(swaggerjsDoc));
+ 
+
+app.get('/', (req, res) => {
+  res.status(200).send({ status: 200, message: 'Welcome to the TeamWork App.' });
+});
 
 app.use('/api/v1', router);
 

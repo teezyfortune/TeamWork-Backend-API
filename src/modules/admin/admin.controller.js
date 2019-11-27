@@ -25,11 +25,12 @@ export const verifyAdmin = async (req, res, next) => {
 export const getEmployees = async (req, res) => {
   try {
     const Users = await getAllUsers();
+    console.log('>><>>', Users.rows[0]);
     if (Users) {
       return res.status(200).json({
         status: 'succes',
         message: RETRIEVED,
-        data: Users.rows,
+        data: Users.rows[0],
       });
     }
   } catch (err) {
