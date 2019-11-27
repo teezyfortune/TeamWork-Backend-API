@@ -29,7 +29,7 @@ export const getEmployees = async (req, res) => {
       return res.status(200).json({
         status: 'succes',
         message: RETRIEVED,
-        data: Users.rows,
+        data: Users.rows[0],
       });
     }
   } catch (err) {
