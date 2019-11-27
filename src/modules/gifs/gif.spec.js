@@ -1,6 +1,7 @@
 // import { describe, it } from 'mocha';
 // import chai from 'chai';
 // import chaHttp from 'chai-http';
+<<<<<<< HEAD
 // import fs from 'fs';
 // import app from '../../app';
 // import * as mocks from '../../services/gifs/__mocks__/index';
@@ -8,6 +9,15 @@
 // const { expect } = chai;
 // chai.use(chaHttp);
 // let gifToken;
+=======
+// import app from '../../app';
+
+// import * as mocks from '../../services/gifs/__mocks__/index';
+
+// // const { expect } = chai;
+// chai.use(chaHttp);
+// // let gifToken;
+>>>>>>> 474564f23cf2ac716cd5c4526a9712981076c515
 
 // before((done) => {
 //   chai
