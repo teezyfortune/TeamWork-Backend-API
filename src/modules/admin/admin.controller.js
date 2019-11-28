@@ -1,13 +1,14 @@
 import { getAllUsers, getOneUserById } from '../../services/users/users.services';
 import { SERVER_ERROR_MESSAGE, RETRIEVED, NOT_ADMIN } from '../../utils/constant';
+import 'dotenv/config';
 
 export const verifyAdmin = async (req, res, next) => {
   try {
     const adminId = req.token.payload.userId;
     const verify = await getOneUserById(adminId);
 
-    const { isAdmin } = verify.rows[0];
-    if (isAdmin === true) {
+    const { isadmin } = verify.rows[0];
+    if (!isadmin) {
       return res.status(404).json({
         status: 'error',
         message: NOT_ADMIN,

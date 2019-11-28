@@ -1,8 +1,15 @@
 import conn from '../index';
+import { encryptPassWord } from '../../helpers/security';
+import 'dotenv/config';
+
+const password = 'admin@$123';
+
+const hash = encryptPassWord(password);
+
+const Users = `INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES('superadmin','Gabriel','gabteezy14@gmail.com', '${hash}','male','admin','administration','20, waterleaf, street', true) RETURNING id, email`;
 
 const employeesTableQuery =
   'DROP TABLE IF EXISTS employees CASCADE; CREATE TABLE employees (id serial NOT NULL PRIMARY KEY, firstName VARCHAR NOT NULL, lastName VARCHAR NOT NULL,email VARCHAR NOT NULL,password VARCHAR NOT NULL,gender VARCHAR NOT NULL,jobRole VARCHAR NOT NULL,department VARCHAR NOT NULL,address VARCHAR NOT NULL,isAdmin Boolean NOT NULL, createdOn TIMESTAMP NOT NULL DEFAULT NOW());';
-const Users = `INSERT INTO employees (firstName,lastName,email,password,gender,jobRole,department,address,isAdmin) VALUES('fortune','Gabriel','gabteezy14@gmail.com','admin@$123','male','admin','administration','20, waterleaf, street', true) RETURNING id, email`;
 
 const articleTableQuery =
   'DROP TABLE IF EXISTS articles CASCADE; CREATE TABLE articles (id serial NOT NULL PRIMARY KEY,empId integer NOT NULL,title VARCHAR NOT NULL,article TEXT NOT NULL,createdOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id));';
