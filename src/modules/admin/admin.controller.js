@@ -1,5 +1,6 @@
 import { getAllUsers, getOneUserById } from '../../services/users/users.services';
 import { SERVER_ERROR_MESSAGE, RETRIEVED, NOT_ADMIN } from '../../utils/constant';
+import 'dotenv/config';
 
 export const verifyAdmin = async (req, res, next) => {
   try {
