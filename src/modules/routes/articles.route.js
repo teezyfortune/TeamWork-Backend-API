@@ -15,7 +15,7 @@ const articleRoute = express.Router();
 /**
  * @swagger
  *
- * /aarticle:
+ * /aarticles:
  *   post:
  *     tags:
  *       - Employees create an article.
@@ -45,7 +45,7 @@ const articleRoute = express.Router();
  *         description: Server error
  */
 
-articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
+articleRoute.post('/articles', verifyMiddleWare, validateArticle, createArticle);
 
 /**
  * @swagger
@@ -84,12 +84,12 @@ articleRoute.post('/article', verifyMiddleWare, validateArticle, createArticle);
  *         description: Server error
  */
 
-articleRoute.put('/article/:id', verifyMiddleWare, validateArticle, updateArticle);
+articleRoute.patch('/articles/:id', verifyMiddleWare, validateArticle, updateArticle);
 
 /**
  * @swagger
  *
- * /article:
+ * /article/:articleId:
  *   delete:
  *     tags:
  *       - Employees can delete their article
@@ -112,7 +112,7 @@ articleRoute.put('/article/:id', verifyMiddleWare, validateArticle, updateArticl
  *         description: Server error
  */
 
-articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
+articleRoute.delete('/articles/:id', verifyMiddleWare, destroyArticle);
 
 /**
  * @swagger
@@ -149,7 +149,7 @@ articleRoute.delete('/article/:id', verifyMiddleWare, destroyArticle);
  *         description: Server error
  */
 
-articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, articleComment);
+articleRoute.post('/articles/:id/comment', verifyMiddleWare, validateComment, articleComment);
 
 /**
  * @swagger
@@ -172,7 +172,7 @@ articleRoute.post('/article/:id/comment', verifyMiddleWare, validateComment, art
  *         description: Server error
  */
 
-articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
+articleRoute.get('/feeds', verifyMiddleWare, fetchAllArticle);
 
 /**
  * @swagger

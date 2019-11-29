@@ -63,8 +63,14 @@ export const invalidSignIn = {
   email: 'gabteezy14@gmail.co.uk',
   password: 'bbbbbjbb',
 };
+
+export const adminSignIn = {
+  email: 'gabteezy14@gmail.com',
+  password: 'admin@$123',
+};
+
 export const baseLogin = '/api/v1/auth/signin';
-export const baseUrl = '/api/v1/auth/signup';
+export const baseUrl = '/api/v1/auth/create-user';
 export const baseUpdate = '/api/v1/auth/profile';
 export const baseProfile = '/api/v1/auth/view-profile';
 

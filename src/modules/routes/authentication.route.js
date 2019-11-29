@@ -1,7 +1,7 @@
 import express from 'express';
 import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
 import { saveUser, updateProfile, viewProfile } from '../authentication/signup_account';
-
+import { verifyAdmin } from '../admin/admin.controller';
 import loginUser from '../authentication/login';
 import { verifyMiddleWare } from '../../helpers/security';
 
@@ -58,7 +58,7 @@ const authRoute = express.Router();
  *       500:
  *         description: Server error
  */
-authRoute.post('/auth/signup', validateUserInput, saveUser);
+authRoute.post('/auth/create-user', verifyMiddleWare, verifyAdmin, validateUserInput, saveUser);
 
 /**
  * @swagger
@@ -122,7 +122,7 @@ authRoute.post('/auth/signin', validateLogin, loginUser);
  *       500:
  *         description: Server error
  */
-authRoute.put('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
+authRoute.patch('/auth/profile', verifyMiddleWare, validateUserProfile, updateProfile);
 
 /**
     @swagger

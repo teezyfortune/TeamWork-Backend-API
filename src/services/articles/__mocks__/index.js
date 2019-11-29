@@ -38,6 +38,12 @@ export const signIn = {
   password: User.password,
 };
 
+
+export const adminSignIn = {
+  email: 'gabteezy14@gmail.com',
+  password: 'admin@$123',
+};
+
 // export const sign2 = {
 //   email: 'devFortune14@gmail.com',
 //   password: '@wesQ123bn',
@@ -48,13 +54,13 @@ export const signIn = {
 //   password: 'eezy123@',
 // };
 export const baseLogin = '/api/v1/auth/signin';
-export const basesignUp = '/api/v1/auth/signup';
+export const basesignUp = '/api/v1/auth/create-user';
 
-export const baseUrl = '/api/v1/article';
+export const baseUrl = '/api/v1/articles';
 
-export const baseuPdate = '/api/v1/article/1';
-export const basedelete1 = '/api/v1/article/1';
-export const basedelete2 = '/api/v1/article/200';
-export const baseComment = '/api/v1/article/2/comment';
+export const baseuPdate = '/api/v1/articles/1';
+export const basedelete1 = '/api/v1/articles/1';
+export const basedelete2 = '/api/v1/articles/200';
+export const baseComment = '/api/v1/articles/2/comment';
 
-export const baseGeAll = '/api/v1/feed';
+export const baseGeAll = '/api/v1/feeds';

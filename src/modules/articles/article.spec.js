@@ -8,12 +8,26 @@ import * as mock from '../../services/articles/__mocks__';
 const { expect } = chai;
 chai.use(chaHttp);
 let userToken;
+let adminToken;
+
+before((done) => {
+  chai
+    .request(app)
+    .post(mock.baseLogin)
+    .send(mock.adminSignIn)
+    .end((err, response) => {
+      adminToken = response.body.data;
+      done();
+    });
+});
+
 
 describe('Authentication: Signup User', () => {
-  it('It should create new user ', (done) => {
+  it('It create new user ', (done) => {
     chai
       .request(app)
       .post(mock.basesignUp)
+      .set('Authorization', `Bearer ${adminToken.token}`)
       .send(mock.User)
       .end((err, response) => {
         if (err) done(err);
@@ -28,6 +42,7 @@ describe('Authentication: Signin User', () => {
     chai
       .request(app)
       .post(mock.baseLogin)
+      .set('authorization', `Bearer ${adminToken.token}`)
       .send(mock.signIn)
       .end((err, response) => {
         userToken = response.body.data;
@@ -51,7 +66,7 @@ describe('Authentication: Signin User', () => {
       });
   });
 
-  it('It should update article with target id', (done) => {
+  it('It should create new article with target id', (done) => {
     chai
       .request(app)
       .post(mock.baseUrl)
@@ -80,11 +95,11 @@ describe('Authentication: Signin User', () => {
   });
 });
 
-describe('Authentication: Update Article', () => {
+describe('Update Article', () => {
   it('It should update article with target id', (done) => {
     chai
       .request(app)
-      .put(mock.baseuPdate)
+      .patch(mock.baseuPdate)
       .set('authorization', `Bearer ${userToken.token}`)
       .send(mock.article1)
       .end((err, response) => {
@@ -98,7 +113,7 @@ describe('Authentication: Update Article', () => {
   it('It should update article with target id', (done) => {
     chai
       .request(app)
-      .put(mock.baseuPdate)
+      .patch(mock.baseuPdate)
       .set('authorization', `Bearer ${userToken.token}`)
       .send(mock.article1)
       .end((err, response) => {
@@ -112,7 +127,7 @@ describe('Authentication: Update Article', () => {
   it('It should respond with field can not be empty', (done) => {
     chai
       .request(app)
-      .put(mock.baseuPdate)
+      .patch(mock.baseuPdate)
       .set('authorization', `Bearer ${userToken.token}`)
       .send(mock.emptySpace)
       .end((err, response) => {

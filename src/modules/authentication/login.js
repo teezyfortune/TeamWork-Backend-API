@@ -34,6 +34,7 @@ const loginUser = async (request, response) => {
           },
         });
       }
+
       const authToken = newToken({ userId: id, email: findUser.rows[0].email });
       return response.status(200).json({
         status: LOGIN_SUCCESS,
