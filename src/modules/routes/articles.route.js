@@ -172,7 +172,7 @@ articleRoute.post('/articles/:id/comment', verifyMiddleWare, validateComment, ar
  *         description: Server error
  */
 
-articleRoute.get('/feeds', verifyMiddleWare, fetchAllArticle);
+articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
 
 /**
  * @swagger

@@ -48,7 +48,6 @@ export const updateArticle = async (req, res) => {
     const { title, article } = await req.body;
 
     const findArticle = await getOneArticleById(articleId, id);
-    console.log('>>>>>', findArticle);
     if (findArticle === false) {
       return res.status(404).json({ status: 'error', message: ARTICLE_NOT_FOUND });
     }
