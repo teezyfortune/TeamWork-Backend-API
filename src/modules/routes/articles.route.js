@@ -75,7 +75,7 @@ articleRoute.post('/articles', verifyMiddleWare, validateArticle, createArticle)
  *         type: string
  *     responses:
  *       200:
- *         description: Article successfully deleted.
+ *         description: Article successfully deleted
  *       404:
  *         description: This article might have been deleted by you
  *       422:
