@@ -46,9 +46,7 @@ describe('Gif', () => {
         .attach('gif', fs.readFileSync(`${__dirname}/images/dancingbaby.gif`), 'dancingbaby.gif');
       expect(response.statusCode).to.equal(201);
       expect(response.body).to.contains({ status: 'success' });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   });
 });
 

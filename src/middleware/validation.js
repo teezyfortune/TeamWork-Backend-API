@@ -222,7 +222,6 @@ export const validateGif = async (request, response, next) => {
       return response.status(422).json({ status: 'error', message: `${EMPTY_GIF_MESSAGE} ${gif}` });
     }
   } catch (error) {
-    console.log('>>><<>>>', error)
     return response.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
   }
   return next();
