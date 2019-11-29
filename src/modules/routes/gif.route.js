@@ -34,7 +34,7 @@ const gifRoute = express.Router();
  *       500:
  *         description: Server error
  */
-gifRoute.post('/gif', verifyMiddleWare, multerUploads, createGif);
+gifRoute.post('/gifs', verifyMiddleWare, multerUploads, createGif);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ gifRoute.post('/gif', verifyMiddleWare, multerUploads, createGif);
  *         description: Server error
  */
 
-gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
+gifRoute.delete('/gifs/:id', verifyMiddleWare, destroyGif);
 
 /**
  * @swagger
@@ -74,8 +74,7 @@ gifRoute.delete('/gif/:id', verifyMiddleWare, destroyGif);
  *       500:
  *         description: Server error
  */
-gifRoute.get('/gif', verifyMiddleWare, fetchAllGif);
-
+gifRoute.get('/gifs', verifyMiddleWare, fetchAllGif);
 
 /**
  * @swagger
@@ -112,9 +111,7 @@ gifRoute.get('/gif', verifyMiddleWare, fetchAllGif);
  *         description: Server error
  */
 
-gifRoute.post('/gif/:id/comment', verifyMiddleWare, validateComment, gifComment);
-
-
+gifRoute.post('/gifs/:id/comment', verifyMiddleWare, validateComment, gifComment);
 
 /**
  * @swagger
@@ -131,7 +128,7 @@ gifRoute.post('/gif/:id/comment', verifyMiddleWare, validateComment, gifComment)
  *       500:
  *         description: Server error
  */
-gifRoute.get('/gif/:id', verifyMiddleWare, getSpecificGif);
+gifRoute.get('/gifs/:id', verifyMiddleWare, getSpecificGif);
 
 /**
  * @swagger
@@ -168,6 +165,6 @@ gifRoute.get('/gif/:id', verifyMiddleWare, getSpecificGif);
  *         description: Server error
  */
 
-gifRoute.post('/gif/:id/comment', verifyMiddleWare, validateComment, gifComment);
+gifRoute.post('/gifs/:id/comment', verifyMiddleWare, validateComment, gifComment);
 
 export default gifRoute;

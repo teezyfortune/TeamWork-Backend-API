@@ -11,7 +11,7 @@ export const correctGif1 = {
 };
 
 export const emptySpace = {
-  title: '',
+  title: 'jbjbbfjf jf',
   gif: '',
 };
 
@@ -39,14 +39,20 @@ export const signIn = {
   password: User.password,
 };
 
+export const adminSignIn = {
+  email: 'gabteezy14@gmail.com',
+  password: 'admin@$123',
+};
+
+
 export const invalidUser = {
   email: 'gabteezy14@gmail.co.uk',
   password: 'eezy123@',
 };
 export const gifLogin = '/api/v1/auth/signin';
-export const gifUrl = '/api/v1/gif';
-export const basesignUp = '/api/v1/auth/signup';
+export const gifUrl = '/api/v1/gifs';
+export const basesignUp = '/api/v1/auth/create-user';
 
-export const basedelete1 = '/api/v1/gif/1';
-export const basedelete2 = '/api/v1/gf/200';
-export const baseComment = '/api/v1/gif/2/comment';
+export const basedelete1 = '/api/v1/gifs/1';
+export const basedelete2 = '/api/v1/gifs/200';
+export const baseComment = '/api/v1/gifs/2/comment';

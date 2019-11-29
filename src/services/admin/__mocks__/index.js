@@ -21,6 +21,10 @@ export const User = {
   department: faker.name.jobArea(),
   address: faker.address.city(),
 };
+export const adminSignIn = {
+  email: 'gabteezy14@gmail.com',
+  password: 'admin@$123',
+};
 
 export const signIn = {
   email: Admin.email,
@@ -38,6 +42,6 @@ export const emptyCredentials = {
 };
 
 export const baseLogin = '/api/v1/auth/signin';
-export const signup = '/api/v1/auth/signup';
+export const signup = '/api/v1/auth/create-user';
 
-export const baseGet = '/api/v1/emloyees';
+export const baseGet = '/api/v1/employees';

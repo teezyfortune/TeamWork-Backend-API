@@ -8,14 +8,25 @@ import * as mock from '../../services/users/__mocks__/index';
 const { expect } = chai;
 chai.use(chaHttp);
 
-let userToken = '';
+let userToken;
+let adminToken;
 
+describe('ADMIN', () => {
+  chai
+    .request(app)
+    .post(mock.baseLogin)
+    .send(mock.adminSignIn)
+    .end((err, response) => {
+      adminToken = response.body.data;
+    });
+});
 describe('Test Suite for User Adim/employess Signup', () => {
   describe('Authentication: Signup User', () => {
     it('It should create new user ', (done) => {
       chai
         .request(app)
         .post(mock.baseUrl)
+        .set('Authorization', `Bearer ${adminToken.token}`)
         .send(mock.User)
         .end((err, response) => {
           if (err) done(err);
@@ -29,6 +40,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         chai
           .request(app)
           .post(mock.baseUrl)
+          .set('Authorization', `Bearer ${adminToken.token}`)
           .send(mock.User2)
           .end((err, response) => {
             if (err) done(err);
@@ -41,6 +53,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         chai
           .request(app)
           .post(mock.baseUrl)
+          .set('Authorization', `Bearer ${adminToken.token}`)
           .send(mock.emptyString)
           .end((err, response) => {
             if (err) done(err);
@@ -53,6 +66,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         chai
           .request(app)
           .post(mock.baseUrl)
+          .set('Authorization', `Bearer ${adminToken.token}`)
           .end((err, response) => {
             if (err) done(err);
             expect(response.statusCode).to.equal(422);
@@ -64,6 +78,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
         chai
           .request(app)
           .post(mock.baseUrl)
+          .set('Authorization', `Bearer ${adminToken.token}`)
           .send(mock.unDefined)
           .end((err, response) => {
             if (err) done(err);
@@ -106,7 +121,7 @@ describe('Test Suite for User Adim/employess Signup', () => {
     it('It should successfully update a new contact', (done) => {
       chai
         .request(app)
-        .put(mock.baseUpdate)
+        .patch(mock.baseUpdate)
         .set('Authorization', `Bearer ${userToken.token}`)
         .send(mock.updateProfile)
         .end((err, response) => {
