@@ -76,7 +76,6 @@ gifRoute.delete('/gifs/:id', verifyMiddleWare, destroyGif);
  */
 gifRoute.get('/gifs', verifyMiddleWare, fetchAllGif);
 
-
 /**
  * @swagger
  *
@@ -113,8 +112,6 @@ gifRoute.get('/gifs', verifyMiddleWare, fetchAllGif);
  */
 
 gifRoute.post('/gifs/:id/comment', verifyMiddleWare, validateComment, gifComment);
-
-
 
 /**
  * @swagger

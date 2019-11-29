@@ -33,7 +33,6 @@ export const createGif = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log('>>>>>Giferror', error);
     return res.status(500).json({ status: ERROR_MESSAGE, message: SERVER_ERROR_MESSAGE });
   }
   return false;
