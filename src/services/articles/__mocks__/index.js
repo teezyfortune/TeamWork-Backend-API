@@ -63,4 +63,4 @@ export const basedelete1 = '/api/v1/articles/1';
 export const basedelete2 = '/api/v1/articles/200';
 export const baseComment = '/api/v1/articles/2/comment';
 
-export const baseGeAll = '/api/v1/feeds';
+export const baseGeAll = '/api/v1/feed';
