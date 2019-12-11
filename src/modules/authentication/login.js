@@ -8,7 +8,7 @@ const loginUser = async (request, response) => {
     const { email, password } = await request.body;
     const findUser = await getOneUserByEmail(email);
     if (findUser.rowCount !== 0) {
-      const { id } = findUser.rows[0];
+      const { id, isadmin } = findUser.rows[0];
       const userPassword = await comparePassWord(password, id);
       if (userPassword === false) {
         return response.status(404).json({
@@ -17,7 +17,7 @@ const loginUser = async (request, response) => {
         });
       }
       if (userPassword) {
-        const authToken = newToken({ userId: id, email: findUser.rows[0].email });
+        const authToken = newToken({ userId: id, email: findUser.rows[0].email, isadmin });
         return response.status(200).json({
           status: 'success',
           message: LOGIN_SUCCESS,
