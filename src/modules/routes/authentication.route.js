@@ -8,7 +8,7 @@ const authRoute = express.Router();
 /**
  * @swagger
  *
- * /signup:
+ * /create-user:
  *   post:
  *     tags:
  *       - Admin can create an employee user account.
