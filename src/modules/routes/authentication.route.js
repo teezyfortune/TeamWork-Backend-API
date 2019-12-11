@@ -10,7 +10,7 @@ const authRoute = express.Router();
 /**
  *z @swagger
  *
- * /auth/signup:
+ * /create-user:
  *   post:
  *     tags:
  *       - User can create an employee account.
