@@ -13,5 +13,4 @@ const url = {
 const conn = new Pool({
   connectionString: url[env],
 });
-
 export default conn;
