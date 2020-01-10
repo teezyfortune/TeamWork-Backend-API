@@ -4,6 +4,7 @@ import {
   updateArticle,
   destroyArticle,
   fetchAllArticle,
+  flagArticle,
 } from '../articles/articles.controller';
 import { getSpecificArticle } from '../../services/articles/article.services';
 import articleComment from '../comments/article_comment.controller';
@@ -15,7 +16,7 @@ const articleRoute = express.Router();
 /**
  * @swagger
  *
- * /aarticles:
+ * /articles:
  *   post:
  *     tags:
  *       - Employees create an article.
@@ -34,6 +35,10 @@ const articleRoute = express.Router();
  *         in: formData
  *         required: true
  *         type: string
+ *       - name: flag
+ *         in: formData
+ *         required: true
+ *         type: Boolean
  *     responses:
  *       201:
  *         description: Article created successfully.
@@ -196,5 +201,32 @@ articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
  */
 
 articleRoute.get('/article/:id', verifyMiddleWare, getSpecificArticle);
+
+/**
+ * @swagger
+ *
+ * /article/flag
+ *   post:
+ *     tags:
+ *       - flag an article
+ *     description: Employee can flag an article as inappropriate;.
+ *       - application/json
+ *     parameters:
+ *       - name: empid
+ *         in: request
+ *         required: true
+ *         type: integer
+ *       - name: articleId
+ *         in: request
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       201:
+ *         description: success.
+ *       500:
+ *         description: Server error
+ */
+
+articleRoute.post('/article/flag/:id', verifyMiddleWare, flagArticle);
 
 export default articleRoute;

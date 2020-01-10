@@ -47,8 +47,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', router);
 
-app.listen(getEnv('PORT', 7000), () =>
-  logger(`server listening on: http://localhost:${getEnv('PORT', 7000)}`)
+app.listen(getEnv('PORT', 8000), () =>
+  logger(`server listening on: http://localhost:${getEnv('PORT', 8000)}`)
 );
 
 export default app;
