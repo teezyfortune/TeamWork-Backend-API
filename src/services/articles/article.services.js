@@ -1,13 +1,13 @@
 import conn from '../../database/index';
 import { SERVER_ERROR_MESSAGE } from '../../utils/constant';
 
-export const getOneArticle = async (id, article) => {
+export const getOneArticle = async (id, empid) => {
   try {
-    const sql = 'SELECT * FROM articles WHERE empid = $1 AND article =$2  LIMIT 1';
-    const values = [id, article];
-    const articleArticle = await conn.query(sql, values);
-    if (articleArticle.rowCount !== 0) {
-      return true;
+    const sql = 'SELECT * FROM articles WHERE id = $1 AND empid =$2  LIMIT 1';
+    const values = [id, empid];
+    const articles = await conn.query(sql, values);
+    if (articles.rowCount !== 0) {
+      return articles;
     }
   } catch (error) {
     return error;
@@ -15,10 +15,25 @@ export const getOneArticle = async (id, article) => {
   return false;
 };
 
-export const getOneArticleById = async (id, empid) => {
+export const getOneArticleByUserId = async (id, articles) => {
   try {
-    const sql = 'SELECT * FROM articles WHERE id = $1 AND empid =$2  LIMIT 1';
-    const values = [id, empid];
+    const sql = 'SELECT * FROM articles WHERE empid = $1  AND article = $2 LIMIT 1';
+    const values = [id, articles];
+    const articleRows = await conn.query(sql, values);
+    if (articleRows.rowCount !== 0) {
+      return articleRows;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+// get a single article by id
+export const getArticleById = async (id) => {
+  try {
+    const sql = 'SELECT * FROM articles WHERE id = $1 LIMIT 1';
+    const values = [id];
     const articleRows = await conn.query(sql, values);
     if (articleRows.rowCount !== 0) {
       return articleRows;
@@ -74,6 +89,7 @@ export const deleteArticle = async (id) => {
   return false;
 };
 
+// returns all article
 export const getAllArticle = async () => {
   try {
     const sql =
@@ -88,6 +104,7 @@ export const getAllArticle = async () => {
   return false;
 };
 
+// gets a specific article and comments from that article
 export const getSpecificArticle = async (req, res) => {
   try {
     const { id } = req.params;
@@ -114,6 +131,53 @@ export const getSpecificArticle = async (req, res) => {
     }
   } catch (error) {
     return res.status(500).json({ status: 'error', message: SERVER_ERROR_MESSAGE });
+  }
+  return false;
+};
+
+// checks if an article as already been flagged
+export const flagByOnePerson = async (articleId, empId) => {
+  try {
+    const query = 'SELECT * FROM flagArticle WHERE articleid = $1 AND  empid = $2 LIMIT 1';
+    const value = [articleId, empId];
+    const result = await conn.query(query, value);
+    if (result.rowCount !== 0) {
+      return result;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+// gets user who flagged an article
+export const flagInappropriate = async (articleId, empId) => {
+  try {
+    const sql = 'INSERT INTO flagArticle (articleId, empid) VALUES ($1,$2) RETURNING *';
+    const values = [articleId, empId];
+    const flag = await conn.query(sql, values);
+
+    if (flag) {
+      return flag;
+    }
+  } catch (error) {
+    return error;
+  }
+  return false;
+};
+
+// change flagged status from false to true
+export const updateFlagStatus = async (articleId) => {
+  try {
+    const squery = 'UPDATE articles SET flag = $1 WHERE id = $2 RETURNING *';
+    const value = [true, articleId];
+    const flag = await conn.query(squery, value);
+
+    if (flag) {
+      return flag;
+    }
+  } catch (error) {
+    return error;
   }
   return false;
 };
