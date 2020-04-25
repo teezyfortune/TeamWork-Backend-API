@@ -5,7 +5,7 @@ import {
   destroyArticle,
   fetchAllArticle,
   flagArticle,
-} from '../articles/articles.controller';
+} from './articles.controller';
 import { getSpecificArticle } from '../../services/articles/article.services';
 import articleComment from '../comments/article_comment.controller';
 import { verifyMiddleWare } from '../../helpers/security';
@@ -159,7 +159,7 @@ articleRoute.post('/articles/:id/comment', verifyMiddleWare, validateComment, ar
 /**
  * @swagger
  *
- * /article:
+ * /feed:
  *   get:
  *     tags:
  *       - Employees can view all article
@@ -182,7 +182,7 @@ articleRoute.get('/feed', verifyMiddleWare, fetchAllArticle);
 /**
  * @swagger
  *
- * /article:
+ * /article/:id:
  *   get:
  *     tags:
  *       - Employees can view an article
@@ -205,7 +205,7 @@ articleRoute.get('/article/:id', verifyMiddleWare, getSpecificArticle);
 /**
  * @swagger
  *
- * /article/flag
+ * /article/flag/:id:
  *   post:
  *     tags:
  *       - flag an article

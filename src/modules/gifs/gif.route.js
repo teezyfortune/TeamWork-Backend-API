@@ -1,8 +1,8 @@
 import express from 'express';
-import { createGif, destroyGif, fetchAllGif } from '../gifs/gif.controller';
+import { createGif, destroyGif, fetchAllGif } from './gif.controller';
 import { getSpecificGif } from '../../services/gifs/gif.services';
 import { verifyMiddleWare } from '../../helpers/security';
-import { multerUploads } from '../../services/gifs/multer';
+import fileUpload from '../../middleware/image_upload/upload';
 import gifComment from '../comments/gif_comment';
 import { validateComment } from '../../middleware/validation';
 
@@ -34,7 +34,7 @@ const gifRoute = express.Router();
  *       500:
  *         description: Server error
  */
-gifRoute.post('/gifs', verifyMiddleWare, multerUploads, createGif);
+gifRoute.post('/gifs', verifyMiddleWare, fileUpload, createGif);
 
 /**
  * @swagger

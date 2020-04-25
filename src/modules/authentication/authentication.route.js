@@ -1,8 +1,8 @@
 import express from 'express';
 import { validateUserInput, validateLogin, validateUserProfile } from '../../middleware/validation';
-import { saveUser, updateProfile, viewProfile } from '../authentication/signup_account';
+import { saveUser, updateProfile, viewProfile } from './signup_account';
 import { verifyAdmin } from '../admin/admin.controller';
-import loginUser from '../authentication/login';
+import loginUser from './login';
 import { verifyMiddleWare } from '../../helpers/security';
 
 const authRoute = express.Router();

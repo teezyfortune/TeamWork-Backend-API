@@ -1,14 +1,14 @@
 import express from 'express';
-import authRoute from './authentication.route';
-import articleRoute from './articles.route';
-import gifRoute from './gif.route';
-import adminRoute from './admin.route';
+import authRoute from '../authentication/authentication.route';
+import articleRoute from '../articles/articles.route';
+import gifRoute from '../gifs/gif.route';
+import adminRoute from '../admin/admin.route';
 
-const router = express.Router();
+const routes = express.Router();
 
-router.use(authRoute);
-router.use(articleRoute);
-router.use(gifRoute);
-router.use(adminRoute);
+routes.use(authRoute);
+routes.use(articleRoute);
+routes.use(gifRoute);
+routes.use(adminRoute);
 
-export default router;
+export default routes;

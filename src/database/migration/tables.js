@@ -33,11 +33,11 @@ const gifQueryFlag =
 const articleQueryFlag =
   'DROP TABLE IF EXISTS flagArticle CASCADE; CREATE TABLE flagArticle (id serial NOT NULL PRIMARY KEY,articleId integer NOT NULL, empId integer NOT NULL,flaggedOn TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (empId) REFERENCES "employees" (id), FOREIGN KEY (articleId) REFERENCES "articles" (id));';
 
-const allQuery = `${employeesTableQuery}${articleTableQuery}${articleQueryFlag}${gifQueryFlag}${gifTableQuery}${articleCommentQuery} ${gifCommentQuery} ${sharedArticleQuery} ${sharedGifQuery}${Users}`;
+const allQuery = `${employeesTableQuery}${articleTableQuery}${gifTableQuery}${articleQueryFlag}${gifQueryFlag}${articleCommentQuery} ${gifCommentQuery} ${sharedArticleQuery} ${sharedGifQuery}${Users}`;
 // const flagQuery = ``;
 
 try {
   conn.query(allQuery);
 } catch (error) {
-  throw new Error('something weent wrong');
+  throw new Error('something went wrong');
 }
