@@ -55,5 +55,4 @@ app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDOCS));
 
 app.listen(PORT, () => console.log(`server listening on: ${server}`));
 
-
 export default app;
