@@ -25,6 +25,7 @@ app.use(expressUpload({ useTempFiles: true }));
 const PORT = process.env.PORT || 8000;
 
 const server = `http://localhost:${PORT}`;
+
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
