@@ -3,6 +3,7 @@ node_js:
   - "stable"
 install:
   - npm install
+  - travis_wait mvn install
 services:
   - postgresql
 env:
