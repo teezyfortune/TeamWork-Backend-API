@@ -10,7 +10,7 @@
     "dev": "nodemon --exec babel-node src/app.js",
     "db-migrate": "babel-node src/database/migration/tables.js",
     "pretest": "export NODE_ENV=test || SET \"NODE_ENV=test\" && npm run  db-migrate",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --timeout 1000000000 --exit",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && nyc --reporter=html --reporter=text mocha  --require @babel/register src/**/**/*.spec.js --timeout 5000000000 --exit",
     "build": "babel  src -d ./build -s",
     "coveralls": "nyc report --reporter=text-lcov | coveralls && nyc report --reporter=lcov",
     "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
