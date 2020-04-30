@@ -4,7 +4,7 @@ import { SERVER_ERROR_MESSAGE } from '../../utils/constant';
 
 export const getOneGifById = async (id) => {
   try {
-    const sql = 'SELECT * FROM Gifs WHERE id = $1 LIMIT 1';
+    const sql = 'SELECT * FROM gifs WHERE id = $1 LIMIT 1';
     const values = [id];
     const articleRows = await conn.query(sql, values);
     if (articleRows.rowCount !== 0) {
@@ -18,7 +18,7 @@ export const getOneGifById = async (id) => {
 
 export const saveGifs = async (empid, title, cloudUrl) => {
   try {
-    const sql = 'INSERT INTO gifs(empid, title, imageurl) VALUES ($1, $2, $3) RETURNING *';
+    const sql = 'INSERT INTO gifs (empid, title, imageurl) VALUES ($1, $2, $3) RETURNING *';
     const values = [empid, title, cloudUrl];
     const postGif = await conn.query(sql, values);
     if (postGif) {
@@ -30,12 +30,9 @@ export const saveGifs = async (empid, title, cloudUrl) => {
   return false;
 };
 
-
-
-
 export const deleteGif = async (id) => {
   try {
-    const sql = 'DELETE FROM  Gifs  WHERE id = $1';
+    const sql = 'DELETE FROM  gifs  WHERE id = $1';
     const values = [id];
     const deleted = await conn.query(sql, values);
     if (deleted) {

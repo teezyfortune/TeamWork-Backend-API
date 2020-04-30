@@ -1,5 +1,5 @@
 import express from 'express';
-import { getEmployees, verifyAdmin } from '../admin/admin.controller';
+import { getEmployees, verifyAdmin } from './admin.controller';
 import { verifyMiddleWare } from '../../helpers/security';
 
 const adminRoute = express.Router();

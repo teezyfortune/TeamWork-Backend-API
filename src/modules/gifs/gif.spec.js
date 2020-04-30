@@ -3,7 +3,7 @@ import fs from 'fs';
 import chai from 'chai';
 import chaHttp from 'chai-http';
 import app from '../../app';
-import * as mocks from '../../services/gifs/__mocks__/index';
+import * as mocks from './__mocks__/index';
 
 const { expect } = chai;
 chai.use(chaHttp);
@@ -29,49 +29,43 @@ describe('SIGNUP', () => {
       .set('Authorization', `Bearer ${adminToken.token}`)
       .send(mocks.User)
       .end((err, response) => {
-        gifToken = response.body.data;
+        expect(response.statusCode).to.equal(201);
         done();
       });
   });
-});
-describe('Gif', () => {
-  it('It should create new new gif', async () => {
-    try {
-      const response = await chai
-        .request(app)
-        .post(mocks.gifUrl)
-        .set('authorization', `Bearer ${gifToken.token}`)
-        .set('Content-Type', 'multipart/form-data')
-        .field('title', 'test gif')
-        .attach('gif', fs.readFileSync(`${__dirname}/images/dancingbaby.gif`), 'dancingbaby.gif');
-      expect(response.statusCode).to.equal(201);
-      expect(response.body).to.contains({ status: 'success' });
-    } catch (err) {}
+  it('login User ', (done) => {
+    chai
+      .request(app)
+      .post(mocks.gifLogin)
+      .set('Authorization', `Bearer ${adminToken.token}`)
+      .send(mocks.signIn)
+      .end((err, response) => {
+        gifToken = response.body.data;
+        expect(response.statusCode).to.equal(200);
+        done();
+      });
   });
-});
-
-describe('DELETE GIF', () => {
-  it('It should return 404 ', (done) => {
+  it('It should create new new gif', (done) => {
+    chai
+      .request(app)
+      .post(mocks.gifUrl)
+      .set('authorization', `Bearer ${gifToken.token}`)
+      .send(mocks.correctGif)
+      .end((err, response) => {
+        expect(response.statusCode).to.equal(201);
+        expect(response.body).to.contains({ status: 'success' });
+        done();
+      });
+  });
+  it('It should return 200', (done) => {
     chai
       .request(app)
       .delete(mocks.basedelete1)
       .set('authorization', `Bearer ${gifToken.token}`)
       .end((err, response) => {
         if (err) done(err);
-        expect(response.statusCode).to.equal(404);
+        expect(response.statusCode).to.equal(200);
         done();
       });
   });
-  // it('It should respond with field can not be empty', (done) => {
-  //   chai
-  //     .request(app)
-  //     .post(mocks.gifUrl)
-  //     .set('Authorization', `Bearer ${gifToken.token}`)
-  //     .send(mocks.emptySpace)
-  //     .end((err, response) => {
-  //       if (err) done(err);
-  //       expect(response.statusCode).to.equal(401);
-  //       done();
-  //     });
-  // });
 });

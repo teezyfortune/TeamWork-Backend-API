@@ -2,12 +2,12 @@ import faker from 'faker';
 
 export const correctGif = {
   title: faker.name.title(),
-  gif: faker.image.avatar(),
+  gif: 'https://testingImage.png',
 };
 
 export const correctGif1 = {
   title: faker.name.title(),
-  gif: faker.image.avatar(),
+  gif: 'https://testingImage.png',
 };
 
 export const emptySpace = {
@@ -43,7 +43,6 @@ export const adminSignIn = {
   email: 'gabteezy14@gmail.com',
   password: 'admin@$123',
 };
-
 
 export const invalidUser = {
   email: 'gabteezy14@gmail.co.uk',

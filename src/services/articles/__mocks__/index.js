@@ -38,7 +38,6 @@ export const signIn = {
   password: User.password,
 };
 
-
 export const adminSignIn = {
   email: 'gabteezy14@gmail.com',
   password: 'admin@$123',
@@ -62,5 +61,6 @@ export const baseuPdate = '/api/v1/articles/1';
 export const basedelete1 = '/api/v1/articles/1';
 export const basedelete2 = '/api/v1/articles/200';
 export const baseComment = '/api/v1/articles/2/comment';
+export const baseFlag = '/api/v1/article/flag/2';
 
 export const baseGeAll = '/api/v1/feed';
